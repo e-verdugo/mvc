@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="icon" href="favicon.ico">
+        <link rel="stylesheet" href="css/style.css"/>
+    </head>
+
+    <body>
+        {% include "header.twig" %}
+        <div class="main">
+            {% block content %}
+            Default
+            {% endblock %}
+        </div>
+        {% include "footer.twig" %}
+    </body>
+</html>
