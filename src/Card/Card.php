@@ -12,12 +12,17 @@ class Card
     {
         $card = "&#" . strval(intval($this->suits[$suit]) + $number) . ";";
         $this->face = $card;
-        $this->value = [$number, $suit];
+        $this->value = [$number + 1, $suit];
         return $card;
     }
 
     public function card()
     {
         return $this->face;
+    }
+
+    public function value()
+    {
+        return $this->value;
     }
 }
