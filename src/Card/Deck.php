@@ -1,22 +1,20 @@
 <?php
 
 namespace App\Deck;
+
 use App\Card\Card;
 
 class Deck
 {
-    public $deck = [];
-    public $suits = ["spades", "hearts", "diamonds", "clubs"];
+    protected $deck = [];
+    protected $suits = ["spades", "hearts", "diamonds", "clubs"];
 
-    function __construct()
+    public function __construct()
     {
-        for ($x = 0; $x <= 3; $x++)
-        {
+        for ($x = 0; $x <= 3; $x++) {
             $suit = $this->suits[$x];
-            for ($y = 0; $y <= 13; $y++)
-            {
-                if ($y != 11)
-                {
+            for ($y = 0; $y <= 13; $y++) {
+                if ($y != 11) {
                     $card = new Card($y, $suit);
                     array_push($this->deck, $card);
                 }
@@ -24,20 +22,20 @@ class Deck
         }
     }
 
-    function deck()
+    public function deck()
     {
         return $this->deck;
     }
 
-    function shuffle()
+    public function shuffle()
     {
         shuffle($this->deck);
         return $this->deck;
     }
 
-    function draw($decksize)
+    public function draw($decksize)
     {
-        $randNum = rand(0, $decksize-1);
+        $randNum = rand(0, $decksize - 1);
         $card = $this->deck[$randNum];
         array_splice($this->deck, $randNum, 1);
         return $card;

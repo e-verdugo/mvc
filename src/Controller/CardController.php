@@ -15,7 +15,6 @@ class CardController extends AbstractController
      */
     public function card(): Response
     {
-
         return $this->render('card/card.html.twig');
     }
     /**
