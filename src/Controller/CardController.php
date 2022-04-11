@@ -72,25 +72,25 @@ class CardController extends AbstractController
         return $this->render('card/drawnum.html.twig', $data);
     }
     /**
-     * @Route("/card/deck/deal/{players}/{number}", name="draw-player")
+     * @Route("/card/deck/deal/{players}/{number}", name="deal")
      */
     public function player(int $players, int $number, SessionInterface $session): Response
     {
-        $cards = [];
         $playerhands = [];
+        $player;
         $deck = $session->get("deck") ?? new \App\Deck\Deck();
-        for ($i = 1; $i <= $players; $i++) {
-            $cards = [];
+        for ($j = 1; $j <= $players; $j++) {
+            $player = new \App\Player\Player($j);
             for ($i = 1; $i <= $number; $i++) {
-                array_push($cards, $deck->draw(count($deck->deck())));
+                $player->addCards($deck->draw(count($deck->deck())));
             }
-            array_push($playerhands, $cards);
+            array_push($playerhands, $player);
         }
+        $session->set("deck", $deck);
         $data = [
             'players' => $playerhands,
             'deck' => $deck->deck(),
         ];
-        $session->set("deck", $deck);
         return $this->render('card/player.html.twig', $data);
     }
 }
