@@ -1,0 +1,17 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Deck{% endblock %}
+
+{% block content %}
+
+<h1>Deck</h1>
+
+{% for card in deck %}
+    {% if 127153 <= card.card()[2:6] and card.card()[2:6] < 127184 %}
+        <button style='font-size: 95px; color: red;'>{{ card.card()|raw }}</button>
+    {% else %}
+        <button style='font-size: 95px; color: black;'>{{ card.card()|raw }}</button>
+    {% endif %}
+{% endfor %}
+
+{% endblock %}
