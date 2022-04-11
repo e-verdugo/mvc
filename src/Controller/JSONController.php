@@ -14,7 +14,7 @@ class JSONController extends AbstractController
      */
     public function jsonapi(): Response
     {
-        $deck = new \App\Deck\Deck();
+        $deck = new \App\Card\Deck();
         $cards = [];
         foreach ($deck->deck() as $card) {
             array_push($cards, $card->value());

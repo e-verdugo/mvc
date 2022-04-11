@@ -22,7 +22,7 @@ class CardController extends AbstractController
      */
     public function deck(): Response
     {
-        $deck = new \App\Deck\Deck();
+        $deck = new \App\Card\Deck();
         $data = [
             'deck' => $deck->deck(),
         ];
@@ -33,7 +33,7 @@ class CardController extends AbstractController
      */
     public function shuffle(SessionInterface $session): Response
     {
-        $deck = new \App\Deck\Deck();
+        $deck = new \App\Card\Deck();
         $data = [
             'deck' => $deck->shuffle(),
         ];
@@ -45,7 +45,7 @@ class CardController extends AbstractController
      */
     public function draw(SessionInterface $session): Response
     {
-        $deck = $session->get("deck") ?? new \App\Deck\Deck();
+        $deck = $session->get("deck") ?? new \App\Card\Deck();
         $data = [
             'card' => $deck->draw(count($deck->deck())),
             'deck' => $deck->deck(),
@@ -59,7 +59,7 @@ class CardController extends AbstractController
     public function drawNumber(int $number, SessionInterface $session): Response
     {
         $cards = [];
-        $deck = $session->get("deck") ?? new \App\Deck\Deck();
+        $deck = $session->get("deck") ?? new \App\Card\Deck();
         for ($i = 1; $i <= $number; $i++) {
             array_push($cards, $deck->draw(count($deck->deck())));
         }
@@ -77,9 +77,9 @@ class CardController extends AbstractController
     {
         $playerhands = [];
         $player;
-        $deck = $session->get("deck") ?? new \App\Deck\Deck();
+        $deck = $session->get("deck") ?? new \App\Card\Deck();
         for ($j = 1; $j <= $players; $j++) {
-            $player = new \App\Player\Player($j);
+            $player = new \App\Card\Player($j);
             for ($i = 1; $i <= $number; $i++) {
                 $player->addCards($deck->draw(count($deck->deck())));
             }
@@ -97,7 +97,7 @@ class CardController extends AbstractController
      */
     public function deck2(): Response
     {
-        $deck = new \App\Deck2\Deck2();
+        $deck = new \App\Card\Deck2();
         $data = [
             'deck' => $deck->deck(),
         ];

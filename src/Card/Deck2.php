@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Deck2;
+namespace App\Card;
 
 use App\Card\Card;
-use App\Deck\Deck;
+use App\Card\Deck;
 
 class Deck2 extends Deck
 {

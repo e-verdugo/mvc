@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Player;
+namespace App\Card;
 
 class Player
 {
