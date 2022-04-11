@@ -6,7 +6,7 @@ use App\Card\Card;
 class Deck
 {
     public $deck = [];
-    private $suits = ["spades", "hearts", "diamonds", "clubs"];
+    public $suits = ["spades", "hearts", "diamonds", "clubs"];
 
     function __construct()
     {
