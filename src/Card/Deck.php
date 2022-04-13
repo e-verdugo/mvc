@@ -6,8 +6,14 @@ use App\Card\Card;
 
 class Deck
 {
-    protected $deck = [];
-    protected $suits = ["spades", "hearts", "diamonds", "clubs"];
+    /**
+     * @var array<Card> $deck
+     */
+    protected array $deck = [];
+    /**
+     * @var array<string> $suits
+     */
+    protected array $suits = ["spades", "hearts", "diamonds", "clubs"];
 
     public function __construct()
     {
@@ -22,18 +28,21 @@ class Deck
         }
     }
 
-    public function deck()
+    /** @return array<Card> */
+    public function deck() : array
     {
         return $this->deck;
     }
 
-    public function shuffle()
+    /** @return array<Card> */
+    public function shuffle() : array
     {
         shuffle($this->deck);
         return $this->deck;
     }
 
-    public function draw($decksize)
+    /** @return Card */
+    public function draw(int $decksize) : Card
     {
         $randNum = rand(0, $decksize - 1);
         $card = $this->deck[$randNum];

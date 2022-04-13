@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use App\Card\Deck;
 
 class JSONController extends AbstractController
 {
@@ -14,7 +15,7 @@ class JSONController extends AbstractController
      */
     public function jsonapi(): Response
     {
-        $deck = new \App\Card\Deck();
+        $deck = new Deck();
         $cards = [];
         foreach ($deck->deck() as $card) {
             array_push($cards, $card->value());

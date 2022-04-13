@@ -4,26 +4,30 @@ namespace App\Card;
 
 class Player
 {
-    private $cards = [];
-    private $name = "";
+    /**
+     * @var array<Card> $cards
+     */
+    private array $cards = [];
+    private string $name = "";
 
-    public function __construct($name)
+    public function __construct(string $name)
     {
         $this->name = $name;
     }
 
-    public function cards()
+    /** @return array<Card> */
+    public function cards() : array
     {
         return $this->cards;
     }
 
-    public function name()
+    public function name() : string
     {
         return $this->name;
     }
 
-    public function addCards($deck)
+    public function addCards(Card $card) : void
     {
-        array_push($this->cards, $deck);
+        array_push($this->cards, $card);
     }
 }
