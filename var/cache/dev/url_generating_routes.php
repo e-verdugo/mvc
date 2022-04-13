@@ -22,6 +22,7 @@ return [
     'draw-number' => [['number'], ['_controller' => 'App\\Controller\\CardController::drawNumber'], [], [['variable', '/', '[^/]++', 'number', true], ['text', '/card/deck/draw']], [], [], []],
     'deal' => [['players', 'number'], ['_controller' => 'App\\Controller\\CardController::player'], [], [['variable', '/', '[^/]++', 'number', true], ['variable', '/', '[^/]++', 'players', true], ['text', '/card/deck/deal']], [], [], []],
     'deck2' => [[], ['_controller' => 'App\\Controller\\CardController::deck2'], [], [['text', '/card/deck2']], [], [], []],
+    'game' => [[], ['_controller' => 'App\\Controller\\CardController::game'], [], [['text', '/game/card']], [], [], []],
     'jsonapi' => [[], ['_controller' => 'App\\Controller\\JSONController::jsonapi'], [], [['text', '/card/api/deck']], [], [], []],
     'home' => [[], ['_controller' => 'App\\Controller\\ReportController::home'], [], [['text', '/']], [], [], []],
     'about' => [[], ['_controller' => 'App\\Controller\\ReportController::about'], [], [['text', '/about']], [], [], []],

@@ -71,10 +71,13 @@ class __TwigTemplate_fe14ebc752d70f55788b067facd78a8b extends Template
         $this->displayBlock('content', $context, $blocks);
         // line 16
         echo "        </div>
+        <br>
+        <br>
+        <br>
         ";
-        // line 17
-        $this->loadTemplate("footer.twig", "base.html.twig", 17)->display($context);
-        // line 18
+        // line 20
+        $this->loadTemplate("footer.twig", "base.html.twig", 20)->display($context);
+        // line 21
         echo "    </body>
 </html>
 ";
@@ -138,7 +141,7 @@ class __TwigTemplate_fe14ebc752d70f55788b067facd78a8b extends Template
 
     public function getDebugInfo()
     {
-        return array (  119 => 14,  109 => 13,  90 => 5,  78 => 18,  76 => 17,  73 => 16,  71 => 13,  68 => 12,  66 => 11,  59 => 7,  55 => 6,  51 => 5,  45 => 1,);
+        return array (  122 => 14,  112 => 13,  93 => 5,  81 => 21,  79 => 20,  73 => 16,  71 => 13,  68 => 12,  66 => 11,  59 => 7,  55 => 6,  51 => 5,  45 => 1,);
     }
 
     public function getSourceContext()
@@ -159,6 +162,9 @@ class __TwigTemplate_fe14ebc752d70f55788b067facd78a8b extends Template
             Default
             {% endblock %}
         </div>
+        <br>
+        <br>
+        <br>
         {% include \"footer.twig\" %}
     </body>
 </html>

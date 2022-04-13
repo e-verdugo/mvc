@@ -18,6 +18,7 @@ return [
         '/card/deck/shuffle' => [[['_route' => 'shuffle', '_controller' => 'App\\Controller\\CardController::shuffle'], null, null, null, false, false, null]],
         '/card/deck/draw' => [[['_route' => 'draw', '_controller' => 'App\\Controller\\CardController::draw'], null, null, null, false, false, null]],
         '/card/deck2' => [[['_route' => 'deck2', '_controller' => 'App\\Controller\\CardController::deck2'], null, null, null, false, false, null]],
+        '/game/card' => [[['_route' => 'game', '_controller' => 'App\\Controller\\CardController::game'], null, null, null, false, false, null]],
         '/card/api/deck' => [[['_route' => 'jsonapi', '_controller' => 'App\\Controller\\JSONController::jsonapi'], null, null, null, false, false, null]],
         '/' => [[['_route' => 'home', '_controller' => 'App\\Controller\\ReportController::home'], null, null, null, false, false, null]],
         '/about' => [[['_route' => 'about', '_controller' => 'App\\Controller\\ReportController::about'], null, null, null, false, false, null]],

@@ -44,7 +44,7 @@ class __TwigTemplate_83ed7bab1b75afa19b875eb9ba3ca28c extends Template
 --------
 
 **Berätta kort om dina förkunskaper och tidigare erfarenheter kring objektorientering.**
-De ända tidigare erfarenheterna jag har av objektorienterad programmering är de som jag har fått inom dessa kurser. Så Python och JavaScript. Jag hade även en kurs i C# på gymnasiet men jag minns inte om vi körde objektorienterat där. När vi hade PHP tidigare så kände jag aldrig att jag riktigt \"fattade\", så det känns bra att ge en chans till att få bättre grepp om det hela. Nu är jag också mer van vid programmering överlag, så det lär hjälpa också.
+De enda tidigare erfarenheterna jag har av objektorienterad programmering är de som jag har fått inom dessa kurser. Så Python och JavaScript. Jag hade även en kurs i C# på gymnasiet men jag minns inte om vi körde objektorienterat där. När vi hade PHP tidigare så kände jag aldrig att jag riktigt \"fattade\", så det känns bra att ge en chans till att få bättre grepp om det hela. Nu är jag också mer van vid programmering överlag, så det lär hjälpa också.
 
 **Berätta kort om PHPs modell för klasser och objekt. Vilka är de grunder man behöver veta/förstå för att kunna komma igång och skapa sina första klasser?**
 En klass är en sort grund eller instruktion för ett objekt, som en ritning. I klassen så kan man definiera egenskaper/variabler, \"properties\", och metoder (funktioner). Både egenskaperna och metoderna kan antingen vara publika, skyddade, eller privata. De publika kan nås utanför klassen, medans de skyddade och privata endast kan nås inifrån. För att nå egenskaper inom klassen/objektet använder man \$this.
@@ -81,7 +81,7 @@ Hur man loopar och lägger ihop text i twig/symfony. Jag la inte ner jättemycke
 --------
 
 **Berätta kort om dina förkunskaper och tidigare erfarenheter kring objektorientering.**
-De ända tidigare erfarenheterna jag har av objektorienterad programmering är de som jag har fått inom dessa kurser. Så Python och JavaScript. Jag hade även en kurs i C# på gymnasiet men jag minns inte om vi körde objektorienterat där. När vi hade PHP tidigare så kände jag aldrig att jag riktigt \"fattade\", så det känns bra att ge en chans till att få bättre grepp om det hela. Nu är jag också mer van vid programmering överlag, så det lär hjälpa också.
+De enda tidigare erfarenheterna jag har av objektorienterad programmering är de som jag har fått inom dessa kurser. Så Python och JavaScript. Jag hade även en kurs i C# på gymnasiet men jag minns inte om vi körde objektorienterat där. När vi hade PHP tidigare så kände jag aldrig att jag riktigt \"fattade\", så det känns bra att ge en chans till att få bättre grepp om det hela. Nu är jag också mer van vid programmering överlag, så det lär hjälpa också.
 
 **Berätta kort om PHPs modell för klasser och objekt. Vilka är de grunder man behöver veta/förstå för att kunna komma igång och skapa sina första klasser?**
 En klass är en sort grund eller instruktion för ett objekt, som en ritning. I klassen så kan man definiera egenskaper/variabler, \"properties\", och metoder (funktioner). Både egenskaperna och metoderna kan antingen vara publika, skyddade, eller privata. De publika kan nås utanför klassen, medans de skyddade och privata endast kan nås inifrån. För att nå egenskaper inom klassen/objektet använder man \$this.

@@ -12,8 +12,8 @@ use Twig\Sandbox\SecurityNotAllowedFunctionError;
 use Twig\Source;
 use Twig\Template;
 
-/* card/card.html.twig */
-class __TwigTemplate_8fb139515d645bc7c0395a953df283cb extends Template
+/* card/game.html.twig */
+class __TwigTemplate_5cc909b4c55c3302ed6184e529ed4113 extends Template
 {
     private $source;
     private $macros = [];
@@ -40,12 +40,12 @@ class __TwigTemplate_8fb139515d645bc7c0395a953df283cb extends Template
     {
         $macros = $this->macros;
         $__internal_5a27a8ba21ca79b61932376b2fa922d2 = $this->extensions["Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension"];
-        $__internal_5a27a8ba21ca79b61932376b2fa922d2->enter($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "template", "card/card.html.twig"));
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2->enter($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "template", "card/game.html.twig"));
 
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
-        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "template", "card/card.html.twig"));
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "template", "card/game.html.twig"));
 
-        $this->parent = $this->loadTemplate("base.html.twig", "card/card.html.twig", 1);
+        $this->parent = $this->loadTemplate("base.html.twig", "card/game.html.twig", 1);
         $this->parent->display($context, array_merge($this->blocks, $blocks));
         
         $__internal_5a27a8ba21ca79b61932376b2fa922d2->leave($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof);
@@ -86,32 +86,20 @@ class __TwigTemplate_8fb139515d645bc7c0395a953df283cb extends Template
 
         // line 6
         echo "
-<h1>Card</h1>
+<h1>Spel</h1>
 
-<a href=\"";
-        // line 9
-        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("deck");
-        echo "\">Deck</a>
-<a href=\"";
-        // line 10
-        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("shuffle");
-        echo "\">Shuffle</a>
-<a href=\"";
-        // line 11
-        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("draw");
-        echo "\">Draw</a>
-<a href=\"";
-        // line 12
-        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("deck2");
-        echo "\">Deck2</a>
-<a href=\"";
-        // line 13
-        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("jsonapi");
-        echo "\">JSON API</a>
-<a href=\"";
-        // line 14
-        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("game");
-        echo "\">Game (21)</a>
+<h4>Beskrivning</h4>
+<p>Jag har valt att göra spelet 21. Spelaren får ett kort i taget, och ska försöka ta sig så nära 21 i värde som möjligt. Går man över 21 så förlorar man. Det kommer att finnas en knapp som låter en dra ett kort, och en knapp för när man är nöjd. Kommer man över 21 avslutas spelet automatiskt. Drar man ett kort så hamnar det synligt i ens hand/på bordet. Om man känner sig nöjd så lägger banken ut lika många kort som spelaren. Går banken över 21 så vinner spelaren. Hamnar banken på 21 så vinner banken. Om banken hamnar under 21 så vinner den med högst poäng.</p>
+
+<h4>Flödesschema</h4>
+<img src=\"../../img/flowchart.png\">
+
+<h4>Psuedokod</h4>
+<p>Om nytt-kort knappen klickas -> kör draw() på deck som är i session. Spara kortet i player objekt. For card in cards i player, kör value. Value += value[0]. Om value > 21, förlora. Om value == 21, vinn. Om value < 21, fortsätt. 
+Om klar-knappen klickas -> ny spelare \"bank\". Draw() körs count(player->cards()) gånger. Testas sen på samma sätt som player.</p>
+
+<h4>Klasser</h4>
+<p>Jag kommer att behöva en test-funktion, som kör en loop där den räknar ihop värdet i en hand. Även en funktion som kör själva spelet, om jag vill hålla kontrollern så ren som möjligt. En enda klass förutom de som jag redan har borde fungera. Den kan få heta twentyone, efter spelet (jag vet att det inte heter så på engelska men all min kod är på engelska redan).</p>
 
 ";
         
@@ -124,7 +112,7 @@ class __TwigTemplate_8fb139515d645bc7c0395a953df283cb extends Template
 
     public function getTemplateName()
     {
-        return "card/card.html.twig";
+        return "card/game.html.twig";
     }
 
     public function isTraitable()
@@ -134,7 +122,7 @@ class __TwigTemplate_8fb139515d645bc7c0395a953df283cb extends Template
 
     public function getDebugInfo()
     {
-        return array (  113 => 14,  109 => 13,  105 => 12,  101 => 11,  97 => 10,  93 => 9,  88 => 6,  78 => 5,  59 => 3,  36 => 1,);
+        return array (  88 => 6,  78 => 5,  59 => 3,  36 => 1,);
     }
 
     public function getSourceContext()
@@ -145,16 +133,22 @@ class __TwigTemplate_8fb139515d645bc7c0395a953df283cb extends Template
 
 {% block content %}
 
-<h1>Card</h1>
+<h1>Spel</h1>
 
-<a href=\"{{ path(\"deck\") }}\">Deck</a>
-<a href=\"{{ path(\"shuffle\") }}\">Shuffle</a>
-<a href=\"{{ path(\"draw\") }}\">Draw</a>
-<a href=\"{{ path(\"deck2\") }}\">Deck2</a>
-<a href=\"{{ path(\"jsonapi\") }}\">JSON API</a>
-<a href=\"{{ path(\"game\") }}\">Game (21)</a>
+<h4>Beskrivning</h4>
+<p>Jag har valt att göra spelet 21. Spelaren får ett kort i taget, och ska försöka ta sig så nära 21 i värde som möjligt. Går man över 21 så förlorar man. Det kommer att finnas en knapp som låter en dra ett kort, och en knapp för när man är nöjd. Kommer man över 21 avslutas spelet automatiskt. Drar man ett kort så hamnar det synligt i ens hand/på bordet. Om man känner sig nöjd så lägger banken ut lika många kort som spelaren. Går banken över 21 så vinner spelaren. Hamnar banken på 21 så vinner banken. Om banken hamnar under 21 så vinner den med högst poäng.</p>
+
+<h4>Flödesschema</h4>
+<img src=\"../../img/flowchart.png\">
+
+<h4>Psuedokod</h4>
+<p>Om nytt-kort knappen klickas -> kör draw() på deck som är i session. Spara kortet i player objekt. For card in cards i player, kör value. Value += value[0]. Om value > 21, förlora. Om value == 21, vinn. Om value < 21, fortsätt. 
+Om klar-knappen klickas -> ny spelare \"bank\". Draw() körs count(player->cards()) gånger. Testas sen på samma sätt som player.</p>
+
+<h4>Klasser</h4>
+<p>Jag kommer att behöva en test-funktion, som kör en loop där den räknar ihop värdet i en hand. Även en funktion som kör själva spelet, om jag vill hålla kontrollern så ren som möjligt. En enda klass förutom de som jag redan har borde fungera. Den kan få heta twentyone, efter spelet (jag vet att det inte heter så på engelska men all min kod är på engelska redan).</p>
 
 {% endblock %}
-", "card/card.html.twig", "C:\\Users\\Emelie\\dbwebb\\dbwebb-kurser\\mvc\\me\\report\\templates\\card\\card.html.twig");
+", "card/game.html.twig", "C:\\Users\\Emelie\\dbwebb\\dbwebb-kurser\\mvc\\me\\report\\templates\\card\\game.html.twig");
     }
 }
