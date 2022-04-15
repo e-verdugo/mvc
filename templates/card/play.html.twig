@@ -1,0 +1,28 @@
+{% extends "base.html.twig" %}
+
+{% block title %}21{% endblock %}
+
+{% block content %}
+
+<h1>Spela  21</h1>
+
+<h4>{{check}}</h4>
+
+{% for card in player.cards() %}
+    {% if 127153 <= card.card()[2:6] and card.card()[2:6] < 127184 %}
+        <button style='font-size: 95px; color: red;'>{{ card.card()|raw }}</button>
+    {% else %}
+        <button style='font-size: 95px; color: black;'>{{ card.card()|raw }}</button>
+    {% endif %}
+{% endfor %}
+
+<form method="post">
+    <fieldset>
+        <p>
+            <input type="submit" name="draw" value="Draw">
+            <input type="submit" name="fold" value="Fold">
+        </p>
+    </fieldset>
+</form>
+
+{% endblock %}

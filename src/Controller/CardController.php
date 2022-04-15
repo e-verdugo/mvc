@@ -11,6 +11,7 @@ use App\Card\Card;
 use App\Card\Deck;
 use App\Card\Deck2;
 use App\Card\Player;
+use App\Card\Game;
 
 class CardController extends AbstractController
 {
@@ -116,10 +117,50 @@ class CardController extends AbstractController
         return $this->render('card/deck.html.twig', $data);
     }
     /**
-     * @Route("/game/card", name="game")
+     * @Route("/game", name="game")
      */
     public function game(): Response
     {
         return $this->render('card/game.html.twig');
+    }
+    /**
+     * @Route("/game/doc", name="doc")
+     */
+    public function doc(): Response
+    {
+        return $this->render('card/doc.html.twig');
+    }
+    /**
+     * @Route("/game/play", name="play", methods={"GET","HEAD"})
+     */
+    public function play(SessionInterface $session): Response
+    {
+        $game = $session->get("game") ?? new Game("Player");
+        $data = [
+            'player' => $game->getPlayer(),
+            'bank' => $game->getBank(),
+            'check' => $game->checkTwentyone($game->getPlayer()),
+        ];
+        $session->set("game", $game);
+        return $this->render('card/play.html.twig', $data);
+    }
+    /**
+     * @Route("/game/play", name="play-process", methods={"POST"})
+     */
+    public function playProcess(SessionInterface $session, Request $request): Response
+    {
+        $draw = $request->request->get('draw');
+        $fold = $request->request->get('fold');
+        $game = $session->get("game");
+        if ($draw) {
+            $game->getPlayer()->addCards($game->getDeck()->draw(count($game->getDeck()->deck())));
+        } elseif ($fold) {
+            // bank pulls player hand amount of cards, then checks who got closest to 21. if reaches 21 or goes over earlier, stop
+            // reset hand
+            session_destroy();
+        } else {
+            var_dump("else");
+        }
+        return $this->redirectToRoute('play');
     }
 }

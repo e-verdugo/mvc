@@ -65,7 +65,7 @@ class __TwigTemplate_5cc909b4c55c3302ed6184e529ed4113 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "title"));
 
-        echo "Card";
+        echo "Game";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
 
@@ -88,18 +88,18 @@ class __TwigTemplate_5cc909b4c55c3302ed6184e529ed4113 extends Template
         echo "
 <h1>Spel</h1>
 
-<h4>Beskrivning</h4>
-<p>Jag har valt att göra spelet 21. Spelaren får ett kort i taget, och ska försöka ta sig så nära 21 i värde som möjligt. Går man över 21 så förlorar man. Det kommer att finnas en knapp som låter en dra ett kort, och en knapp för när man är nöjd. Kommer man över 21 avslutas spelet automatiskt. Drar man ett kort så hamnar det synligt i ens hand/på bordet. Om man känner sig nöjd så lägger banken ut lika många kort som spelaren. Går banken över 21 så vinner spelaren. Hamnar banken på 21 så vinner banken. Om banken hamnar under 21 så vinner den med högst poäng.</p>
+<h4><a href=\"";
+        // line 9
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("doc");
+        echo "\">Documentation</a></h4>
 
-<h4>Flödesschema</h4>
-<img src=\"../../img/flowchart.png\">
+<h4><a href=\"";
+        // line 11
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("play");
+        echo "\">Play game</a></h4>
 
-<h4>Psuedokod</h4>
-<p>Om nytt-kort knappen klickas -> kör draw() på deck som är i session. Spara kortet i player objekt. For card in cards i player, kör value. Value += value[0]. Om value > 21, förlora. Om value == 21, vinn. Om value < 21, fortsätt. 
-Om klar-knappen klickas -> ny spelare \"bank\". Draw() körs count(player->cards()) gånger. Testas sen på samma sätt som player.</p>
-
-<h4>Klasser</h4>
-<p>Jag kommer att behöva en test-funktion, som kör en loop där den räknar ihop värdet i en hand. Även en funktion som kör själva spelet, om jag vill hålla kontrollern så ren som möjligt. En enda klass förutom de som jag redan har borde fungera. Den kan få heta twentyone, efter spelet (jag vet att det inte heter så på engelska men all min kod är på engelska redan).</p>
+<h4>Spelregler</h4>
+Målet med spelet är att genom att dra ett kort i taget få en hand som kommer så nära värdet 21 som möjligt, utan att komma över det. Kommer man över 21 så förlorar man, hamnar man på 21 så vinner man. Om man är under 21 men känner sig nöjd så kan man lägga sig. Då kommer banken att dra lika många kort som spelaren har, och om banken kommer närmare 21 än spelaren utan att komma över så vinner den, och spelaren förlorar. Det gäller alltså att ha fler poäng än banken.
 
 ";
         
@@ -122,31 +122,25 @@ Om klar-knappen klickas -> ny spelare \"bank\". Draw() körs count(player->cards
 
     public function getDebugInfo()
     {
-        return array (  88 => 6,  78 => 5,  59 => 3,  36 => 1,);
+        return array (  98 => 11,  93 => 9,  88 => 6,  78 => 5,  59 => 3,  36 => 1,);
     }
 
     public function getSourceContext()
     {
         return new Source("{% extends \"base.html.twig\" %}
 
-{% block title %}Card{% endblock %}
+{% block title %}Game{% endblock %}
 
 {% block content %}
 
 <h1>Spel</h1>
 
-<h4>Beskrivning</h4>
-<p>Jag har valt att göra spelet 21. Spelaren får ett kort i taget, och ska försöka ta sig så nära 21 i värde som möjligt. Går man över 21 så förlorar man. Det kommer att finnas en knapp som låter en dra ett kort, och en knapp för när man är nöjd. Kommer man över 21 avslutas spelet automatiskt. Drar man ett kort så hamnar det synligt i ens hand/på bordet. Om man känner sig nöjd så lägger banken ut lika många kort som spelaren. Går banken över 21 så vinner spelaren. Hamnar banken på 21 så vinner banken. Om banken hamnar under 21 så vinner den med högst poäng.</p>
+<h4><a href=\"{{ path(\"doc\") }}\">Documentation</a></h4>
 
-<h4>Flödesschema</h4>
-<img src=\"../../img/flowchart.png\">
+<h4><a href=\"{{ path(\"play\") }}\">Play game</a></h4>
 
-<h4>Psuedokod</h4>
-<p>Om nytt-kort knappen klickas -> kör draw() på deck som är i session. Spara kortet i player objekt. For card in cards i player, kör value. Value += value[0]. Om value > 21, förlora. Om value == 21, vinn. Om value < 21, fortsätt. 
-Om klar-knappen klickas -> ny spelare \"bank\". Draw() körs count(player->cards()) gånger. Testas sen på samma sätt som player.</p>
-
-<h4>Klasser</h4>
-<p>Jag kommer att behöva en test-funktion, som kör en loop där den räknar ihop värdet i en hand. Även en funktion som kör själva spelet, om jag vill hålla kontrollern så ren som möjligt. En enda klass förutom de som jag redan har borde fungera. Den kan få heta twentyone, efter spelet (jag vet att det inte heter så på engelska men all min kod är på engelska redan).</p>
+<h4>Spelregler</h4>
+Målet med spelet är att genom att dra ett kort i taget få en hand som kommer så nära värdet 21 som möjligt, utan att komma över det. Kommer man över 21 så förlorar man, hamnar man på 21 så vinner man. Om man är under 21 men känner sig nöjd så kan man lägga sig. Då kommer banken att dra lika många kort som spelaren har, och om banken kommer närmare 21 än spelaren utan att komma över så vinner den, och spelaren förlorar. Det gäller alltså att ha fler poäng än banken.
 
 {% endblock %}
 ", "card/game.html.twig", "C:\\Users\\Emelie\\dbwebb\\dbwebb-kurser\\mvc\\me\\report\\templates\\card\\game.html.twig");
