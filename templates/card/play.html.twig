@@ -6,13 +6,21 @@
 
 <h1>Spela  21</h1>
 
-{% if check < 21 %}
-<h4>Fold or pull another card</h4>
-{% elseif check == 21 %}
-<h4>You won!</h4>
-{% elseif check > 21 %}
-<h4>You lost!</h4>
+{% if check matches '/^\\d+$/' %} {# check if int #}
+    {% if check < 21 %}
+        <h4>Fold or pull another card</h4>
+    {% elseif check == 21 %}
+        <h4>You won!</h4>
+        {% set disabled = "disabled" %}
+    {% elseif check > 21 %}
+        <h4>You lost!</h4>
+        {% set disabled = "disabled" %}
+    {% endif %}
+{% else %}
+    <h4>{{check}}</h4>
 {% endif %}
+
+<br>
 
 {{player.name()}}'s cards: 
 {% for card in player.cards() %}
@@ -37,8 +45,9 @@
 <form method="post">
     <fieldset>
         <p>
-            <input type="submit" name="draw" value="Draw">
-            <input type="submit" name="fold" value="Fold">
+            <input type="submit" {{disabled}} name="draw" value="Draw">
+            <input type="submit" {{disabled}} name="fold" value="Fold">
+            <input type="submit" name="reset" value="Reset">
         </p>
     </fieldset>
 </form>

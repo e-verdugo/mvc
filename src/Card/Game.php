@@ -46,16 +46,18 @@ class Game
         return $cardsValue;
     }
 
-    //bank pulls player hand amount of cards, returns who won
+    //bank pulls player hand amount of cards, returns if player won
     public function bankPull() : bool
     {
         for ($i = 0; $i <= count($this->getPlayer()->cards())-1; $i++) {
             $this->getBank()->addCards($this->getDeck()->draw(count($this->getDeck()->deck())));
         }
-        if ($this->checkTwentyone($this->getBank()) < $this->checkTwentyone($this->getPlayer())) {
+        if (intval($this->checkTwentyone($this->getBank())) < intval($this->checkTwentyone($this->getPlayer()))) {
             return true; // player wins
         } elseif ($this->checkTwentyone($this->getBank()) == 21) {
             return false; // bank wins
+        } elseif ($this->checkTwentyone($this->getBank()) > 21) {
+            return true; // bank loses
         } else {
             return false; // player loses
         }

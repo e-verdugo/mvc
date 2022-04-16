@@ -136,10 +136,13 @@ class CardController extends AbstractController
     public function play(SessionInterface $session): Response
     {
         $game = $session->get("game") ?? new Game("Player");
+        $check = $session->get("check") ?? $game->checkTwentyone($game->getPlayer());
+        $disabled = $session->get("disabled") ?? "";
         $data = [
             'player' => $game->getPlayer(),
             'bank' => $game->getBank(),
-            'check' => $game->checkTwentyone($game->getPlayer()),
+            'check' => $check,
+            'disabled' => $disabled,
         ];
         $session->set("game", $game);
         return $this->render('card/play.html.twig', $data);
@@ -151,13 +154,19 @@ class CardController extends AbstractController
     {
         $draw = $request->request->get('draw');
         $fold = $request->request->get('fold');
+        $reset = $request->request->get('reset');
         $game = $session->get("game");
         if ($draw) {
             $game->getPlayer()->addCards($game->getDeck()->draw(count($game->getDeck()->deck())));
         } elseif ($fold) {
-            $game->bankPull();
-            // end game
-        } else {
+            $session->set("disabled", "disabled");
+            $playerWon = $game->bankPull();
+            if ($playerWon == true) {
+                $session->set("check", "You won!");
+            } elseif ($playerWon == false) {
+                $session->set("check", "You lost!");
+            }
+        } elseif ($reset) {
             session_destroy();
         }
         return $this->redirectToRoute('play');
