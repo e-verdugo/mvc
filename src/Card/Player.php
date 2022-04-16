@@ -16,17 +16,17 @@ class Player
     }
 
     /** @return array<Card> */
-    public function cards() : array
+    public function cards(): array
     {
         return $this->cards;
     }
 
-    public function name() : string
+    public function name(): string
     {
         return $this->name;
     }
 
-    public function addCards(Card $card) : void
+    public function addCards(Card $card): void
     {
         array_push($this->cards, $card);
     }

@@ -29,20 +29,20 @@ class Deck
     }
 
     /** @return array<Card> */
-    public function deck() : array
+    public function deck(): array
     {
         return $this->deck;
     }
 
     /** @return array<Card> */
-    public function shuffle() : array
+    public function shuffle(): array
     {
         shuffle($this->deck);
         return $this->deck;
     }
 
     /** @return Card */
-    public function draw(int $decksize) : Card
+    public function draw(int $decksize): Card
     {
         $randNum = rand(0, $decksize - 1);
         $card = $this->deck[$randNum];

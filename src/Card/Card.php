@@ -21,13 +21,13 @@ class Card
         $this->value = [strval($number + 1), $suit];
     }
 
-    public function card() : string
+    public function card(): string
     {
         return $this->face;
     }
 
     /** @return array<string> */
-    public function value() : array
+    public function value(): array
     {
         return $this->value;
     }

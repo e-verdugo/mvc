@@ -51,7 +51,7 @@ class CardController extends AbstractController
     public function draw(SessionInterface $session): Response
     {
         /**
-         * @var array<Card> $deck
+         * @var Deck $deck
          */
         $deck = $session->get("deck") ?? new Deck();
         $data = [
@@ -68,7 +68,7 @@ class CardController extends AbstractController
     {
         $cards = [];
         /**
-         * @var array<Card> $deck
+         * @var Deck $deck
          */
         $deck = $session->get("deck") ?? new Deck();
         for ($i = 1; $i <= $number; $i++) {
@@ -88,7 +88,7 @@ class CardController extends AbstractController
     {
         $playerhands = [];
         /**
-         * @var array<Card> $deck
+         * @var Deck $deck
          */
         $deck = $session->get("deck") ?? new Deck();
         for ($j = 1; $j <= $players; $j++) {
@@ -135,6 +135,9 @@ class CardController extends AbstractController
      */
     public function play(SessionInterface $session): Response
     {
+        /**
+         * @var Game $game
+         */
         $game = $session->get("game") ?? new Game("Player");
         $check = $session->get("check") ?? $game->checkTwentyone($game->getPlayer());
         $disabled = $session->get("disabled") ?? "";
@@ -155,6 +158,9 @@ class CardController extends AbstractController
         $draw = $request->request->get('draw');
         $fold = $request->request->get('fold');
         $reset = $request->request->get('reset');
+        /**
+         * @var Game $game
+         */
         $game = $session->get("game");
         if ($draw) {
             $game->getPlayer()->addCards($game->getDeck()->draw(count($game->getDeck()->deck())));
