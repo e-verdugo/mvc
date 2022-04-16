@@ -2,6 +2,7 @@
 
 namespace App\Card;
 use App\Card\Player;
+use App\Card\Card;
 
 class Game
 {
@@ -38,13 +39,9 @@ class Game
     //check if hand value is 21 or more, returns string
     public function checkTwentyone(Player $player) : string
     {
-        $playerCards = [];
         $cardsValue = 0;
-        array_push($playerCards, $player->cards());
-        if (count($playerCards) > 1) {
-            for ($i = 1; $i <= count($playerCards); $i++) {
-                $cardsValue += ($playerCards[$i]->value())[0];
-            }
+        for ($i = 0; $i <= count($player->cards())-1; $i++) {
+            $cardsValue += intval($player->cards()[$i]->value()[0]);
         }
         if ($cardsValue > 21) {
             return "You lost!";
@@ -54,4 +51,10 @@ class Game
             return "Fold or draw another card.";
         }
     }
+
+        //bank pulls player hand amount of cards
+        public function bankPull() : string
+        {
+            
+        }
 }

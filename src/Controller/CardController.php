@@ -155,8 +155,7 @@ class CardController extends AbstractController
         if ($draw) {
             $game->getPlayer()->addCards($game->getDeck()->draw(count($game->getDeck()->deck())));
         } elseif ($fold) {
-            // bank pulls player hand amount of cards, then checks who got closest to 21. if reaches 21 or goes over earlier, stop
-            // reset hand
+            $game->bankPull();
             session_destroy();
         } else {
             var_dump("else");
