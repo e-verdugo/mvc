@@ -156,9 +156,9 @@ class CardController extends AbstractController
             $game->getPlayer()->addCards($game->getDeck()->draw(count($game->getDeck()->deck())));
         } elseif ($fold) {
             $game->bankPull();
-            session_destroy();
+            // end game
         } else {
-            var_dump("else");
+            session_destroy();
         }
         return $this->redirectToRoute('play');
     }

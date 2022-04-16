@@ -6,9 +6,27 @@
 
 <h1>Spela  21</h1>
 
-<h4>{{check}}</h4>
+{% if check < 21 %}
+<h4>Fold or pull another card</h4>
+{% elseif check == 21 %}
+<h4>You won!</h4>
+{% elseif check > 21 %}
+<h4>You lost!</h4>
+{% endif %}
 
+{{player.name()}}'s cards: 
 {% for card in player.cards() %}
+    {% if 127153 <= card.card()[2:6] and card.card()[2:6] < 127184 %}
+        <button style='font-size: 95px; color: red;'>{{ card.card()|raw }}</button>
+    {% else %}
+        <button style='font-size: 95px; color: black;'>{{ card.card()|raw }}</button>
+    {% endif %}
+{% endfor %}
+
+<br>
+
+{{bank.name()}}'s cards: 
+{% for card in bank.cards() %}
     {% if 127153 <= card.card()[2:6] and card.card()[2:6] < 127184 %}
         <button style='font-size: 95px; color: red;'>{{ card.card()|raw }}</button>
     {% else %}

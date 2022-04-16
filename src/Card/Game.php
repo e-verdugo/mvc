@@ -36,25 +36,28 @@ class Game
         return $this->deck;
     }
 
-    //check if hand value is 21 or more, returns string
-    public function checkTwentyone(Player $player) : string
+    //check if hand value is 21 or more, returns points
+    public function checkTwentyone(Player $player) : int
     {
         $cardsValue = 0;
         for ($i = 0; $i <= count($player->cards())-1; $i++) {
             $cardsValue += intval($player->cards()[$i]->value()[0]);
         }
-        if ($cardsValue > 21) {
-            return "You lost!";
-        } elseif ($cardsValue == 21) {
-            return "You won!";
-        } else {
-            return "Fold or draw another card.";
-        }
+        return $cardsValue;
     }
 
-        //bank pulls player hand amount of cards
-        public function bankPull() : string
-        {
-            
+    //bank pulls player hand amount of cards, returns who won
+    public function bankPull() : bool
+    {
+        for ($i = 0; $i <= count($this->getPlayer()->cards())-1; $i++) {
+            $this->getBank()->addCards($this->getDeck()->draw(count($this->getDeck()->deck())));
         }
+        if ($this->checkTwentyone($this->getBank()) < $this->checkTwentyone($this->getPlayer())) {
+            return true; // player wins
+        } elseif ($this->checkTwentyone($this->getBank()) == 21) {
+            return false; // bank wins
+        } else {
+            return false; // player loses
+        }
+    }
 }

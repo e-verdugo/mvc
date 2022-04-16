@@ -88,28 +88,46 @@ class __TwigTemplate_03ec775666ea5485ac94066617de5fd5 extends Template
         echo "
 <h1>Spela  21</h1>
 
-<h4>";
-        // line 9
-        echo twig_escape_filter($this->env, (isset($context["check"]) || array_key_exists("check", $context) ? $context["check"] : (function () { throw new RuntimeError('Variable "check" does not exist.', 9, $this->source); })()), "html", null, true);
-        echo "</h4>
-
 ";
-        // line 11
-        $context['_parent'] = $context;
-        $context['_seq'] = twig_ensure_traversable(twig_get_attribute($this->env, $this->source, (isset($context["player"]) || array_key_exists("player", $context) ? $context["player"] : (function () { throw new RuntimeError('Variable "player" does not exist.', 11, $this->source); })()), "cards", [], "method", false, false, false, 11));
-        foreach ($context['_seq'] as $context["_key"] => $context["card"]) {
+        // line 9
+        if (((isset($context["check"]) || array_key_exists("check", $context) ? $context["check"] : (function () { throw new RuntimeError('Variable "check" does not exist.', 9, $this->source); })()) < 21)) {
+            // line 10
+            echo "<h4>Fold or pull another card</h4>
+";
+        } elseif ((        // line 11
+(isset($context["check"]) || array_key_exists("check", $context) ? $context["check"] : (function () { throw new RuntimeError('Variable "check" does not exist.', 11, $this->source); })()) == 21)) {
             // line 12
+            echo "<h4>You won!</h4>
+";
+        } elseif ((        // line 13
+(isset($context["check"]) || array_key_exists("check", $context) ? $context["check"] : (function () { throw new RuntimeError('Variable "check" does not exist.', 13, $this->source); })()) > 21)) {
+            // line 14
+            echo "<h4>You lost!</h4>
+";
+        }
+        // line 16
+        echo "
+";
+        // line 17
+        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["player"]) || array_key_exists("player", $context) ? $context["player"] : (function () { throw new RuntimeError('Variable "player" does not exist.', 17, $this->source); })()), "name", [], "method", false, false, false, 17), "html", null, true);
+        echo "'s cards: 
+";
+        // line 18
+        $context['_parent'] = $context;
+        $context['_seq'] = twig_ensure_traversable(twig_get_attribute($this->env, $this->source, (isset($context["player"]) || array_key_exists("player", $context) ? $context["player"] : (function () { throw new RuntimeError('Variable "player" does not exist.', 18, $this->source); })()), "cards", [], "method", false, false, false, 18));
+        foreach ($context['_seq'] as $context["_key"] => $context["card"]) {
+            // line 19
             echo "    ";
-            if (((127153 <= twig_slice($this->env, twig_get_attribute($this->env, $this->source, $context["card"], "card", [], "method", false, false, false, 12), 2, 6)) && (twig_slice($this->env, twig_get_attribute($this->env, $this->source, $context["card"], "card", [], "method", false, false, false, 12), 2, 6) < 127184))) {
-                // line 13
+            if (((127153 <= twig_slice($this->env, twig_get_attribute($this->env, $this->source, $context["card"], "card", [], "method", false, false, false, 19), 2, 6)) && (twig_slice($this->env, twig_get_attribute($this->env, $this->source, $context["card"], "card", [], "method", false, false, false, 19), 2, 6) < 127184))) {
+                // line 20
                 echo "        <button style='font-size: 95px; color: red;'>";
-                echo twig_get_attribute($this->env, $this->source, $context["card"], "card", [], "method", false, false, false, 13);
+                echo twig_get_attribute($this->env, $this->source, $context["card"], "card", [], "method", false, false, false, 20);
                 echo "</button>
     ";
             } else {
-                // line 15
+                // line 22
                 echo "        <button style='font-size: 95px; color: black;'>";
-                echo twig_get_attribute($this->env, $this->source, $context["card"], "card", [], "method", false, false, false, 15);
+                echo twig_get_attribute($this->env, $this->source, $context["card"], "card", [], "method", false, false, false, 22);
                 echo "</button>
     ";
             }
@@ -117,7 +135,39 @@ class __TwigTemplate_03ec775666ea5485ac94066617de5fd5 extends Template
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['card'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 18
+        // line 25
+        echo "
+<br>
+
+";
+        // line 28
+        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["bank"]) || array_key_exists("bank", $context) ? $context["bank"] : (function () { throw new RuntimeError('Variable "bank" does not exist.', 28, $this->source); })()), "name", [], "method", false, false, false, 28), "html", null, true);
+        echo "'s cards: 
+";
+        // line 29
+        $context['_parent'] = $context;
+        $context['_seq'] = twig_ensure_traversable(twig_get_attribute($this->env, $this->source, (isset($context["bank"]) || array_key_exists("bank", $context) ? $context["bank"] : (function () { throw new RuntimeError('Variable "bank" does not exist.', 29, $this->source); })()), "cards", [], "method", false, false, false, 29));
+        foreach ($context['_seq'] as $context["_key"] => $context["card"]) {
+            // line 30
+            echo "    ";
+            if (((127153 <= twig_slice($this->env, twig_get_attribute($this->env, $this->source, $context["card"], "card", [], "method", false, false, false, 30), 2, 6)) && (twig_slice($this->env, twig_get_attribute($this->env, $this->source, $context["card"], "card", [], "method", false, false, false, 30), 2, 6) < 127184))) {
+                // line 31
+                echo "        <button style='font-size: 95px; color: red;'>";
+                echo twig_get_attribute($this->env, $this->source, $context["card"], "card", [], "method", false, false, false, 31);
+                echo "</button>
+    ";
+            } else {
+                // line 33
+                echo "        <button style='font-size: 95px; color: black;'>";
+                echo twig_get_attribute($this->env, $this->source, $context["card"], "card", [], "method", false, false, false, 33);
+                echo "</button>
+    ";
+            }
+        }
+        $_parent = $context['_parent'];
+        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['card'], $context['_parent'], $context['loop']);
+        $context = array_intersect_key($context, $_parent) + $_parent;
+        // line 36
         echo "
 <form method=\"post\">
     <fieldset>
@@ -149,7 +199,7 @@ class __TwigTemplate_03ec775666ea5485ac94066617de5fd5 extends Template
 
     public function getDebugInfo()
     {
-        return array (  121 => 18,  111 => 15,  105 => 13,  102 => 12,  98 => 11,  93 => 9,  88 => 6,  78 => 5,  59 => 3,  36 => 1,);
+        return array (  171 => 36,  161 => 33,  155 => 31,  152 => 30,  148 => 29,  144 => 28,  139 => 25,  129 => 22,  123 => 20,  120 => 19,  116 => 18,  112 => 17,  109 => 16,  105 => 14,  103 => 13,  100 => 12,  98 => 11,  95 => 10,  93 => 9,  88 => 6,  78 => 5,  59 => 3,  36 => 1,);
     }
 
     public function getSourceContext()
@@ -162,9 +212,27 @@ class __TwigTemplate_03ec775666ea5485ac94066617de5fd5 extends Template
 
 <h1>Spela  21</h1>
 
-<h4>{{check}}</h4>
+{% if check < 21 %}
+<h4>Fold or pull another card</h4>
+{% elseif check == 21 %}
+<h4>You won!</h4>
+{% elseif check > 21 %}
+<h4>You lost!</h4>
+{% endif %}
 
+{{player.name()}}'s cards: 
 {% for card in player.cards() %}
+    {% if 127153 <= card.card()[2:6] and card.card()[2:6] < 127184 %}
+        <button style='font-size: 95px; color: red;'>{{ card.card()|raw }}</button>
+    {% else %}
+        <button style='font-size: 95px; color: black;'>{{ card.card()|raw }}</button>
+    {% endif %}
+{% endfor %}
+
+<br>
+
+{{bank.name()}}'s cards: 
+{% for card in bank.cards() %}
     {% if 127153 <= card.card()[2:6] and card.card()[2:6] < 127184 %}
         <button style='font-size: 95px; color: red;'>{{ card.card()|raw }}</button>
     {% else %}
