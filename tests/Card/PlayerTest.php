@@ -9,7 +9,7 @@ class PlayerTest extends TestCase
     /**
      * Test the constructor.
      */
-    public function testPlayerConstructor() : void
+    public function testPlayerConstructor(): void
     {
         $player = new Player("PlayerName");
         $this->assertInstanceOf("App\Card\Player", $player);
@@ -18,7 +18,7 @@ class PlayerTest extends TestCase
     /**
      * Test getting player name.
      */
-    public function testPlayerName() : void
+    public function testPlayerName(): void
     {
         $player = new Player("PlayerName");
         $this->assertInstanceOf("App\Card\Player", $player);
@@ -29,7 +29,7 @@ class PlayerTest extends TestCase
     /**
      * Test getting player cards when there are no cards.
      */
-    public function testPlayerCardsNoCards() : void
+    public function testPlayerCardsNoCards(): void
     {
         $player = new Player("PlayerName");
         $this->assertInstanceOf("App\Card\Player", $player);
@@ -40,7 +40,7 @@ class PlayerTest extends TestCase
     /**
      * Test getting player cards if there is a card. Also tests the add card function at the same time.
      */
-    public function testPlayerAddCards() : void
+    public function testPlayerAddCards(): void
     {
         $player = new Player("PlayerName");
         $this->assertInstanceOf("App\Card\Player", $player);

@@ -9,7 +9,7 @@ class DeckTest extends TestCase
     /**
      * Test the constructor.
      */
-    public function testDeckConstructor() : void
+    public function testDeckConstructor(): void
     {
         $deck = new Deck();
         $this->assertInstanceOf("App\Card\Deck", $deck);
@@ -18,7 +18,7 @@ class DeckTest extends TestCase
     /**
      * Test getting the cards in the deck.
      */
-    public function testDeckDeck() : void
+    public function testDeckDeck(): void
     {
         $deck = new Deck();
         $this->assertInstanceOf("App\Card\Deck", $deck);
@@ -30,7 +30,7 @@ class DeckTest extends TestCase
     /**
      * Test shuffling the deck.
      */
-    public function testDeckShuffle() : void
+    public function testDeckShuffle(): void
     {
         $deck = new Deck();
         $this->assertInstanceOf("App\Card\Deck", $deck);
@@ -46,7 +46,7 @@ class DeckTest extends TestCase
      * Original function draws a random card, should maybe be split into a draw function and a
      * "get random existing card" function.
      */
-    public function testDeckDraw() : void
+    public function testDeckDraw(): void
     {
         $deck = new Deck();
         $this->assertInstanceOf("App\Card\Deck", $deck);

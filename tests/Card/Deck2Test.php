@@ -9,7 +9,7 @@ class Deck2Test extends TestCase
     /**
      * Test the constructor.
      */
-    public function testDeck2Constructor() : void
+    public function testDeck2Constructor(): void
     {
         $deck = new Deck2();
         $this->assertInstanceOf("App\Card\Deck2", $deck);
@@ -18,7 +18,7 @@ class Deck2Test extends TestCase
     /**
      * Test getting the cards in the deck.
      */
-    public function testDeck2Deck() : void
+    public function testDeck2Deck(): void
     {
         $deck = new Deck2();
         $this->assertInstanceOf("App\Card\Deck", $deck);

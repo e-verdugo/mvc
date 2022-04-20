@@ -9,7 +9,7 @@ class CardTest extends TestCase
     /**
      * Test the constructor.
      */
-    public function testCardConstructor() : void
+    public function testCardConstructor(): void
     {
         $suits = ["spades", "hearts", "diamonds", "clubs"];
         $randomValue = rand(0, 13);
@@ -22,7 +22,7 @@ class CardTest extends TestCase
     /**
      * Test getting card code (face).
      */
-    public function testCardFace() : void
+    public function testCardFace(): void
     {
         $card = new Card(0, "hearts");
         $cardFace = $card->card();
@@ -33,7 +33,7 @@ class CardTest extends TestCase
     /**
      * Test getting card value.
      */
-    public function testCardValue() : void
+    public function testCardValue(): void
     {
         $card = new Card(0, "hearts");
         $cardValue = $card->value();
