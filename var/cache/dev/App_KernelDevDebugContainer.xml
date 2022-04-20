@@ -4021,7 +4021,7 @@
         <argument type="collection">
           <argument type="service">
             <service class="Doctrine\DBAL\Logging\Middleware">
-              <argument type="service" id="monolog.logger.doctrine" on-invalid="null"/>
+              <argument type="service" id="monolog.logger.doctrine"/>
             </service>
           </argument>
         </argument>
@@ -4078,9 +4078,8 @@
     </service>
     <service id="doctrine.dbal.logging_middleware" class="Doctrine\DBAL\Logging\Middleware" abstract="true">
       <tag name="monolog.logger" channel="doctrine"/>
-      <tag name="doctrine.middleware"/>
       <tag name="doctrine.middleware" connection="default"/>
-      <argument type="service" id="monolog.logger.doctrine" on-invalid="null"/>
+      <argument type="service" id="monolog.logger.doctrine"/>
     </service>
     <service id="messenger.middleware.doctrine_transaction" class="Symfony\Bridge\Doctrine\Messenger\DoctrineTransactionMiddleware" abstract="true">
       <argument type="service" id="doctrine"/>
@@ -6535,7 +6534,7 @@
       <argument type="service" id=".service_locator.KLVvNIq"/>
     </service>
     <service id="doctrine.dbal.logging_middleware.default" class="Doctrine\DBAL\Logging\Middleware">
-      <argument type="service" id="monolog.logger.doctrine" on-invalid="null"/>
+      <argument type="service" id="monolog.logger.doctrine"/>
     </service>
     <service id="debug.security.voter.security.access.authenticated_voter" class="Symfony\Component\Security\Core\Authorization\Voter\TraceableVoter">
       <argument type="service" id="security.access.authenticated_voter"/>
