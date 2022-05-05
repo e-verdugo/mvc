@@ -92,39 +92,46 @@ class __TwigTemplate_d652fcaed5cbd5b1b3a34f48f411ae05 extends Template
         <th>ISBN</th>
         <th>Author</th>
         <th>Image</th>
+        <th>Details</th>
     </tr>
     ";
-        // line 14
+        // line 15
         $context['_parent'] = $context;
-        $context['_seq'] = twig_ensure_traversable((isset($context["books"]) || array_key_exists("books", $context) ? $context["books"] : (function () { throw new RuntimeError('Variable "books" does not exist.', 14, $this->source); })()));
+        $context['_seq'] = twig_ensure_traversable((isset($context["books"]) || array_key_exists("books", $context) ? $context["books"] : (function () { throw new RuntimeError('Variable "books" does not exist.', 15, $this->source); })()));
         foreach ($context['_seq'] as $context["_key"] => $context["book"]) {
-            // line 15
+            // line 16
             echo "        <tr>
             <td>
                 ";
-            // line 17
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["book"], "name", [], "any", false, false, false, 17), "html", null, true);
+            // line 18
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["book"], "name", [], "any", false, false, false, 18), "html", null, true);
             echo "
             </td>
             <td>
                 ";
-            // line 20
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["book"], "isbn", [], "any", false, false, false, 20), "html", null, true);
+            // line 21
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["book"], "isbn", [], "any", false, false, false, 21), "html", null, true);
             echo "
             </td>
             <td>
                 ";
-            // line 23
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["book"], "author", [], "any", false, false, false, 23), "html", null, true);
+            // line 24
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["book"], "author", [], "any", false, false, false, 24), "html", null, true);
             echo "
             </td>
             <td>
                 <img src=\"../img/";
-            // line 26
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["book"], "imgurl", [], "any", false, false, false, 26), "html", null, true);
+            // line 27
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["book"], "imgurl", [], "any", false, false, false, 27), "html", null, true);
             echo "\" alt=\"";
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["book"], "name", [], "any", false, false, false, 26), "html", null, true);
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["book"], "name", [], "any", false, false, false, 27), "html", null, true);
             echo "'s cover image\" width=\"150px\">
+            </td>
+            <td>
+                <a href=\"/library/show/";
+            // line 30
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["book"], "isbn", [], "any", false, false, false, 30), "html", null, true);
+            echo "\">Go to page</a>
             </td>
         </tr>
     ";
@@ -132,7 +139,7 @@ class __TwigTemplate_d652fcaed5cbd5b1b3a34f48f411ae05 extends Template
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['book'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 30
+        // line 34
         echo "</table>
 
 ";
@@ -156,7 +163,7 @@ class __TwigTemplate_d652fcaed5cbd5b1b3a34f48f411ae05 extends Template
 
     public function getDebugInfo()
     {
-        return array (  136 => 30,  124 => 26,  118 => 23,  112 => 20,  106 => 17,  102 => 15,  98 => 14,  88 => 6,  78 => 5,  59 => 3,  36 => 1,);
+        return array (  143 => 34,  133 => 30,  125 => 27,  119 => 24,  113 => 21,  107 => 18,  103 => 16,  99 => 15,  88 => 6,  78 => 5,  59 => 3,  36 => 1,);
     }
 
     public function getSourceContext()
@@ -173,6 +180,7 @@ class __TwigTemplate_d652fcaed5cbd5b1b3a34f48f411ae05 extends Template
         <th>ISBN</th>
         <th>Author</th>
         <th>Image</th>
+        <th>Details</th>
     </tr>
     {% for book in books %}
         <tr>
@@ -187,6 +195,9 @@ class __TwigTemplate_d652fcaed5cbd5b1b3a34f48f411ae05 extends Template
             </td>
             <td>
                 <img src=\"../img/{{ book.imgurl }}\" alt=\"{{ book.name }}'s cover image\" width=\"150px\">
+            </td>
+            <td>
+                <a href=\"/library/show/{{ book.isbn }}\">Go to page</a>
             </td>
         </tr>
     {% endfor %}

@@ -107,12 +107,20 @@ class __TwigTemplate_135fe3a8a620bd2217a71172f050ac1a extends Template
         // line 15
         echo twig_escape_filter($this->env, (isset($context["img_url"]) || array_key_exists("img_url", $context) ? $context["img_url"] : (function () { throw new RuntimeError('Variable "img_url" does not exist.', 15, $this->source); })()), "html", null, true);
         echo "\"><br><br>
-        <input type=\"submit\" value=\"";
-        // line 16
-        echo twig_escape_filter($this->env, (isset($context["value"]) || array_key_exists("value", $context) ? $context["value"] : (function () { throw new RuntimeError('Variable "value" does not exist.', 16, $this->source); })()), "html", null, true);
-        echo "\">
     </form>
 </div>
+<form method=\"get\" action=\"";
+        // line 18
+        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("update", ["isbn" => (isset($context["isbn"]) || array_key_exists("isbn", $context) ? $context["isbn"] : (function () { throw new RuntimeError('Variable "isbn" does not exist.', 18, $this->source); })())]), "html", null, true);
+        echo "\">
+    <input type=\"submit\" value=\"Update details about the book\">
+</form>
+<form method=\"post\" action=\"";
+        // line 21
+        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("delete_process", ["isbn" => (isset($context["isbn"]) || array_key_exists("isbn", $context) ? $context["isbn"] : (function () { throw new RuntimeError('Variable "isbn" does not exist.', 21, $this->source); })())]), "html", null, true);
+        echo "\">
+    <input type=\"submit\" value=\"Delete the book\">
+</form>
 ";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
@@ -134,7 +142,7 @@ class __TwigTemplate_135fe3a8a620bd2217a71172f050ac1a extends Template
 
     public function getDebugInfo()
     {
-        return array (  112 => 16,  108 => 15,  103 => 13,  98 => 11,  93 => 9,  88 => 6,  78 => 5,  59 => 3,  36 => 1,);
+        return array (  120 => 21,  114 => 18,  108 => 15,  103 => 13,  98 => 11,  93 => 9,  88 => 6,  78 => 5,  59 => 3,  36 => 1,);
     }
 
     public function getSourceContext()
@@ -154,15 +162,14 @@ class __TwigTemplate_135fe3a8a620bd2217a71172f050ac1a extends Template
         <input type=\"text\" id=\"author\" name=\"author\" value=\"{{author}}\"><br><br>
         <label for=\"img_url\">Image url:</label>
         <input type=\"text\" id=\"img_url\" name=\"img_url\" value=\"{{img_url}}\"><br><br>
-        <input type=\"submit\" value=\"{{value}}\">
     </form>
 </div>
-{# <form method=\"get\" action=\"{{ path(\"update\", {'isbn': isbn}) }}\">
+<form method=\"get\" action=\"{{ path(\"update\", {'isbn': isbn}) }}\">
     <input type=\"submit\" value=\"Update details about the book\">
 </form>
-<form method=\"get\" action=\"{{ path(\"delete\", {'isbn': isbn}) }}\">
+<form method=\"post\" action=\"{{ path(\"delete_process\", {'isbn': isbn}) }}\">
     <input type=\"submit\" value=\"Delete the book\">
-</form> #}
+</form>
 {% endblock %}
 ", "library/form.html.twig", "C:\\Users\\Emelie\\dbwebb\\dbwebb-kurser\\mvc\\me\\report\\templates\\library\\form.html.twig");
     }

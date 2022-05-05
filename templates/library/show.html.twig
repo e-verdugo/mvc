@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Welcome to the library!{% endblock %}
+
+{% block content %}
+<div style="padding: 5em;">
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>ISBN</th>
+            <th>Author</th>
+            <th>Image</th>
+        </tr>
+        <tr>
+            <td>
+                {{ name }}
+            </td>
+            <td>
+                {{ isbn }}
+            </td>
+            <td>
+                {{ author }}
+            </td>
+            <td>
+                <img src="../../img/{{ img_url }}" alt="{{ name }}'s cover image" width="150px">
+            </td>
+        </tr>
+    </table>
+</div>
+<form method="get" action="{{ path("update", {'isbn': isbn}) }}">
+    <input type="submit" value="Update details about the book">
+</form>
+<form method="post" action="{{ path("delete_process", {'isbn': isbn}) }}">
+    <input type="submit" value="Delete the book">
+</form>
+{% endblock %}

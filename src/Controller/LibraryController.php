@@ -54,7 +54,8 @@ class LibraryController extends AbstractController
         // actually executes the queries (i.e. the INSERT query)
         $entityManager->flush();
 
-        return new Response('Saved new book '.$book->getName());
+        $params = ["isbn" => $request->request->get('isbn')];
+        return $this->redirectToRoute("read_one_process", $params);
     }
 
     /**
@@ -75,7 +76,7 @@ class LibraryController extends AbstractController
      */
     public function showBookByIsbn(): Response {
         $data = [
-            'action' => 'read_one_redir',
+            'action' => 'read_one',
             'value' => 'Go to book',
         ];
         $isbn = $_POST["isbn"] ?? null;
@@ -87,14 +88,14 @@ class LibraryController extends AbstractController
         }
     }
 
-    /**
-     * @Route("/library/show", name="read_one_redir", methods={"POST"})
-     */
-    public function showBookByIsbnRedir(): Response {
-        $isbn = $_POST["isbn"];
-        $params = ["isbn" => $isbn];
-        return $this->redirectToRoute("read_one_process", $params);
-    }
+    // /**
+    //  * @Route("/library/show", name="read_one_redir", methods={"POST"})
+    //  */
+    // public function showBookByIsbnRedir(): Response {
+    //     $isbn = $_POST["isbn"];
+    //     $params = ["isbn" => $isbn];
+    //     return $this->redirectToRoute("read_one_process", $params);
+    // }
 
     /**
      * @Route("/library/show/{isbn}", name="read_one_process")
@@ -119,11 +120,10 @@ class LibraryController extends AbstractController
             'name' => $book[0]->getName(),
             'isbn' => $book[0]->getISBN(),
             'author' => $book[0]->getAuthor(),
-            'img_url' => $book[0]->getImgUrl(),
-            'value' => 'Disabled'
+            'img_url' => $book[0]->getImgUrl()
         ];
 
-        return $this->render('library/form.html.twig', $data);
+        return $this->render('library/show.html.twig', $data);
     }
 
     /**
@@ -148,41 +148,39 @@ class LibraryController extends AbstractController
      */
     public function updateBookProcess(ManagerRegistry $doctrine, LibraryRepository $libraryRepository, Request $request): Response {
         $entityManager = $doctrine->getManager();
-        $isbn = $_POST["isbn"];
+        $isbn = $request->request->get('isbn');
         $book = $libraryRepository->findBy(
             ['isbn' => $isbn]
         );
-        $book = $book[0];
+        if ($book != null) {
+            $book = $book[0];
+        }
         $book->setName($request->request->get('name'));
         $book->setISBN($request->request->get('isbn'));
         $book->setAuthor($request->request->get('author'));
         $book->setImgUrl($request->request->get('img_url'));
-        // tell Doctrine you want to (eventually) save the book
-        // (no queries yet)
         $entityManager->persist($book);
-
-        // actually executes the queries (i.e. the INSERT query)
         $entityManager->flush();
         $params = ["isbn" => $isbn];
         return $this->redirectToRoute("read_one_process", $params);
     }
 
-    /**
-     * @Route("/library/delete/{isbn}", name="delete", methods={"GET"})
-     */
-    public function deleteBook(LibraryRepository $libraryRepository, string $isbn): Response {
-        $book = $libraryRepository->findBy(
-            ['isbn' => $isbn]
-        );
-        $data = [
-            'name' => $book[0]->getName(),
-            'isbn' => $book[0]->getISBN(),
-            'author' => $book[0]->getAuthor(),
-            'img_url' => $book[0]->getImgUrl(),
-            'value' => 'Delete book'
-        ];
-        return $this->render('library/form.html.twig', $data);
-    }
+    // /**
+    //  * @Route("/library/delete/{isbn}", name="delete", methods={"GET"})
+    //  */
+    // public function deleteBook(LibraryRepository $libraryRepository, string $isbn): Response {
+    //     $book = $libraryRepository->findBy(
+    //         ['isbn' => $isbn]
+    //     );
+    //     $data = [
+    //         'name' => $book[0]->getName(),
+    //         'isbn' => $book[0]->getISBN(),
+    //         'author' => $book[0]->getAuthor(),
+    //         'img_url' => $book[0]->getImgUrl(),
+    //         'value' => 'Delete book'
+    //     ];
+    //     return $this->render('library/form.html.twig', $data);
+    // }
 
     /**
      * @Route("/library/delete/{isbn}", name="delete_process", methods={"POST"})
@@ -192,7 +190,7 @@ class LibraryController extends AbstractController
         $book = $libraryRepository->findBy(
             ['isbn' => $isbn]
         );
-
+        $book = $book[0];
         $entityManager->remove($book);
         $entityManager->flush();
 

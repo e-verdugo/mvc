@@ -10,6 +10,7 @@
         <th>ISBN</th>
         <th>Author</th>
         <th>Image</th>
+        <th>Details</th>
     </tr>
     {% for book in books %}
         <tr>
@@ -24,6 +25,9 @@
             </td>
             <td>
                 <img src="../img/{{ book.imgurl }}" alt="{{ book.name }}'s cover image" width="150px">
+            </td>
+            <td>
+                <a href="{{ path('read_one_process', {'isbn': book.isbn}) }}">Go to page</a>
             </td>
         </tr>
     {% endfor %}

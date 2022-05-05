@@ -6399,11 +6399,10 @@
         <argument key="libraryRepository" type="service_closure" id="App\Repository\LibraryRepository"/>
       </argument>
     </service>
-    <service id=".service_locator.XStg6kw" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.M2vfzMy" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Controller\LibraryController::createBookProcess" type="service_closure" id=".service_locator.GQZbvNR"/>
-        <argument key="App\Controller\LibraryController::deleteBook" type="service_closure" id=".service_locator.TBgEv1t"/>
         <argument key="App\Controller\LibraryController::deleteBookByIsbnProcess" type="service_closure" id=".service_locator.nLzTFMn"/>
         <argument key="App\Controller\LibraryController::showAllBooks" type="service_closure" id=".service_locator.TBgEv1t"/>
         <argument key="App\Controller\LibraryController::showBookByIsbnProcess" type="service_closure" id=".service_locator.TBgEv1t"/>
@@ -6416,7 +6415,6 @@
         <argument key="kernel::registerContainerConfiguration" type="service_closure" id=".service_locator.xUrKPVU"/>
         <argument key="kernel::terminate" type="service_closure" id=".service_locator.bRdave9"/>
         <argument key="App\Controller\LibraryController:createBookProcess" type="service_closure" id=".service_locator.GQZbvNR"/>
-        <argument key="App\Controller\LibraryController:deleteBook" type="service_closure" id=".service_locator.TBgEv1t"/>
         <argument key="App\Controller\LibraryController:deleteBookByIsbnProcess" type="service_closure" id=".service_locator.nLzTFMn"/>
         <argument key="App\Controller\LibraryController:showAllBooks" type="service_closure" id=".service_locator.TBgEv1t"/>
         <argument key="App\Controller\LibraryController:showBookByIsbnProcess" type="service_closure" id=".service_locator.TBgEv1t"/>
@@ -7031,12 +7029,12 @@
       <argument type="service" id="security.token_storage"/>
     </service>
     <service id="debug.argument_resolver.service.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
-      <argument type="service" id=".service_locator.XStg6kw"/>
+      <argument type="service" id=".service_locator.M2vfzMy"/>
     </service>
     <service id="debug.argument_resolver.default.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver"/>
     <service id="debug.argument_resolver.variadic.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\VariadicValueResolver"/>
     <service id="debug.argument_resolver.not_tagged_controller.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
-      <argument type="service" id=".service_locator.XStg6kw"/>
+      <argument type="service" id=".service_locator.M2vfzMy"/>
     </service>
     <service id="debug.traced.messenger.bus.default.inner" class="Symfony\Component\Messenger\MessageBus">
       <argument type="iterator">
@@ -7962,7 +7960,7 @@
     <service id="sensio_framework_extra.security.expression_language" alias="sensio_framework_extra.security.expression_language.default"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.gSv9zYw" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.XStg6kw"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.M2vfzMy"/>
     <service id="doctrine.id_generator_locator" alias=".service_locator.KLVvNIq"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id="Psr\Log\LoggerInterface $requestLogger" alias="monolog.logger.request"/>
@@ -7984,7 +7982,7 @@
     <service id=".service_locator.h8Jkkd2" alias="messenger.retry_strategy_locator"/>
     <service id=".service_locator.XDGmiR3" alias=".1_ServiceLocator~m0n_Abn"/>
     <service id=".service_locator.0GV1BZZ" alias=".service_locator.gSv9zYw"/>
-    <service id=".service_locator.OzxhsYP" alias=".service_locator.XStg6kw"/>
+    <service id=".service_locator.4lRf.GI" alias=".service_locator.M2vfzMy"/>
     <service id=".service_locator.wKF4yn1" alias=".service_locator.19_mNxd"/>
     <service id=".service_locator.Za9MpXe" alias=".service_locator.y4dplYt"/>
     <service id=".service_locator.XW18Svm" alias=".service_locator.TcKhdzh"/>

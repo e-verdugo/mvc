@@ -31,10 +31,7 @@ return [
             [['_route' => 'create_process', '_controller' => 'App\\Controller\\LibraryController::createBookProcess'], null, ['POST' => 0], null, false, false, null],
         ],
         '/library/show_all' => [[['_route' => 'read_many', '_controller' => 'App\\Controller\\LibraryController::showAllBooks'], null, null, null, false, false, null]],
-        '/library/show' => [
-            [['_route' => 'read_one', '_controller' => 'App\\Controller\\LibraryController::showBookByIsbn'], null, null, null, false, false, null],
-            [['_route' => 'read_one_redir', '_controller' => 'App\\Controller\\LibraryController::showBookByIsbnRedir'], null, ['POST' => 0], null, false, false, null],
-        ],
+        '/library/show' => [[['_route' => 'read_one', '_controller' => 'App\\Controller\\LibraryController::showBookByIsbn'], null, null, null, false, false, null]],
         '/' => [[['_route' => 'home', '_controller' => 'App\\Controller\\ReportController::home'], null, null, null, false, false, null]],
         '/about' => [[['_route' => 'about', '_controller' => 'App\\Controller\\ReportController::about'], null, null, null, false, false, null]],
         '/report' => [[['_route' => 'report', '_controller' => 'App\\Controller\\ReportController::report'], null, null, null, false, false, null]],
@@ -65,9 +62,7 @@ return [
                     .'|update/([^/]++)(?'
                         .'|(*:285)'
                     .')'
-                    .'|delete/([^/]++)(?'
-                        .'|(*:312)'
-                    .')'
+                    .'|delete/([^/]++)(*:309)'
                 .')'
             .')/?$}sDu',
     ],
@@ -86,8 +81,7 @@ return [
             [['_route' => 'update', '_controller' => 'App\\Controller\\LibraryController::updateBook'], ['isbn'], ['GET' => 0], null, false, true, null],
             [['_route' => 'update_process', '_controller' => 'App\\Controller\\LibraryController::updateBookProcess'], ['isbn'], ['POST' => 0], null, false, true, null],
         ],
-        312 => [
-            [['_route' => 'delete', '_controller' => 'App\\Controller\\LibraryController::deleteBook'], ['isbn'], ['GET' => 0], null, false, true, null],
+        309 => [
             [['_route' => 'delete_process', '_controller' => 'App\\Controller\\LibraryController::deleteBookByIsbnProcess'], ['isbn'], ['POST' => 0], null, false, true, null],
             [null, null, null, null, false, false, 0],
         ],
