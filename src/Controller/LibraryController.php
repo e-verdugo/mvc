@@ -88,15 +88,6 @@ class LibraryController extends AbstractController
         }
     }
 
-    // /**
-    //  * @Route("/library/show", name="read_one_redir", methods={"POST"})
-    //  */
-    // public function showBookByIsbnRedir(): Response {
-    //     $isbn = $_POST["isbn"];
-    //     $params = ["isbn" => $isbn];
-    //     return $this->redirectToRoute("read_one_process", $params);
-    // }
-
     /**
      * @Route("/library/show/{isbn}", name="read_one_process")
      */
@@ -164,23 +155,6 @@ class LibraryController extends AbstractController
         $params = ["isbn" => $isbn];
         return $this->redirectToRoute("read_one_process", $params);
     }
-
-    // /**
-    //  * @Route("/library/delete/{isbn}", name="delete", methods={"GET"})
-    //  */
-    // public function deleteBook(LibraryRepository $libraryRepository, string $isbn): Response {
-    //     $book = $libraryRepository->findBy(
-    //         ['isbn' => $isbn]
-    //     );
-    //     $data = [
-    //         'name' => $book[0]->getName(),
-    //         'isbn' => $book[0]->getISBN(),
-    //         'author' => $book[0]->getAuthor(),
-    //         'img_url' => $book[0]->getImgUrl(),
-    //         'value' => 'Delete book'
-    //     ];
-    //     return $this->render('library/form.html.twig', $data);
-    // }
 
     /**
      * @Route("/library/delete/{isbn}", name="delete_process", methods={"POST"})
