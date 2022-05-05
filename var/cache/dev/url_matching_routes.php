@@ -25,6 +25,16 @@ return [
             [['_route' => 'play-process', '_controller' => 'App\\Controller\\CardController::playProcess'], null, ['POST' => 0], null, false, false, null],
         ],
         '/card/api/deck' => [[['_route' => 'jsonapi', '_controller' => 'App\\Controller\\JSONController::jsonapi'], null, null, null, false, false, null]],
+        '/library' => [[['_route' => 'library', '_controller' => 'App\\Controller\\LibraryController::index'], null, null, null, false, false, null]],
+        '/library/create' => [
+            [['_route' => 'create', '_controller' => 'App\\Controller\\LibraryController::createBook'], null, ['GET' => 0, 'HEAD' => 1], null, false, false, null],
+            [['_route' => 'create_process', '_controller' => 'App\\Controller\\LibraryController::createBookProcess'], null, ['POST' => 0], null, false, false, null],
+        ],
+        '/library/show_all' => [[['_route' => 'read_many', '_controller' => 'App\\Controller\\LibraryController::showAllBooks'], null, null, null, false, false, null]],
+        '/library/show' => [
+            [['_route' => 'read_one', '_controller' => 'App\\Controller\\LibraryController::showBookByIsbn'], null, null, null, false, false, null],
+            [['_route' => 'read_one_redir', '_controller' => 'App\\Controller\\LibraryController::showBookByIsbnRedir'], null, ['POST' => 0], null, false, false, null],
+        ],
         '/' => [[['_route' => 'home', '_controller' => 'App\\Controller\\ReportController::home'], null, null, null, false, false, null]],
         '/about' => [[['_route' => 'about', '_controller' => 'App\\Controller\\ReportController::about'], null, null, null, false, false, null]],
         '/report' => [[['_route' => 'report', '_controller' => 'App\\Controller\\ReportController::report'], null, null, null, false, false, null]],
@@ -50,6 +60,15 @@ return [
                     .'|raw/([^/]++)(*:196)'
                     .'|eal/([^/]++)/([^/]++)(*:225)'
                 .')'
+                .'|/library/(?'
+                    .'|show/([^/]++)(*:259)'
+                    .'|update/([^/]++)(?'
+                        .'|(*:285)'
+                    .')'
+                    .'|delete/([^/]++)(?'
+                        .'|(*:312)'
+                    .')'
+                .')'
             .')/?$}sDu',
     ],
     [ // $dynamicRoutes
@@ -61,8 +80,15 @@ return [
         149 => [[['_route' => '_profiler_exception_css', '_controller' => 'web_profiler.controller.exception_panel::stylesheet'], ['token'], null, null, false, false, null]],
         159 => [[['_route' => '_profiler', '_controller' => 'web_profiler.controller.profiler::panelAction'], ['token'], null, null, false, true, null]],
         196 => [[['_route' => 'draw-number', '_controller' => 'App\\Controller\\CardController::drawNumber'], ['number'], null, null, false, true, null]],
-        225 => [
-            [['_route' => 'deal', '_controller' => 'App\\Controller\\CardController::player'], ['players', 'number'], null, null, false, true, null],
+        225 => [[['_route' => 'deal', '_controller' => 'App\\Controller\\CardController::player'], ['players', 'number'], null, null, false, true, null]],
+        259 => [[['_route' => 'read_one_process', '_controller' => 'App\\Controller\\LibraryController::showBookByIsbnProcess'], ['isbn'], null, null, false, true, null]],
+        285 => [
+            [['_route' => 'update', '_controller' => 'App\\Controller\\LibraryController::updateBook'], ['isbn'], ['GET' => 0], null, false, true, null],
+            [['_route' => 'update_process', '_controller' => 'App\\Controller\\LibraryController::updateBookProcess'], ['isbn'], ['POST' => 0], null, false, true, null],
+        ],
+        312 => [
+            [['_route' => 'delete', '_controller' => 'App\\Controller\\LibraryController::deleteBook'], ['isbn'], ['GET' => 0], null, false, true, null],
+            [['_route' => 'delete_process', '_controller' => 'App\\Controller\\LibraryController::deleteBookByIsbnProcess'], ['isbn'], ['POST' => 0], null, false, true, null],
             [null, null, null, null, false, false, 0],
         ],
     ],

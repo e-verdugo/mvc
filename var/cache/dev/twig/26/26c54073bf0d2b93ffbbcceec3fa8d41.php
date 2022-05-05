@@ -92,7 +92,7 @@ class __TwigTemplate_4d7d3f165e48a51e3e72d1dd167f6399 extends Template
 <p>Jag har valt att göra spelet 21. Spelaren får ett kort i taget, och ska försöka ta sig så nära 21 i värde som möjligt. Går man över 21 så förlorar man. Det kommer att finnas en knapp som låter en dra ett kort, och en knapp för när man är nöjd. Kommer man över 21 avslutas spelet automatiskt. Drar man ett kort så hamnar det synligt i ens hand/på bordet. Om man känner sig nöjd så lägger banken ut lika många kort som spelaren. Går banken över 21 så vinner spelaren. Hamnar banken på 21 så vinner banken. Om banken hamnar under 21 så vinner den med högst poäng.</p>
 
 <h4>Flödesschema</h4>
-<img src=\"../../img/flowchart.png\">
+<img src=\"../../public/img/flowchart.png\">
 
 <h4>Psuedokod</h4>
 <p>Om nytt-kort knappen klickas -> kör draw() på deck som är i session. Spara kortet i player objekt. For card in cards i player, kör value. Value += value[0]. Om value > 21, förlora. Om value == 21, vinn. Om value < 21, fortsätt. 
@@ -139,7 +139,7 @@ Om klar-knappen klickas -> ny spelare \"bank\". Draw() körs count(player->cards
 <p>Jag har valt att göra spelet 21. Spelaren får ett kort i taget, och ska försöka ta sig så nära 21 i värde som möjligt. Går man över 21 så förlorar man. Det kommer att finnas en knapp som låter en dra ett kort, och en knapp för när man är nöjd. Kommer man över 21 avslutas spelet automatiskt. Drar man ett kort så hamnar det synligt i ens hand/på bordet. Om man känner sig nöjd så lägger banken ut lika många kort som spelaren. Går banken över 21 så vinner spelaren. Hamnar banken på 21 så vinner banken. Om banken hamnar under 21 så vinner den med högst poäng.</p>
 
 <h4>Flödesschema</h4>
-<img src=\"../../img/flowchart.png\">
+<img src=\"../../public/img/flowchart.png\">
 
 <h4>Psuedokod</h4>
 <p>Om nytt-kort knappen klickas -> kör draw() på deck som är i session. Spara kortet i player objekt. For card in cards i player, kör value. Value += value[0]. Om value > 21, förlora. Om value == 21, vinn. Om value < 21, fortsätt. 

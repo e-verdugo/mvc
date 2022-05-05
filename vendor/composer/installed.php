@@ -5,7 +5,7 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '598399c1f46a9c4e7a010abe4a08eecaa46e2f8a',
+        'reference' => 'b49ec7a1c04205fc12dc775639cbeee1fed00a4a',
         'name' => 'e-verdugo/mvc-course',
         'dev' => true,
     ),
@@ -169,7 +169,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '598399c1f46a9c4e7a010abe4a08eecaa46e2f8a',
+            'reference' => 'b49ec7a1c04205fc12dc775639cbeee1fed00a4a',
             'dev_requirement' => false,
         ),
         'egulias/email-validator' => array(
@@ -918,12 +918,12 @@
             'dev_requirement' => false,
         ),
         'symfony/maker-bundle' => array(
-            'pretty_version' => 'v1.38.0',
-            'version' => '1.38.0.0',
+            'pretty_version' => 'v1.40.1',
+            'version' => '1.40.1.0',
             'type' => 'symfony-bundle',
             'install_path' => __DIR__ . '/../symfony/maker-bundle',
             'aliases' => array(),
-            'reference' => '143024ab0e426285d3d9b7f6a3ce51e12a9d8ec5',
+            'reference' => 'adc846e4f852e3aa2cd84a433cd05ba23dd19c3f',
             'dev_requirement' => true,
         ),
         'symfony/messenger' => array(

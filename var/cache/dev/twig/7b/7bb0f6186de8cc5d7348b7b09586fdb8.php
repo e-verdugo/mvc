@@ -63,6 +63,10 @@ class __TwigTemplate_344f46d156d1600694118864aa95065b extends Template
         // line 8
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("game");
         echo "\">Game</a></li>
+            <li><a href=\"";
+        // line 9
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("library");
+        echo "\">Library</a></li>
         </ul>
     </nav>
 </div>";
@@ -86,7 +90,7 @@ class __TwigTemplate_344f46d156d1600694118864aa95065b extends Template
 
     public function getDebugInfo()
     {
-        return array (  64 => 8,  60 => 7,  56 => 6,  52 => 5,  48 => 4,  43 => 1,);
+        return array (  68 => 9,  64 => 8,  60 => 7,  56 => 6,  52 => 5,  48 => 4,  43 => 1,);
     }
 
     public function getSourceContext()
@@ -99,6 +103,7 @@ class __TwigTemplate_344f46d156d1600694118864aa95065b extends Template
             <li><a href=\"{{ path(\"report\") }}\">Report</a></li>
             <li><a href=\"{{ path(\"card\") }}\">Card</a></li>
             <li><a href=\"{{ path(\"game\") }}\">Game</a></li>
+            <li><a href=\"{{ path(\"library\") }}\">Library</a></li>
         </ul>
     </nav>
 </div>", "header.twig", "C:\\Users\\Emelie\\dbwebb\\dbwebb-kurser\\mvc\\me\\report\\templates\\header.twig");

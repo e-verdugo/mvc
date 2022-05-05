@@ -119,7 +119,7 @@ class __TwigTemplate_f9e7928909cf6d28b47dcb76599a70ba extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "content"));
 
         // line 14
-        echo "            Default
+        echo "            404 content not found
             ";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
@@ -159,7 +159,7 @@ class __TwigTemplate_f9e7928909cf6d28b47dcb76599a70ba extends Template
         {% include \"header.twig\" %}
         <div class=\"main\">
             {% block content %}
-            Default
+            404 content not found
             {% endblock %}
         </div>
         <br>
