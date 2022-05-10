@@ -41,7 +41,7 @@ class Game
     public function checkTwentyone(Player $player): int
     {
         $cardsValue = 0;
-        $count = count($player->cards())-1;
+        $count = count($player->cards()) - 1;
         for ($i = 0; $i <= $count; $i++) {
             $cardsValue += intval($player->cards()[$i]->value()[0]);
         }
@@ -51,7 +51,7 @@ class Game
     //bank pulls player hand amount of cards, returns if player won
     public function bankPull(): bool
     {
-        $count = count($this->getPlayer()->cards())-1;
+        $count = count($this->getPlayer()->cards()) - 1;
         for ($i = 0; $i <= $count; $i++) {
             $this->getBank()->addCards($this->getDeck()->draw(count($this->getDeck()->deck())));
         }

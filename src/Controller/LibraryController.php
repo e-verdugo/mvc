@@ -23,7 +23,8 @@ class LibraryController extends AbstractController
     /**
      * @Route("/library/create", name="create", methods={"GET","HEAD"})
      */
-    public function createBook(): Response {
+    public function createBook(): Response
+    {
         $data = [
             'action' => 'create_process',
             'name' => '',
@@ -39,7 +40,8 @@ class LibraryController extends AbstractController
     /**
      * @Route("/library/create", name="create_process", methods={"POST"})
      */
-    public function createBookProcess(ManagerRegistry $doctrine, Request $request): Response {
+    public function createBookProcess(ManagerRegistry $doctrine, Request $request): Response
+    {
         $entityManager = $doctrine->getManager();
         $book = new Library();
         $book->setName($request->request->get('name'));
@@ -61,7 +63,8 @@ class LibraryController extends AbstractController
     /**
     * @Route("/library/show_all", name="read_many")
     */
-    public function showAllBooks(LibraryRepository $libraryRepository): Response {
+    public function showAllBooks(LibraryRepository $libraryRepository): Response
+    {
         $books = $libraryRepository
             ->findAll();
         $data = [
@@ -74,7 +77,8 @@ class LibraryController extends AbstractController
     /**
      * @Route("/library/show", name="read_one")
      */
-    public function showBookByIsbn(): Response {
+    public function showBookByIsbn(): Response
+    {
         $data = [
             'action' => 'read_one',
             'value' => 'Go to book',
@@ -91,10 +95,8 @@ class LibraryController extends AbstractController
     /**
      * @Route("/library/show/{isbn}", name="read_one_process")
      */
-    public function showBookByIsbnProcess(
-        LibraryRepository $libraryRepository,
-        string $isbn
-    ): Response {
+    public function showBookByIsbnProcess(LibraryRepository $libraryRepository, string $isbn): Response
+    {
         $book = $libraryRepository->findBy(
             ['isbn' => $isbn]
         );
@@ -120,7 +122,8 @@ class LibraryController extends AbstractController
     /**
      * @Route("/library/update/{isbn}", name="update", methods={"GET"})
      */
-    public function updateBook(LibraryRepository $libraryRepository, string $isbn): Response {
+    public function updateBook(LibraryRepository $libraryRepository, string $isbn): Response
+    {
         $book = $libraryRepository->findBy(
             ['isbn' => $isbn]
         );
@@ -137,7 +140,8 @@ class LibraryController extends AbstractController
     /**
      * @Route("/library/update/{isbn}", name="update_process", methods={"POST"})
      */
-    public function updateBookProcess(ManagerRegistry $doctrine, LibraryRepository $libraryRepository, Request $request): Response {
+    public function updateBookProcess(ManagerRegistry $doctrine, LibraryRepository $libraryRepository, Request $request): Response
+    {
         $entityManager = $doctrine->getManager();
         $isbn = $request->request->get('isbn');
         $book = $libraryRepository->findBy(
@@ -159,7 +163,8 @@ class LibraryController extends AbstractController
     /**
      * @Route("/library/delete/{isbn}", name="delete_process", methods={"POST"})
      */
-    public function deleteBookByIsbnProcess(ManagerRegistry $doctrine, LibraryRepository $libraryRepository, string $isbn): Response {
+    public function deleteBookByIsbnProcess(ManagerRegistry $doctrine, LibraryRepository $libraryRepository, string $isbn): Response
+    {
         $entityManager = $doctrine->getManager();
         $book = $libraryRepository->findBy(
             ['isbn' => $isbn]
