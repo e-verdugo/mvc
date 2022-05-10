@@ -5,7 +5,7 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => 'e5bbf8d0b3838a6bc747684c3551caaff84976fa',
+        'reference' => 'e61e3a2f1d5630d4be20baf043eb13b7e0127a24',
         'name' => 'e-verdugo/mvc-course',
         'dev' => true,
     ),
@@ -169,7 +169,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => 'e5bbf8d0b3838a6bc747684c3551caaff84976fa',
+            'reference' => 'e61e3a2f1d5630d4be20baf043eb13b7e0127a24',
             'dev_requirement' => false,
         ),
         'egulias/email-validator' => array(
