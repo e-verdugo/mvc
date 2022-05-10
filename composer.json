@@ -103,7 +103,10 @@
         "phpstan": "tools/phpstan/vendor/bin/phpstan analyse -l 9 src || true",
         "phpcpd": "tools/phpcpd/vendor/bin/phpcpd src || true", 
         "phpdoc": "tools/phpdoc/phpdoc",
-        "phpunit": "vendor/bin/phpunit",
+        "phpunit": [
+            "@putenv XDEBUG_MODE=coverage",
+            "php vendor/bin/phpunit"
+        ],
         "phpmetrics": "tools/phpmetrics/vendor/bin/phpmetrics --config=phpmetrics.json",
         "lint": [
             "@phpcpd",
