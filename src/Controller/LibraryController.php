@@ -102,10 +102,7 @@ class LibraryController extends AbstractController
         );
 
         if (!$book) {
-            return $this->render('base.html.twig'); //adding in a 404 instead
-            // throw $this->createNotFoundException(
-            //     'No book found for isbn '.$isbn
-            // );
+            return $this->render('base.html.twig');
         }
 
         $data = [
