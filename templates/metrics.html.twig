@@ -59,20 +59,19 @@ Testen som jag har skrivit täcker endast de filer som ligger i Card, alltså fu
 De tre förbättringar jag tänker implementera är:
     1. Fixa alla "gramatiska" fel. Till exempel == istället för ===, {} på fel rader, etc.
     2. Försök få ner komplexiteten genom att dela upp CardController i två.
-    3. Skriv tester för hela eller delar av Controllers.
+    3. Ändra i Deck2 för att få till en högre maintainability index i phpmetrics.
+    {# 3. Skriv tester för hela eller delar av Controllers. #}
 
-Med dessa förbättringar hoppas jag få ner antalet "buggar" som Scrutinizer hittar, få ner komplexiteten så att mätvärdena blir bättre, och få upp coverage till grönt i Scrutinizer.
+Med dessa förbättringar hoppas jag få ner antalet "buggar" som Scrutinizer hittar, få ner komplexiteten så att mätvärdena blir bättre, och få till det så att Deck2 inte längre är röd i phpmetrics.
+{# och få upp coverage till grönt i Scrutinizer. 56.29 #}
 
 #### Implementation
-Efter implementation så gick antalet "buggar" ner till 1 (tidigare 5). Den bugg som är kvar ligger i en fil som jag inte vill röra (autogenererad). Delningen av CardController till GameController gick bra och drog ner komplexiteten till
-
-
-    Implementera sedan förbättringarna.
-    Analysera därefter rapporterna från phpmetrics och Scrutinizer och notera de nya mätvärdena.
-    Gör det tydligt hur mätvärdena såg ut innan och efter dina förbättringar.
+Efter implementation så gick antalet "buggar" ner till 1 (tidigare 5). Den bugg som är kvar ligger i en fil som jag inte vill röra (autogenererad kernel). Delningen av CardController till GameController gick bra och drog ner komplexiteten till 3,38, en skillnad på 0,05. Det är tyvärr inte lika mycket som jag trodde att det skulle ge. Jag tror att man nog skulle behöva dela upp LibraryController i en fil för funktionerna, och en fil för kontrollern för att få ner komplexiteten till något lite rimligare. Deck2 började på 56,29 i phpmetrics maintainability index, och efter att ha optimerats så hamnade den på
 
 
 # Diskussion
+Jag tror att såna här verktyg inom kodkvalitet kan hjälpa till att få till en bra kodstruktur, där det är lättare för andra att sätta sig in i hur det fungerar. Däremot så tror jag inte att den egentligen visar hur "bra" en kod är, endast hur väl den håller sig till vissa regler och standarder.
+
 Avsluta med ett stycke “Diskussion” där du diskuterar kort kring det du nyss gjort. Kan man aktivt jobba med kodkvalitet på detta sättet? Finns det fördelar och kanske nackdelar?
 {% endapply %}
 
