@@ -11,7 +11,7 @@ class Library
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private string $id;
+    private int $id;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private string $name;
