@@ -1,0 +1,59 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Metrics{% endblock %}
+
+{% block content %}
+
+{% apply markdown_to_html %}
+# Introduktion
+
+## De fyra C:na
+
+### Code duplication
+Kodduplikation är när samma eller väldigt lik kod finns på flera ställen. Det här kan hända då man till exempel inte har tid att skriva en funktion som klarar av flera olika användningar, och då skapar två väldigt lika funktioner till två olika användningsområden. Jag har gjort detta i en tidigare kurs (har för mig att det var JavaScriptkursen), då jag inte hann med att fixa en bättre funktion och då hade två stora funktioner som utförde ett väldigt lika arbete. Den dubblerade koden tar inte bara upp extra utrymme, utan kan också leda till att programmet blir svårare att uppdatera och ta hand om. I koden för det här projektet så hittade Scrutinizer ingen duplikation.
+
+### Cohesion
+Cohesion handlar om hur väl "grupperad" koden är. Ligger funktioner som har med varandra att göra i samma klass? Om lika saker ligger i samma modul och/eller klass så blir det enklare att hålla rätt på vad som är vad/vart. Det kan göra det enklare att uppdatera delar av koden, och att återanvända den. Om man till exempel har hög kohesion så vet man vart man ska leta efter/placera kod, men om man istället har låg kohesion (saker ligger lite varstans) så är det svårare att ha en bra överblick och risken för duplicerad kod ökar. LCOM står för Lack of Cohesion of Methods, alltså att metoderna saknar kohesion. Är den hög så kan det bli svårare att underhålla koden. LCOM bör vara så nära 1 som möjligt, och phpmetrics säger att koden ligger på 1.07 i medelvärde. Klasserna går från 0 till 2.
+
+### Coupling
+Koppling mellan olika delar av koden kan jämföras med kohesion, fast åt andra hållet. Om man har en låg koppling mellan olika delar av koden så lär de individuella delarna som hör ihop ligga i rätt "grupp", alltså lär koden ha hög kohesion. Om kopplingen däremot är hög så lär det betyda att olika delar av koden kallar på varandra hela tiden, de är tätt kopplade, alltså lär de inte ligga rätt grupperade och man får en låg kohesion. I den här koden så ligger värdet mellan 0 till 4, vilket jag tycker är lagom. Den klass som har högst kopplingsvärde är Deck, då den blir kallad på av 4 olika klasser som behöver instanser av den som objekt. Den klass som kallar på flest andra klasser är CardController, som då renderar olika sidor och på grund av det behöver kunna nå alla olika kort-relaterade klasser. Den kallar på 9 olika klasser.
+
+### Cyclomatic complexity
+Cyclomatisk komplexitet handlar om hur komplex koden är. Hur många val och vägar finns det? Ju mindre komplex koden är desto bättre lär den vara. Har man en hög komplexitet borde man kanske försöka dela upp den funktionen i flera mindre komplexa delar. Det påminner mig om en tidigare uppgift i en annan kurs, där lintern sa nej till att ha fler än 12 if-satser i en funktion. Just då förstod jag inte varför jag inte kunde ha så många, men nu vet jag att det finns flera sätt att lösa den situationen på. Det hela löstes genom att bryta upp funktionen till flera små. För det här projektet så ligger komplexiteten mellan 1 och 15, men de flesta klasser ligger på 1 till 6 med ett medelvärde på är 3,43. En klass (CardController) ligger på 15, då den behöver rendera flera olika sidor.
+
+
+# Phpmetrics
+#### Storlek
+Phpmetrics rapport visar att koden är lite väl stor på vissa ställen. Det vore bra att försöka dela upp eller reducera delar av till exempel CardController och LibraryController. LibraryController innehåller kod som skulle kunna vara funktioner i sin egna fil och klass. CardController skulle behövas delas upp i två, kanske en fil/klass för själva spelet och en annan för allt det andra som har med korten att göra? Ungefär en tredjedel av allt skrivet är kommentarer.
+
+#### Kodduplikation
+Ingen duplikation verkar hittas av phpmetrics.
+
+#### Kohesion
+
+#### Koppling
+
+#### Komplexitet
+
+
+Skapa en rubrik “Phpmetrics” och analysera dess rapport för din kod. Använd 4C på utvalda delar av din kod och hitta minst ett ytterligare mätvärde som du väljer att ta upp. Använd mätvärdena för att hitta flaskhalsar och svaga punkter i din kod. Det vill alltså hitta koddelar som du kan uppdatera för att få bättre mätvärden.
+
+
+# Scrutinizer
+Skapa en rubrik “Scrutinizer” och analysera dess rapport för din kod. Hitta minst 3 svagheter som kan förbättras. Det kan vara samma som för phpmetrics eller nya. Huvudsaken är att du kan använda rapporten från Scrutinizer som stöd för att det är delar som behöver förbättras. Förutom 4C så skall du även hitta minst ett ytterligare mätvärde som du fann intressant hos Scrutinizer.
+
+
+# Förbättringar
+Skapa en ny rubrik “Förbättringar” där du väljer minst 3 förbättringar som du vill göra med din kod.
+
+    Börja med att skriva om förbättringarna, vad du tänker göra, varför du väljer dem och hur du tror det kommer påverka mätvärdena för kvalitet.
+    Implementera sedan förbättringarna.
+    Analysera därefter rapporterna från phpmetrics och Scrutinizer och notera de nya mätvärdena.
+    Gör det tydligt hur mätvärdena såg ut innan och efter dina förbättringar.
+
+
+# Diskussion
+Avsluta med ett stycke “Diskussion” där du diskuterar kort kring det du nyss gjort. Kan man aktivt jobba med kodkvalitet på detta sättet? Finns det fördelar och kanske nackdelar?
+{% endapply %}
+
+{% endblock %}
