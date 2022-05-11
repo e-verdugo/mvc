@@ -11,19 +11,19 @@ class Library
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private $id;
+    private string $id;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private $name;
+    private string $name;
 
     #[ORM\Column(type: 'string', length: 13)]
-    private $isbn;
+    private string $isbn;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private $author;
+    private string $author;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private $img_url;
+    private string $img_url;
 
     public function getId(): ?int
     {

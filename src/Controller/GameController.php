@@ -66,10 +66,9 @@ class GameController extends AbstractController
         } elseif ($fold) {
             $session->set("disabled", "disabled");
             $playerWon = $game->bankPull();
+            $session->set("check", "You lost!");
             if ($playerWon === true) {
                 $session->set("check", "You won!");
-            } elseif ($playerWon === false) {
-                $session->set("check", "You lost!");
             }
         } elseif ($reset) {
             session_destroy();

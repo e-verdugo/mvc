@@ -87,9 +87,8 @@ class LibraryController extends AbstractController
         $params = ["isbn" => $isbn];
         if ($isbn) {
             return $this->redirectToRoute("read_one_process", $params);
-        } else {
-            return $this->render('library/choice.html.twig', $data);
         }
+        return $this->render('library/choice.html.twig', $data);
     }
 
     /**
@@ -97,11 +96,12 @@ class LibraryController extends AbstractController
      */
     public function showBookByIsbnProcess(LibraryRepository $libraryRepository, string $isbn): Response
     {
+        $book = [];
         $book = $libraryRepository->findBy(
             ['isbn' => $isbn]
         );
 
-        if (!$book) {
+        if (empty($book)) {
             return $this->render('base.html.twig');
         }
 
