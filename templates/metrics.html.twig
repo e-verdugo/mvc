@@ -27,7 +27,7 @@ Cyclomatisk komplexitet handlar om hur komplex koden är. Hur många val och vä
 Phpmetrics rapport visar att koden är lite väl stor på vissa ställen. Det vore bra att försöka dela upp eller reducera delar av till exempel CardController och LibraryController. LibraryController innehåller kod som skulle kunna vara funktioner i sin egna fil och klass. CardController skulle behövas delas upp i två, kanske en fil/klass för själva spelet och en annan för allt det andra som har med korten att göra? Ungefär en tredjedel av allt skrivet är kommentarer.
 
 #### Kodduplikation
-Ingen duplikation verkar hittas av phpmetrics. Det finns alltså ingen uppenbar bit av kod som skulle kunna återanvändas istället för att finnas på flera ställen.
+Ingen dubblering verkar hittas av phpmetrics. Det finns alltså ingen uppenbar bit av kod som skulle kunna återanvändas istället för att finnas på flera ställen.
 
 #### Kohesion
 Kohesionen i koden ser ut att vara ganska hög, då LCOM (Lack of Cohesion of Methods) är låg. Värdet ligger på 1,07, där "målet" är 1. De individuella värdena för klasserna ligger mellan 0 och 2.
@@ -36,17 +36,16 @@ Kohesionen i koden ser ut att vara ganska hög, då LCOM (Lack of Cohesion of Me
 Kopplingen mellan de olika klasserna är ganska låg. Deck är den klass som blir kallad på oftast, och den blir endast kallad på fyra gånger. CardController kallar på flest olika klasser, och den kallar på 9 olika klasser. Trots att det ser bra ut så skulle man möjligen kunna få det lite bättre om man skulle dela upp CardController till två olika klasser.
 
 #### Komplexitet
-Som tidigare påpekat så finns det vissa klasser med en lite för hög komplexitet. Speciellt CardController har en medelhög komplexitet då den ligger på 15. Det skulle möjligtvis kunna fixas genom att dela upp kontrollern i två olika filer, en för spelet och en för alla andra sidor så som kort och kortlek. Alla andra klasser ser bra ut och ligger på 1 till 6 i komplexitet, med ett medelvärde på 3,43. Även LibraryController är lite väl komplex då den har mycket kod som skulle kunna ligga i sin egna klass och fil som funktioner. Genom att dra ner på komplexiteten för dessa klasser så skulle man även få ner Average relative System complexity en hel del.
+Som tidigare påpekat så finns det vissa klasser med en lite för hög komplexitet. Speciellt CardController har en medelhög komplexitet då den ligger på 15. Det skulle möjligtvis kunna fixas genom att dela upp kontrollen i två olika filer, en för spelet och en för alla andra sidor så som kort och kortlek. Alla andra klasser ser bra ut och ligger på 1 till 6 i komplexitet, med ett medelvärde på 3,43. Även LibraryController är lite väl komplex då den har mycket kod som skulle kunna ligga i sin egna klass och fil som funktioner. Genom att dra ner på komplexiteten för dessa klasser så skulle man även få ner Average relative System complexity en hel del.
 
 
 # Scrutinizer
 
 #### Kodduplikation
-Ingen duplikation hittades av Scrutinizer.
+Ingen dubblering hittades av Scrutinizer.
 
-#### Kohesion
-
-#### Koppling
+#### Koppling och Kohesion
+Jag hittar tyvärr ingen information om varken koppling eller kohesion i Scrutinizer, men jag skulle gissa på att det ligger på samma nivå som i phpmetrics.
 
 #### Komplexitet
 Scrutinizer ger en högre komplexitet än vad phpmetrics gjorde. Här får CardController 19 i komplexitet, istället för 15. Men utanför den och LibraryController och Game så håller sig komplexiteten ganska låg. Det skulle vara bra att få ner deras komplexitet lite, möjligen genom metoderna som beskrivs i samma del av phpmetrics. PlayProcess (metod) borde också ses över då den har en högre komplexitet.
@@ -57,22 +56,19 @@ Testen som jag har skrivit täcker endast de filer som ligger i Card, alltså fu
 
 # Förbättringar
 De tre förbättringar jag tänker implementera är:
-    1. Fixa alla "gramatiska" fel. Till exempel == istället för ===, {} på fel rader, etc.
+    1. Fixa alla "grammatiska" fel. Till exempel == istället för ===, {} på fel rader, etc.
     2. Försök få ner komplexiteten genom att dela upp CardController i två.
     3. Ändra i Deck2 för att få till en högre maintainability index i phpmetrics.
-    {# 3. Skriv tester för hela eller delar av Controllers. #}
 
-Med dessa förbättringar hoppas jag få ner antalet "buggar" som Scrutinizer hittar, få ner komplexiteten så att mätvärdena blir bättre, och få till det så att Deck2 inte längre är röd i phpmetrics.
-{# och få upp coverage till grönt i Scrutinizer. 56.29 #}
+Med dessa förbättringar hoppas jag få ner antalet "buggar" som Scrutinizer hittar, få ner komplexiteten så att mätvärdena blir bättre, och få till det så att Deck2 inte längre är röd i phpmetrics underhållsvärden.
 
 #### Implementation
-Efter implementation så gick antalet "buggar" ner till 1 (tidigare 5). Den bugg som är kvar ligger i en fil som jag inte vill röra (autogenererad kernel). Delningen av CardController till GameController gick bra och drog ner komplexiteten till 3,38, en skillnad på 0,05. Det är tyvärr inte lika mycket som jag trodde att det skulle ge. Jag tror att man nog skulle behöva dela upp LibraryController i en fil för funktionerna, och en fil för kontrollern för att få ner komplexiteten till något lite rimligare. Deck2 började på 56,29 i phpmetrics maintainability index, och efter att ha optimerats så hamnade den på
+Efter implementation så gick antalet "buggar" ner till 1 (tidigare 5). Den bugg som är kvar ligger i en fil som jag inte vill röra (autogenererad kernel). Delningen av CardController till GameController gick bra och drog ner komplexiteten till 3,38, en skillnad på 0,05. Det är tyvärr inte lika mycket som jag trodde att det skulle ge. Jag tror att man nog skulle behöva dela upp LibraryController i en fil för funktionerna, och en fil för kontrollen för att få ner komplexiteten till något lite rimligare. Deck2 började på 56,29 i phpmetrics maintainability index, och efter att ha optimerats så hamnade den på 68,26. Den är fortfarande inom det röda, men däremot så gick komplexiteten ner till 3,15, så optimeringen hjälpte inom flera områden.
 
 
 # Diskussion
-Jag tror att såna här verktyg inom kodkvalitet kan hjälpa till att få till en bra kodstruktur, där det är lättare för andra att sätta sig in i hur det fungerar. Däremot så tror jag inte att den egentligen visar hur "bra" en kod är, endast hur väl den håller sig till vissa regler och standarder.
+Jag tror att sådana här verktyg inom kodkvalitet kan hjälpa till att få till en bra kodstruktur, där det är lättare för andra att sätta sig in i hur det fungerar. Däremot så tror jag inte att den egentligen visar hur "bra" en kod är, endast hur väl den håller sig till vissa regler och standarder.
 
-Avsluta med ett stycke “Diskussion” där du diskuterar kort kring det du nyss gjort. Kan man aktivt jobba med kodkvalitet på detta sättet? Finns det fördelar och kanske nackdelar?
 {% endapply %}
 
 {% endblock %}

@@ -2,9 +2,12 @@ Kmom 06
 --------
 
 **Hur uppfattade du verktyget phpmetrics och fann du några särskilda bitar mer värdefulla än andra? Var det några särskilda metrics eller bilder du uppskattade?**
+Jag gillade att det fanns så myckat info i början/overview. Av allt där så använde jag nog Maintainability / complexity delen mest, då det kändes som att den gav en bra info. Jag gillar även hur mycket info det fanns i Complexity & defects, och jag fick googla lite för att förstå mig på vad allt var. Det var kul att kunna se kopplingarna mellan olika klasser, men jag vet inte riktigt hur jag skulle kunna använda den informationen. Det skulle vara om man ville få en snabb överblick över kopplingen för att se om man kunda flytta på något för att få en bättre kohesion? Allt som allt så var nog phpmetrics det verktyg vars mätvärden jag kollade på mest.
 
 **Berätta hur det gick att integrera med Scrutinizer och vilken är din första känsla av verktyget och dess badges? Vilken kodtäckning och kodkvalitet fick du efter första bygget?**
+När jag först körde Scrutinizer så fick jag det inte att fungera; den kraschade när den försökte köra lite script. Det tog ett tag att försöka få det hela att fungera, men efter att ha försökt själv ett tag så skrev jag i discorden och fick tipps från Marie på hur jag skulle få det hela att fungera. Det löste det problemet och jag tog bort repot från Scrutinizer och la til det på nytt för att få en ren start. Efter första körningen så fanns det massor av fel och det var jättesvårt att få en bra överblick, så jag la till alla mappar som jag inte själv hade kodat i exkluderingslistan. Då fick jag sen bara upp det som rörde min kod, och det var enklare att se saker. Så första "riktiga" bygget med endast min kod gav 10 i betyg, med 24% coverage och build passed. Men med alla andra mappar så var betyget endast 5,11.
 
 **Hur är din egen syn på kodkvalitet, berätta lite om den? Tror du man kan man påvisa kodkvalitet i någon viss mån med badges eller vad tror du?**
+Jag tror att man nog kan få till en bättre struktur i kod med hjälp av badges och liknande, men det hjälper nog för det mesta inte att förbättra *hur* själva koden gör någonting. Men däremot så kan det nog göra det enklare för andra att sätta sig in i koden.
 
 **Vilken är din TIL för detta kmom?**
