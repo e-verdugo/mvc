@@ -146,13 +146,13 @@ class LibraryController extends AbstractController
         );
         if ($book != null) {
             $book = $book[0];
+            $book->setName($request->request->get('name'));
+            $book->setISBN($request->request->get('isbn'));
+            $book->setAuthor($request->request->get('author'));
+            $book->setImgUrl($request->request->get('img_url'));
+            $entityManager->persist($book);
+            $entityManager->flush();
         }
-        $book->setName($request->request->get('name'));
-        $book->setISBN($request->request->get('isbn'));
-        $book->setAuthor($request->request->get('author'));
-        $book->setImgUrl($request->request->get('img_url'));
-        $entityManager->persist($book);
-        $entityManager->flush();
         $params = ["isbn" => $isbn];
         return $this->redirectToRoute("read_one_process", $params);
     }
