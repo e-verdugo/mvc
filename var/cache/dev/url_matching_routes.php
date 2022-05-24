@@ -18,11 +18,11 @@ return [
         '/card/deck/shuffle' => [[['_route' => 'shuffle', '_controller' => 'App\\Controller\\CardController::shuffle'], null, null, null, false, false, null]],
         '/card/deck/draw' => [[['_route' => 'draw', '_controller' => 'App\\Controller\\CardController::draw'], null, null, null, false, false, null]],
         '/card/deck2' => [[['_route' => 'deck2', '_controller' => 'App\\Controller\\CardController::deck2'], null, null, null, false, false, null]],
-        '/game' => [[['_route' => 'game', '_controller' => 'App\\Controller\\CardController::game'], null, null, null, false, false, null]],
-        '/game/doc' => [[['_route' => 'doc', '_controller' => 'App\\Controller\\CardController::doc'], null, null, null, false, false, null]],
+        '/game' => [[['_route' => 'game', '_controller' => 'App\\Controller\\GameController::game'], null, null, null, false, false, null]],
+        '/game/doc' => [[['_route' => 'doc', '_controller' => 'App\\Controller\\GameController::doc'], null, null, null, false, false, null]],
         '/game/play' => [
-            [['_route' => 'play', '_controller' => 'App\\Controller\\CardController::play'], null, ['GET' => 0, 'HEAD' => 1], null, false, false, null],
-            [['_route' => 'play-process', '_controller' => 'App\\Controller\\CardController::playProcess'], null, ['POST' => 0], null, false, false, null],
+            [['_route' => 'play', '_controller' => 'App\\Controller\\GameController::play'], null, ['GET' => 0, 'HEAD' => 1], null, false, false, null],
+            [['_route' => 'play-process', '_controller' => 'App\\Controller\\GameController::playProcess'], null, ['POST' => 0], null, false, false, null],
         ],
         '/card/api/deck' => [[['_route' => 'jsonapi', '_controller' => 'App\\Controller\\JSONController::jsonapi'], null, null, null, false, false, null]],
         '/library' => [[['_route' => 'library', '_controller' => 'App\\Controller\\LibraryController::index'], null, null, null, false, false, null]],
@@ -32,9 +32,17 @@ return [
         ],
         '/library/show_all' => [[['_route' => 'read_many', '_controller' => 'App\\Controller\\LibraryController::showAllBooks'], null, null, null, false, false, null]],
         '/library/show' => [[['_route' => 'read_one', '_controller' => 'App\\Controller\\LibraryController::showBookByIsbn'], null, null, null, false, false, null]],
+        '/proj' => [[['_route' => 'proj', '_controller' => 'App\\Controller\\ProjController::proj'], null, null, null, false, false, null]],
+        '/proj/about' => [[['_route' => 'aboutProj', '_controller' => 'App\\Controller\\ProjController::aboutProj'], null, null, null, false, false, null]],
+        '/proj/reset' => [[['_route' => 'reset', '_controller' => 'App\\Controller\\ProjController::reset'], null, null, null, false, false, null]],
+        '/proj/plump' => [
+            [['_route' => 'plump', '_controller' => 'App\\Controller\\ProjController::plump'], null, ['GET' => 0, 'HEAD' => 1], null, false, false, null],
+            [['_route' => 'plump-process', '_controller' => 'App\\Controller\\ProjController::plumpProcess'], null, ['POST' => 0], null, false, false, null],
+        ],
         '/' => [[['_route' => 'home', '_controller' => 'App\\Controller\\ReportController::home'], null, null, null, false, false, null]],
         '/about' => [[['_route' => 'about', '_controller' => 'App\\Controller\\ReportController::about'], null, null, null, false, false, null]],
         '/report' => [[['_route' => 'report', '_controller' => 'App\\Controller\\ReportController::report'], null, null, null, false, false, null]],
+        '/metrics' => [[['_route' => 'metrics', '_controller' => 'App\\Controller\\ReportController::metrics'], null, null, null, false, false, null]],
     ],
     [ // $regexpList
         0 => '{^(?'

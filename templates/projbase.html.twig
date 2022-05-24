@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Spela plump!!{% endblock %}</title>
+        <link rel="icon" href="{{ app.request.baseUrl }}/favicon.ico">
+        <link rel="stylesheet" href="{{ app.request.baseUrl }}/css/proj.css"/>
+    </head>
+
+    <body>
+        <ul>
+            <li><a href="{{ path("proj") }}">Spela!</a></li>
+            <li><a href="{{ path("aboutProj") }}">Om</a></li>
+        </ul>
+        <div class="main">
+            {% block content %}
+            404 content not found
+            {% endblock %}
+        </div>
+        <br>
+        <br>
+        <br>
+        <footer>
+            <p>Spela plump</p>
+        </footer>
+    </body>
+</html>

@@ -402,12 +402,12 @@ if (typeof Sfjs === 'undefined' || typeof Sfjs.loadToolbar === 'undefined') {
 
                     /* prevent logging AJAX calls to static and inline files, like templates */
                     var path = url;
-                    if (url.substr(0, 1) === '/') {
+                    if (url.slice(0, 1) === '/') {
                         if (0 === url.indexOf('";
             // line 355
             echo twig_escape_filter($this->env, twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["request"]) || array_key_exists("request", $context) ? $context["request"] : (function () { throw new RuntimeError('Variable "request" does not exist.', 355, $this->source); })()), "basePath", [], "any", false, false, false, 355), "js"), "html", null, true);
             echo "')) {
-                            path = url.substr(";
+                            path = url.slice(";
             // line 356
             echo twig_escape_filter($this->env, twig_length_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["request"]) || array_key_exists("request", $context) ? $context["request"] : (function () { throw new RuntimeError('Variable "request" does not exist.', 356, $this->source); })()), "basePath", [], "any", false, false, false, 356)), "html", null, true);
             echo ");
@@ -417,7 +417,7 @@ if (typeof Sfjs === 'undefined' || typeof Sfjs.loadToolbar === 'undefined') {
             // line 359
             echo twig_escape_filter($this->env, twig_escape_filter($this->env, (twig_get_attribute($this->env, $this->source, (isset($context["request"]) || array_key_exists("request", $context) ? $context["request"] : (function () { throw new RuntimeError('Variable "request" does not exist.', 359, $this->source); })()), "schemeAndHttpHost", [], "any", false, false, false, 359) . twig_get_attribute($this->env, $this->source, (isset($context["request"]) || array_key_exists("request", $context) ? $context["request"] : (function () { throw new RuntimeError('Variable "request" does not exist.', 359, $this->source); })()), "basePath", [], "any", false, false, false, 359)), "js"), "html", null, true);
             echo "')) {
-                        path = url.substr(";
+                        path = url.slice(";
             // line 360
             echo twig_escape_filter($this->env, twig_length_filter($this->env, (twig_get_attribute($this->env, $this->source, (isset($context["request"]) || array_key_exists("request", $context) ? $context["request"] : (function () { throw new RuntimeError('Variable "request" does not exist.', 360, $this->source); })()), "schemeAndHttpHost", [], "any", false, false, false, 360) . twig_get_attribute($this->env, $this->source, (isset($context["request"]) || array_key_exists("request", $context) ? $context["request"] : (function () { throw new RuntimeError('Variable "request" does not exist.', 360, $this->source); })()), "basePath", [], "any", false, false, false, 360))), "html", null, true);
             echo ");
@@ -1325,13 +1325,13 @@ if (typeof Sfjs === 'undefined' || typeof Sfjs.loadToolbar === 'undefined') {
 
                     /* prevent logging AJAX calls to static and inline files, like templates */
                     var path = url;
-                    if (url.substr(0, 1) === '/') {
+                    if (url.slice(0, 1) === '/') {
                         if (0 === url.indexOf('{{ request.basePath|e('js') }}')) {
-                            path = url.substr({{ request.basePath|length }});
+                            path = url.slice({{ request.basePath|length }});
                         }
                     }
                     else if (0 === url.indexOf('{{ (request.schemeAndHttpHost ~ request.basePath)|e('js') }}')) {
-                        path = url.substr({{ (request.schemeAndHttpHost ~ request.basePath)|length }});
+                        path = url.slice({{ (request.schemeAndHttpHost ~ request.basePath)|length }});
                     }
 
                     if (!path.match(new RegExp({{ excluded_ajax_paths|json_encode|raw }}))) {

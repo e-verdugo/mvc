@@ -1,0 +1,28 @@
+{% extends "projbase.html.twig" %}
+
+{% block title %}Plump{% endblock %}
+
+{% block content %}
+
+<h1>Plump</h1>
+
+{{players}}
+
+<table>
+    {% for player in players %}
+        <thead>{{player.name}}</thead>
+        <tbody>{{player.score}}</tbody>
+    {% endfor %}
+</table>
+
+<form method="post">
+    <fieldset>
+        <p>
+            <input type="submit" {{disabled}} name="draw" value="Draw">
+            <input type="submit" {{disabled}} name="fold" value="Fold">
+            <input type="submit" name="reset" value="Reset">
+        </p>
+    </fieldset>
+</form>
+
+{% endblock %}
