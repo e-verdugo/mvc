@@ -6,21 +6,54 @@
 
 <h1>Plump</h1>
 
-{{players}}
+<h3>Trumf: </h3>
+{% if 127153 <= trumf.card()[2:6] and trumf.card()[2:6] < 127184 %}
+    <button style='font-size: 95px; color: red;'>{{ trumf.card()|raw }}</button>
+{% else %}
+    <button style='font-size: 95px; color: black;'>{{ trumf.card()|raw }}</button>
+{% endif %}
 
-<table>
+<h3>Hög: </h3>
+{% for card in pile %}
+    {% if 127153 <= card.card()[2:6] and card.card()[2:6] < 127184 %}
+        <button style='font-size: 95px; color: red;'>{{ card.card()|raw }}</button>
+    {% else %}
+        <button style='font-size: 95px; color: black;'>{{ card.card()|raw }}</button>
+    {% endif %}
+{% endfor %}
+
+<h3>Kort: </h3>
+{% for player in players %}
+    {{player.name}}
+    Antal stick: {{stick}}
+    <br>
+    <form method="post">
+        <fieldset>
+            {% for card in player.cards() %}
+                {% if 127153 <= card.card()[2:6] and card.card()[2:6] < 127184 %}
+                    <input type="submit" style='font-size: 95px; color: red;' name={{card.card()}} value={{ card.card()|raw }}>
+                {% else %}
+                    <input type="submit" style='font-size: 95px; color: black;' name={{card.card()}} value={{ card.card()|raw }}>
+                {% endif %}
+            {% endfor %}
+        </fieldset>
+    </form>
+    <hr>
+{% endfor %}
+
+{# <table>
     {% for player in players %}
         <thead>{{player.name}}</thead>
         <tbody>{{player.score}}</tbody>
     {% endfor %}
-</table>
+</table> #}
 
 <form method="post">
     <fieldset>
         <p>
-            <input type="submit" {{disabled}} name="draw" value="Draw">
-            <input type="submit" {{disabled}} name="fold" value="Fold">
-            <input type="submit" name="reset" value="Reset">
+            <input type="text" name="betNum" value="Hur många stick?">
+            <input type="submit" {{disabled}} name="bet" value="Bet">
+            <input type="submit" name="reset" value="Reset game">
         </p>
     </fieldset>
 </form>

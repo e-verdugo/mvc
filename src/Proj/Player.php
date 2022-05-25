@@ -43,6 +43,11 @@ class Player
         $this->stick = $stick;
     }
 
+    public function resetCards(): void
+    {
+        $this->cards = [];
+    }
+
     public function score(): int
     {
         return $this->score;
