@@ -26,6 +26,14 @@ class ProjController extends AbstractController
     }
 
     /**
+     * @Route("/proj", name="proj-process", methods={"POST"})
+     */
+    public function projProcess(Request $request, SessionInterface $session): Response
+    {
+        $session->set("players", $request->request->get('amount'));
+    }
+
+    /**
      * @Route("/proj/about", name="aboutProj")
      */
     public function aboutProj(): Response
@@ -53,28 +61,47 @@ class ProjController extends AbstractController
      */
     public function plump(Request $request, SessionInterface $session): Response
     {
-        $game = $session->get("game") ?? new Play([new Player("Player"), new Player("Bank")]);
+        $game = $session->get("game") ?? new Play([new Player("Spelare"), new Player("Bank")]);
         $newRound = $session->get("newRound") ?? true;
-        $pile = [];
-        if ($newRound) {
+        $pile = $session->get("pile") ?? [];
+        $winningCard = null;
+
+        if ($newRound) { // run only once at the start of the round
             for ($i=0; $i < count($game->getPlayers()); $i++) { 
                 $game->getPlayers()[$i]->resetCards();
             }
-            $game->dealCards(); // deals the cards for the round
+            $session->set("disabled", "disabled");
             $trumf = $game->getTrumf(); // gets the trumf card for the round
+            $game->dealCards(); // deals the cards for the round
             $session->set("trumf", $trumf); // saves the trumf
             $session->set("newRound", false); // toggles the round status
             $session->set("round", $game->getRound()); // sets what round we're on
-        } else if ($session->get("bet") == "bet") {
-            $trumf = ""; // fix so it is either an actual card or wont read when empty
-            // do nothing rn
-        } else {
-            $trumf = $session->get("trumf"); // gets the saved trumf card
-            $round = $session->get("round"); // sets what round we're on
-            if ($round > 0) {
-                $card = $session->get("card");
-                $card = $game->getCard($card);
-                array_push($pile, $card);
+            $session->set("amount", $session->get("players")); // WILL ONLY WORK ONCE, PUT IT IN A BETTER PLACE -------
+        }
+
+        $trumf = $session->get("trumf"); // gets the saved trumf card
+
+        if ($session->get("bet") == "bet") {// when setting a bet
+            $session->set("bet", "disabled");
+            $session->set("disabled", "");
+        } else if ($newRound == false) { // playing the game
+            $round = $session->get("round"); // gets what round we're on
+            if ($round > 0) { // behöver if och else här under vara funktioner? ---------------------------------------
+                if (count($pile) <= $session->get("amount")- 1) { // if not everyone has laid their card
+                    $card = $session->get("card");
+                    $card = $game->getCard($card);
+                    $session->set("playerCard", $session->get("card"));
+                    array_push($pile, $card); // put card in pile on table
+                    $game->getPlayers()[0]->removeCard($card); // remove card from hand (bc it is on the table now)
+                    // bank spelar ett kort
+                } else { // if all cards have been placed for the round, end round
+                    $winningCard = $game->endRound($pile, $trumf);
+                    $card = $session->get("playerCard");
+                    $card = $game->getCard($card);
+                    if ($winningCard == $card) { // player got the stick
+                        $session->set("currStick", $session->get("currStick") + 1);
+                    } // else bank got the stick -------------------------------------------------------------
+                }
                 // spela själva spelet i rundor gånger
                 $session->set("round", $round-1); // sets what round we're on
             } else {
@@ -83,14 +110,18 @@ class ProjController extends AbstractController
             }
         }
         $data = [
-            'players' => $game->getPlayers(),
+            'player' => $game->getPlayers()[0],
             'trumf' => $trumf,
             'stick' => $session->get("stick"),
             'pile' => $pile,
-            'disabled' => $session->get("disabledBet"),
+            'bet' => $session->get("bet"),
+            'winner' => $winningCard,
+            'disabled' => $session->get("disabled"),
+            'currStick' => $session->get("currStick"),
         ];
         // $stick = $session->get("stick");
         $session->set("game", $game);
+        $session->set("pile", $pile);
         return $this->render('proj/plump.html.twig', $data);
     }
 
@@ -99,12 +130,12 @@ class ProjController extends AbstractController
      */
     public function plumpProcess(Request $request, SessionInterface $session): Response
     {
+        $session->set("players", $request->request->get('amount'));
         if ($request->request->get('reset')) {
             return $this->redirectToRoute('reset');
         } else if ($request->request->get('bet')) {
             $betNum = $request->request->get("betNum");
             $session->set("stick", $betNum);
-            $session->set("disabledBet", "disabled");
             $session->set("bet", "bet");
         } else {
             $session->set("card", $_POST);

@@ -95,3 +95,13 @@ table tbody tr.active-row {
     color: #009879;
 }
 
+.top {
+    flex-grow: 1;
+    justify-content: space-between;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}

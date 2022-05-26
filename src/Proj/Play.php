@@ -63,12 +63,40 @@ class Play
     //returns the matching card
     public function getCard($card): Card
     {
-        $card = array_pop($card);
-        for ($i=0; $i < count($this->getPlayers()[0]->cards()); $i++) {
-            if ($this->getPlayers()[0]->cards()[$i]->card() == $card) { // matcher ej av nån anledning, för få kort???
-                $newCard = $this->getPlayers()[0]->cards()[$i];
+        $deck = new Deck;
+        for ($i=0; $i < count($deck->deck()); $i++) {
+            if ($deck->deck()[$i]->match() == key($card)) {
+                $newCard = $deck->deck()[$i];
             }
         }
         return $newCard;
+    }
+
+    //ends the round and returns winning card
+    public function endRound($pile, $trumf): Card
+    {
+        $winner = $pile[0]; // first card decides colour
+
+        for ($i=1; $i < count($pile); $i++) {
+            if ($pile[$i]->value()[1] == $trumf->value()[1]) { //if there is trumph
+                if ($pile[$i]->value()[0] == 1) { // if ace (highest)
+                    $winner = $pile[$i];
+                    break;
+                } else if ($winner->value()[1] == $trumf->value()[1]) { // check which trumph is highest
+                    if ($pile[$i]->value()[0] > $winner->value()[0]) {
+                        $winner = $pile[$i];
+                    }
+                } else {
+                    $winner = $pile[$i];
+                }
+            } else if ($winner->value()[1] != $trumf->value()[1] && $pile[$i]->value()[1] == $pile[0]->value()[1]) { // not trumph and same colour as first card placed
+                if ($pile[$i]->value()[0] == 1) { // if ace (highest)
+                    $winner = $pile[$i];
+                } else if ($pile[$i]->value()[0] > $winner->value()[0] && $winner->value()[0] != 1) { // if bigger than winner
+                    $winner = $pile[$i];
+                }
+            }
+        }
+        return $winner;
     }
 }

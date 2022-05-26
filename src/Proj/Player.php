@@ -38,6 +38,13 @@ class Player
         array_push($this->cards, $card);
     }
 
+    public function removeCard(Card $card): void
+    {
+        $key = array_search($card, $this->cards);
+        unset($this->cards[$key]);
+        $this->cards = array_values($this->cards);
+    }
+
     public function addStick(int $stick): void
     {
         $this->stick = $stick;

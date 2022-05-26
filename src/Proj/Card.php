@@ -13,12 +13,14 @@ class Card
      */
     private array $value;
     private string $face;
+    private string $match;
 
     public function __construct(int $number, string $suit)
     {
         $card = "&#" . strval(intval($this->suits[$suit]) + $number) . ";";
         $this->face = $card;
         $this->value = [strval($number + 1), $suit];
+        $this->match = $suit . $this->value[0];
     }
 
     public function card(): string
@@ -30,5 +32,11 @@ class Card
     public function value(): array
     {
         return $this->value;
+    }
+
+    /** @return string */
+    public function match(): string
+    {
+        return $this->match;
     }
 }
