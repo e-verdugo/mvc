@@ -61,7 +61,7 @@ class ProjController extends AbstractController
      */
     public function plump(Request $request, SessionInterface $session): Response
     {
-        $game = $session->get("game") ?? new Play([new Player("Spelare"), new Player("Bank")]);
+        $game = $session->get("game") ?? new Play([new Player("Spelare"), new ComputerPlayer("CPU")]);
         $newRound = $session->get("newRound") ?? true;
         $pile = $session->get("pile") ?? [];
         $winningCard = null;
@@ -81,31 +81,39 @@ class ProjController extends AbstractController
 
         $trumf = $session->get("trumf"); // gets the saved trumf card
 
-        if ($session->get("bet") == "bet") {// when setting a bet
+        if ($session->get("nextRound") == true) { // nextRound (same big round but next inner round)
+            $session->set("pile", []);
+            $pile = [];
+            $session->set("nextRound", false);
+        } else if ($session->get("bet") == "bet") {// when setting a bet
             $session->set("bet", "disabled");
             $session->set("disabled", "");
         } else if ($newRound == false) { // playing the game
             $round = $session->get("round"); // gets what round we're on
-            if ($round > 0) { // behöver if och else här under vara funktioner? ---------------------------------------
-                if (count($pile) <= $session->get("amount")- 1) { // if not everyone has laid their card
+            if ($round > 0) {
+                if (count($pile) <= $session->get("amount") - 1) { // if not everyone has laid their card
                     $card = $session->get("card");
-                    $card = $game->getCard($card);
-                    $session->set("playerCard", $session->get("card"));
-                    array_push($pile, $card); // put card in pile on table
-                    $game->getPlayers()[0]->removeCard($card); // remove card from hand (bc it is on the table now)
-                    // bank spelar ett kort
+                    try {
+                        $card = $game->getCard($card);
+                        $session->set("playerCard", $session->get("card"));
+                        array_push($pile, $card); // put card in pile on table
+                        $game->getPlayers()[0]->removeCard($card); // remove card from hand (bc it is on the table now)
+                    } catch (\Throwable) {
+                        // to avoid crashing if user reloads page without having clicked on anything
+                    }
+                    $session->set("check", "");
+                    // bank spelar ett kort ----------------------------------------------------------------------------
                 } else { // if all cards have been placed for the round, end round
                     $winningCard = $game->endRound($pile, $trumf);
                     $card = $session->get("playerCard");
                     $card = $game->getCard($card);
                     if ($winningCard == $card) { // player got the stick
                         $session->set("currStick", $session->get("currStick") + 1);
-                    } // else bank got the stick -------------------------------------------------------------
+                    } // else bank got the stick -----------------------------------------------------------------------
+                    $session->set("round", $round-1); // sets what round we're on
                 }
-                // spela själva spelet i rundor gånger
-                $session->set("round", $round-1); // sets what round we're on
             } else {
-                session_destroy();
+                $game->finishRound();
                 //next round
             }
         }
@@ -118,6 +126,7 @@ class ProjController extends AbstractController
             'winner' => $winningCard,
             'disabled' => $session->get("disabled"),
             'currStick' => $session->get("currStick"),
+            'check' => $session->get("check"),
         ];
         // $stick = $session->get("stick");
         $session->set("game", $game);
@@ -137,8 +146,11 @@ class ProjController extends AbstractController
             $betNum = $request->request->get("betNum");
             $session->set("stick", $betNum);
             $session->set("bet", "bet");
+        } else if ($request->request->get('roundDone')) {
+            $session->set("nextRound", true);
         } else {
             $session->set("card", $_POST);
+            $session->set("check", "disabled");
         }
 
         return $this->redirectToRoute('plump');

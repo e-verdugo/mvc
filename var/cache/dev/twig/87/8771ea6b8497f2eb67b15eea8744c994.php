@@ -137,98 +137,111 @@ class __TwigTemplate_2175ea94f11c20db9378e3aecf469f56 extends Template
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['card'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
         // line 27
-        echo "    </div>
+        echo "        <form method=\"post\">
+            <fieldset>
+                <input type=\"submit\" ";
+        // line 29
+        echo twig_escape_filter($this->env, (isset($context["check"]) || array_key_exists("check", $context) ? $context["check"] : (function () { throw new RuntimeError('Variable "check" does not exist.', 29, $this->source); })()), "html", null, true);
+        echo " value=\"Se vem som vann\">
+            </fieldset>
+        </form>
+    </div>
     <div>
         ";
-        // line 29
-        if (((isset($context["winner"]) || array_key_exists("winner", $context) ? $context["winner"] : (function () { throw new RuntimeError('Variable "winner" does not exist.', 29, $this->source); })()) != null)) {
-            // line 30
+        // line 34
+        if (((isset($context["winner"]) || array_key_exists("winner", $context) ? $context["winner"] : (function () { throw new RuntimeError('Variable "winner" does not exist.', 34, $this->source); })()) != null)) {
+            // line 35
             echo "        <h3>Vinnande kort: </h3>
         ";
-            // line 31
-            if (((127153 <= twig_slice($this->env, twig_get_attribute($this->env, $this->source, (isset($context["winner"]) || array_key_exists("winner", $context) ? $context["winner"] : (function () { throw new RuntimeError('Variable "winner" does not exist.', 31, $this->source); })()), "card", [], "method", false, false, false, 31), 2, 6)) && (twig_slice($this->env, twig_get_attribute($this->env, $this->source, (isset($context["winner"]) || array_key_exists("winner", $context) ? $context["winner"] : (function () { throw new RuntimeError('Variable "winner" does not exist.', 31, $this->source); })()), "card", [], "method", false, false, false, 31), 2, 6) < 127184))) {
-                // line 32
+            // line 36
+            if (((127153 <= twig_slice($this->env, twig_get_attribute($this->env, $this->source, (isset($context["winner"]) || array_key_exists("winner", $context) ? $context["winner"] : (function () { throw new RuntimeError('Variable "winner" does not exist.', 36, $this->source); })()), "card", [], "method", false, false, false, 36), 2, 6)) && (twig_slice($this->env, twig_get_attribute($this->env, $this->source, (isset($context["winner"]) || array_key_exists("winner", $context) ? $context["winner"] : (function () { throw new RuntimeError('Variable "winner" does not exist.', 36, $this->source); })()), "card", [], "method", false, false, false, 36), 2, 6) < 127184))) {
+                // line 37
                 echo "            <button style='font-size: 95px; color: red;'>";
-                echo twig_get_attribute($this->env, $this->source, (isset($context["winner"]) || array_key_exists("winner", $context) ? $context["winner"] : (function () { throw new RuntimeError('Variable "winner" does not exist.', 32, $this->source); })()), "card", [], "method", false, false, false, 32);
+                echo twig_get_attribute($this->env, $this->source, (isset($context["winner"]) || array_key_exists("winner", $context) ? $context["winner"] : (function () { throw new RuntimeError('Variable "winner" does not exist.', 37, $this->source); })()), "card", [], "method", false, false, false, 37);
                 echo "</button>
         ";
             } else {
-                // line 34
+                // line 39
                 echo "            <button style='font-size: 95px; color: black;'>";
-                echo twig_get_attribute($this->env, $this->source, (isset($context["winner"]) || array_key_exists("winner", $context) ? $context["winner"] : (function () { throw new RuntimeError('Variable "winner" does not exist.', 34, $this->source); })()), "card", [], "method", false, false, false, 34);
+                echo twig_get_attribute($this->env, $this->source, (isset($context["winner"]) || array_key_exists("winner", $context) ? $context["winner"] : (function () { throw new RuntimeError('Variable "winner" does not exist.', 39, $this->source); })()), "card", [], "method", false, false, false, 39);
                 echo "</button>
         ";
             }
-            // line 36
-            echo "    ";
+            // line 41
+            echo "        <form method=\"post\">
+            <fieldset>
+                <input type=\"submit\" name=\"roundDone\" value=\"Starta nästa runda\">
+            </fieldset>
+        </form>
+    ";
         }
-        // line 37
+        // line 47
         echo "    </div>
 
     ";
-        // line 45
+        // line 55
         echo "</div>
 
     <div>
         <h3>Kort: </h3>
         ";
-        // line 50
+        // line 60
         echo "        ";
-        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["player"]) || array_key_exists("player", $context) ? $context["player"] : (function () { throw new RuntimeError('Variable "player" does not exist.', 50, $this->source); })()), "name", [], "any", false, false, false, 50), "html", null, true);
+        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["player"]) || array_key_exists("player", $context) ? $context["player"] : (function () { throw new RuntimeError('Variable "player" does not exist.', 60, $this->source); })()), "name", [], "any", false, false, false, 60), "html", null, true);
         echo "
         <br>
         Satsning: ";
-        // line 52
-        echo twig_escape_filter($this->env, (isset($context["stick"]) || array_key_exists("stick", $context) ? $context["stick"] : (function () { throw new RuntimeError('Variable "stick" does not exist.', 52, $this->source); })()), "html", null, true);
+        // line 62
+        echo twig_escape_filter($this->env, (isset($context["stick"]) || array_key_exists("stick", $context) ? $context["stick"] : (function () { throw new RuntimeError('Variable "stick" does not exist.', 62, $this->source); })()), "html", null, true);
         echo "
         <br>
         Nuvarande stick: ";
-        // line 54
-        echo twig_escape_filter($this->env, (isset($context["currStick"]) || array_key_exists("currStick", $context) ? $context["currStick"] : (function () { throw new RuntimeError('Variable "currStick" does not exist.', 54, $this->source); })()), "html", null, true);
+        // line 64
+        echo twig_escape_filter($this->env, (isset($context["currStick"]) || array_key_exists("currStick", $context) ? $context["currStick"] : (function () { throw new RuntimeError('Variable "currStick" does not exist.', 64, $this->source); })()), "html", null, true);
         echo "
         <br>
         <form method=\"post\">
             <fieldset>
                 ";
-        // line 58
+        // line 68
         $context['_parent'] = $context;
-        $context['_seq'] = twig_ensure_traversable(twig_get_attribute($this->env, $this->source, (isset($context["player"]) || array_key_exists("player", $context) ? $context["player"] : (function () { throw new RuntimeError('Variable "player" does not exist.', 58, $this->source); })()), "cards", [], "method", false, false, false, 58));
+        $context['_seq'] = twig_ensure_traversable(twig_get_attribute($this->env, $this->source, (isset($context["player"]) || array_key_exists("player", $context) ? $context["player"] : (function () { throw new RuntimeError('Variable "player" does not exist.', 68, $this->source); })()), "cards", [], "method", false, false, false, 68));
         foreach ($context['_seq'] as $context["_key"] => $context["card"]) {
-            // line 59
+            // line 69
             echo "                    ";
-            if (((127153 <= twig_slice($this->env, twig_get_attribute($this->env, $this->source, $context["card"], "card", [], "method", false, false, false, 59), 2, 6)) && (twig_slice($this->env, twig_get_attribute($this->env, $this->source, $context["card"], "card", [], "method", false, false, false, 59), 2, 6) < 127184))) {
-                // line 60
+            if (((127153 <= twig_slice($this->env, twig_get_attribute($this->env, $this->source, $context["card"], "card", [], "method", false, false, false, 69), 2, 6)) && (twig_slice($this->env, twig_get_attribute($this->env, $this->source, $context["card"], "card", [], "method", false, false, false, 69), 2, 6) < 127184))) {
+                // line 70
                 echo "                        <input type=\"submit\" ";
-                echo twig_escape_filter($this->env, (isset($context["disabled"]) || array_key_exists("disabled", $context) ? $context["disabled"] : (function () { throw new RuntimeError('Variable "disabled" does not exist.', 60, $this->source); })()), "html", null, true);
+                echo twig_escape_filter($this->env, (isset($context["disabled"]) || array_key_exists("disabled", $context) ? $context["disabled"] : (function () { throw new RuntimeError('Variable "disabled" does not exist.', 70, $this->source); })()), "html", null, true);
                 echo " style='font-size: 95px; color: red;' name=";
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["card"], "match", [], "method", false, false, false, 60), "html", null, true);
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["card"], "match", [], "method", false, false, false, 70), "html", null, true);
                 echo " value=";
-                echo twig_get_attribute($this->env, $this->source, $context["card"], "card", [], "method", false, false, false, 60);
+                echo twig_get_attribute($this->env, $this->source, $context["card"], "card", [], "method", false, false, false, 70);
                 echo ">
                     ";
             } else {
-                // line 62
+                // line 72
                 echo "                        <input type=\"submit\" ";
-                echo twig_escape_filter($this->env, (isset($context["disabled"]) || array_key_exists("disabled", $context) ? $context["disabled"] : (function () { throw new RuntimeError('Variable "disabled" does not exist.', 62, $this->source); })()), "html", null, true);
+                echo twig_escape_filter($this->env, (isset($context["disabled"]) || array_key_exists("disabled", $context) ? $context["disabled"] : (function () { throw new RuntimeError('Variable "disabled" does not exist.', 72, $this->source); })()), "html", null, true);
                 echo " style='font-size: 95px; color: black;' name=";
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["card"], "match", [], "method", false, false, false, 62), "html", null, true);
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["card"], "match", [], "method", false, false, false, 72), "html", null, true);
                 echo " value=";
-                echo twig_get_attribute($this->env, $this->source, $context["card"], "card", [], "method", false, false, false, 62);
+                echo twig_get_attribute($this->env, $this->source, $context["card"], "card", [], "method", false, false, false, 72);
                 echo ">
                     ";
             }
-            // line 64
+            // line 74
             echo "                ";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['card'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 65
+        // line 75
         echo "            </fieldset>
         </form>
         <hr>
         ";
-        // line 69
+        // line 79
         echo "    </div>
 
     <form method=\"post\">
@@ -236,8 +249,8 @@ class __TwigTemplate_2175ea94f11c20db9378e3aecf469f56 extends Template
             <p>
                 <input type=\"text\" name=\"betNum\" value=\"Hur många stick?\">
                 <input type=\"submit\" ";
-        // line 75
-        echo twig_escape_filter($this->env, (isset($context["bet"]) || array_key_exists("bet", $context) ? $context["bet"] : (function () { throw new RuntimeError('Variable "bet" does not exist.', 75, $this->source); })()), "html", null, true);
+        // line 85
+        echo twig_escape_filter($this->env, (isset($context["bet"]) || array_key_exists("bet", $context) ? $context["bet"] : (function () { throw new RuntimeError('Variable "bet" does not exist.', 85, $this->source); })()), "html", null, true);
         echo " name=\"bet\" value=\"Bet\">
                 <input type=\"submit\" name=\"reset\" value=\"Reset game\">
             </p>
@@ -266,7 +279,7 @@ class __TwigTemplate_2175ea94f11c20db9378e3aecf469f56 extends Template
 
     public function getDebugInfo()
     {
-        return array (  240 => 75,  232 => 69,  227 => 65,  221 => 64,  211 => 62,  201 => 60,  198 => 59,  194 => 58,  187 => 54,  182 => 52,  176 => 50,  170 => 45,  166 => 37,  163 => 36,  157 => 34,  151 => 32,  149 => 31,  146 => 30,  144 => 29,  140 => 27,  134 => 26,  128 => 24,  122 => 22,  119 => 21,  115 => 20,  110 => 17,  104 => 15,  98 => 13,  96 => 12,  88 => 6,  78 => 5,  59 => 3,  36 => 1,);
+        return array (  253 => 85,  245 => 79,  240 => 75,  234 => 74,  224 => 72,  214 => 70,  211 => 69,  207 => 68,  200 => 64,  195 => 62,  189 => 60,  183 => 55,  179 => 47,  171 => 41,  165 => 39,  159 => 37,  157 => 36,  154 => 35,  152 => 34,  144 => 29,  140 => 27,  134 => 26,  128 => 24,  122 => 22,  119 => 21,  115 => 20,  110 => 17,  104 => 15,  98 => 13,  96 => 12,  88 => 6,  78 => 5,  59 => 3,  36 => 1,);
     }
 
     public function getSourceContext()
@@ -297,6 +310,11 @@ class __TwigTemplate_2175ea94f11c20db9378e3aecf469f56 extends Template
                 <button style='font-size: 95px; color: black;'>{{ card.card()|raw }}</button>
             {% endif %}
         {% endfor %}
+        <form method=\"post\">
+            <fieldset>
+                <input type=\"submit\" {{check}} value=\"Se vem som vann\">
+            </fieldset>
+        </form>
     </div>
     <div>
         {% if winner != null %}
@@ -306,6 +324,11 @@ class __TwigTemplate_2175ea94f11c20db9378e3aecf469f56 extends Template
         {% else %}
             <button style='font-size: 95px; color: black;'>{{ winner.card()|raw }}</button>
         {% endif %}
+        <form method=\"post\">
+            <fieldset>
+                <input type=\"submit\" name=\"roundDone\" value=\"Starta nästa runda\">
+            </fieldset>
+        </form>
     {% endif %}
     </div>
 
