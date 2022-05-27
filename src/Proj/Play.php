@@ -7,9 +7,9 @@ use App\Proj\Card;
 
 class Play
 {
-    private array $players;
-    private array $rounds;
-    private Deck $deck;
+    protected array $players;
+    protected array $rounds;
+    protected Deck $deck;
 
     // a game can have up to 5 players
     public function __construct(array $players)

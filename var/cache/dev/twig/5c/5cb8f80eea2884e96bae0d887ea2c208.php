@@ -93,8 +93,6 @@ class __TwigTemplate_aa5cde1b79b2b1b0aa889ef4dd1a421c extends Template
         // line 10
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("plump");
         echo "\" method=\"POST\">
-        <label for=\"amount\">Hur många spelare?</label>
-        <input type=\"number\" id=\"amount\" name=\"amount\" min=\"1\" max=\"5\"><br><br>
         <input type=\"submit\" value=\"Spela!\">
     </form>
 </div>
@@ -135,8 +133,6 @@ class __TwigTemplate_aa5cde1b79b2b1b0aa889ef4dd1a421c extends Template
 
 <div style=\"padding: 5em;\">
     <form action=\"{{ path(\"plump\") }}\" method=\"POST\">
-        <label for=\"amount\">Hur många spelare?</label>
-        <input type=\"number\" id=\"amount\" name=\"amount\" min=\"1\" max=\"5\"><br><br>
         <input type=\"submit\" value=\"Spela!\">
     </form>
 </div>

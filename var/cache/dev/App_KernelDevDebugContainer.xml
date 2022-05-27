@@ -387,6 +387,7 @@
       </call>
     </service>
     <service id="App\Proj\Card" class="App\Proj\Card" autowire="true" autoconfigure="true"/>
+    <service id="App\Proj\ComputerPlayer" class="App\Proj\ComputerPlayer" autowire="true" autoconfigure="true"/>
     <service id="App\Proj\Deck" class="App\Proj\Deck" autowire="true" autoconfigure="true"/>
     <service id="App\Proj\Play" class="App\Proj\Play" autowire="true" autoconfigure="true"/>
     <service id="App\Proj\Player" class="App\Proj\Player" autowire="true" autoconfigure="true"/>

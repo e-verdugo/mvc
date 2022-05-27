@@ -56,12 +56,14 @@
 
     <div>
         <h3>Kort: </h3>
-        {# {% for player in players %} #}
-        {{player.name}}
         <br>
         Satsning: {{stick}}
         <br>
         Nuvarande stick: {{currStick}}
+        <br>
+        Datorns satsning: {{cpuBet}}
+        <br>
+        Datorns stick: {{cpuScore}}
         <br>
         <form method="post">
             <fieldset>

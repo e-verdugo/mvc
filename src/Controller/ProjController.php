@@ -13,6 +13,7 @@ use Doctrine\Persistence\ManagerRegistry;
 use App\Proj\Card;
 use App\Proj\Deck;
 use App\Proj\Player;
+use App\Proj\ComputerPlayer;
 use App\Proj\Play;
 
 class ProjController extends AbstractController
@@ -65,6 +66,7 @@ class ProjController extends AbstractController
         $newRound = $session->get("newRound") ?? true;
         $pile = $session->get("pile") ?? [];
         $winningCard = null;
+        $cpuBet = $session->get("cpuBet") ?? 0;
 
         if ($newRound) { // run only once at the start of the round
             for ($i=0; $i < count($game->getPlayers()); $i++) { 
@@ -76,7 +78,6 @@ class ProjController extends AbstractController
             $session->set("trumf", $trumf); // saves the trumf
             $session->set("newRound", false); // toggles the round status
             $session->set("round", $game->getRound()); // sets what round we're on
-            $session->set("amount", $session->get("players")); // WILL ONLY WORK ONCE, PUT IT IN A BETTER PLACE -------
         }
 
         $trumf = $session->get("trumf"); // gets the saved trumf card
@@ -88,10 +89,12 @@ class ProjController extends AbstractController
         } else if ($session->get("bet") == "bet") {// when setting a bet
             $session->set("bet", "disabled");
             $session->set("disabled", "");
+            $cpuBet = $game->getPlayers()[1]->betStick($trumf);
+            $session->set("cpuBet", $cpuBet);
         } else if ($newRound == false) { // playing the game
             $round = $session->get("round"); // gets what round we're on
             if ($round > 0) {
-                if (count($pile) <= $session->get("amount") - 1) { // if not everyone has laid their card
+                if (count($pile) < 2) { // if not everyone has laid their card
                     $card = $session->get("card");
                     try {
                         $card = $game->getCard($card);
@@ -104,12 +107,14 @@ class ProjController extends AbstractController
                     $session->set("check", "");
                     // bank spelar ett kort ----------------------------------------------------------------------------
                 } else { // if all cards have been placed for the round, end round
-                    $winningCard = $game->endRound($pile, $trumf);
+                    $winningCard = $game->endRound($pile, $trumf); // get the card that wins the pile
                     $card = $session->get("playerCard");
                     $card = $game->getCard($card);
                     if ($winningCard == $card) { // player got the stick
-                        $session->set("currStick", $session->get("currStick") + 1);
-                    } // else bank got the stick -----------------------------------------------------------------------
+                        $game->getPlayers()[0]->updateScore($game->getPlayers()[0]->score() + 1);
+                    } else { // else bank got the stick
+                        $game->getPlayers()[1]->updateScore($game->getPlayers()[1]->score() + 1);
+                    }
                     $session->set("round", $round-1); // sets what round we're on
                 }
             } else {
@@ -125,8 +130,10 @@ class ProjController extends AbstractController
             'bet' => $session->get("bet"),
             'winner' => $winningCard,
             'disabled' => $session->get("disabled"),
-            'currStick' => $session->get("currStick"),
+            'currStick' => $game->getPlayers()[0]->score(),
             'check' => $session->get("check"),
+            'cpuBet' => $cpuBet,
+            'cpuScore' => $game->getPlayers()[1]->score(),
         ];
         // $stick = $session->get("stick");
         $session->set("game", $game);
@@ -139,7 +146,6 @@ class ProjController extends AbstractController
      */
     public function plumpProcess(Request $request, SessionInterface $session): Response
     {
-        $session->set("players", $request->request->get('amount'));
         if ($request->request->get('reset')) {
             return $this->redirectToRoute('reset');
         } else if ($request->request->get('bet')) {

@@ -7,13 +7,13 @@ class Card
     /**
      * @var array<int> $suits
      */
-    private array $suits = array("spades" => 127137, "hearts" => 127153, "diamonds" => 127169, "clubs" => 127185);
+    protected array $suits = array("spades" => 127137, "hearts" => 127153, "diamonds" => 127169, "clubs" => 127185);
     /**
      * @var array<string> $value
      */
-    private array $value;
-    private string $face;
-    private string $match;
+    protected array $value;
+    protected string $face;
+    protected string $match;
 
     public function __construct(int $number, string $suit)
     {

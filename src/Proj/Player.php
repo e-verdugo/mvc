@@ -7,10 +7,10 @@ class Player
     /**
      * @var array<Card> $cards
      */
-    private array $cards = [];
-    private string $name = "";
-    private int $stick = 0;
-    private int $score = 0;
+    protected array $cards = [];
+    protected string $name = "";
+    protected int $stick = 0;
+    protected int $score = 0;
 
     public function __construct(string $name)
     {
