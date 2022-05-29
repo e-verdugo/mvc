@@ -5,13 +5,24 @@ namespace App\Proj;
 use App\Proj\Player;
 use App\Proj\Card;
 
+/**
+ * Game class, creates a Play object which keeps track of the game
+ */
 class Play
 {
+    /**
+     * @var array<Player> $players
+     */
     protected array $players;
+    /**
+     * @var array<int> $rounds
+     */
     protected array $rounds;
     protected Deck $deck;
 
-    // a game can have up to 5 players
+    /**
+     * @param array<Player> $players
+     */
     public function __construct(array $players)
     {
         $this->players = $players;
@@ -19,52 +30,72 @@ class Play
         $this->rounds = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
     }
 
-    //returns the player array
+    /**
+     * Returns the player array
+     * @return array<Player> */
     public function getPlayers(): array
     {
         return $this->players;
     }
 
-    //returns the deck object
+    /**
+     * Returns the deck object
+     */
     public function getDeck(): Deck
     {
         return $this->deck;
     }
 
-    //returns the current round
+    /**
+     * Returns the current round
+     */
     public function getRound(): int
     {
-        return $this->rounds[0];
+        if (isset($this->rounds[0])) {
+            return $this->rounds[0];
+        }
+        return false;
     }
 
-    //removes the top round
+    /**
+     * Removes the top round
+     */
     public function finishRound(): void
     {
         array_shift($this->rounds);
     }
 
-    //deals the cards
+    /**
+     * Deals the cards
+     */
     public function dealCards(): void
     {
         for ($i=0; $i < $this->getRound(); $i++) {
-            for ($j=0; $j < count($this->getPlayers()); $j++) {
+            $count = count($this->getPlayers());
+            for ($j=0; $j < $count; $j++) {
                 $this->getPlayers()[$j]->addCards($this->getDeck()->draw(count($this->getDeck()->deck())));
             }
         }
         $this->deck = new Deck();
     }
 
-    //returns the trumf card
+    /**
+     * Returns the trumf card
+     */
     public function getTrumf(): Card
     {
         return $this->getDeck()->draw(count($this->getDeck()->deck()));
     }
 
-    //returns the matching card
-    public function getCard($card): Card
+    /**
+     * Returns the matching card
+     * @param array<mixed> $card
+     */
+    public function getCard(array $card): Card
     {
-        $deck = new Deck;
-        for ($i=0; $i < count($deck->deck()); $i++) {
+        $deck = new Deck();
+        $count = count($deck->deck());
+        for ($i=0; $i < $count; $i++) {
             if ($deck->deck()[$i]->match() == key($card)) {
                 $newCard = $deck->deck()[$i];
             }
@@ -72,27 +103,30 @@ class Play
         return $newCard;
     }
 
-    //ends the round and returns winning card
-    public function endRound($pile, $trumf): Card
+    /**
+     * Ends the round and returns winning card
+     * @param array<Card> $pile
+     */
+    public function endRound(array $pile, Card $trumf): Card
     {
         $winner = $pile[0]; // first card decides colour
-
-        for ($i=1; $i < count($pile); $i++) {
+        $count = count($pile);
+        for ($i=1; $i < $count; $i++) {
             if ($pile[$i]->value()[1] == $trumf->value()[1]) { //if there is trumph
                 if ($pile[$i]->value()[0] == 1) { // if ace (highest)
                     $winner = $pile[$i];
                     break;
-                } else if ($winner->value()[1] == $trumf->value()[1]) { // check which trumph is highest
+                } elseif ($winner->value()[1] == $trumf->value()[1]) { // check which trumph is highest
                     if ($pile[$i]->value()[0] > $winner->value()[0]) {
                         $winner = $pile[$i];
                     }
                 } else {
                     $winner = $pile[$i];
                 }
-            } else if ($winner->value()[1] != $trumf->value()[1] && $pile[$i]->value()[1] == $pile[0]->value()[1]) { // not trumph and same colour as first card placed
+            } elseif ($winner->value()[1] != $trumf->value()[1] && $pile[$i]->value()[1] == $pile[0]->value()[1]) { // not trumph and same colour as first card placed
                 if ($pile[$i]->value()[0] == 1) { // if ace (highest)
                     $winner = $pile[$i];
-                } else if ($pile[$i]->value()[0] > $winner->value()[0] && $winner->value()[0] != 1) { // if bigger than winner
+                } elseif ($pile[$i]->value()[0] > $winner->value()[0] && $winner->value()[0] != 1) { // if bigger than winner
                     $winner = $pile[$i];
                 }
             }

@@ -2,6 +2,9 @@
 
 namespace App\Proj;
 
+/**
+ * Player class, creates a Player object
+ */
 class Player
 {
     /**
@@ -10,34 +13,77 @@ class Player
     protected array $cards = [];
     protected string $name = "";
     protected int $stick = 0;
-    protected int $score = 0;
+    protected int $betStick = 0;
+    /**
+     * @var array<int> $score
+     */
+    protected array $score = [];
 
     public function __construct(string $name)
     {
         $this->name = $name;
     }
 
-    /** @return array<Card> */
+    /** 
+     * Returns the hand
+     * @return array<Card>
+     */
     public function cards(): array
     {
         return $this->cards;
     }
 
+    /**
+     * Returns the player name
+     */
     public function name(): string
     {
         return $this->name;
     }
 
+    /**
+     * Returns how many sticks taken
+     */
     public function stick(): int
     {
         return $this->stick;
     }
 
+    /**
+     * Adds a new stick
+     */
+    public function addStick(int $stick): void
+    {
+        $this->stick = $stick;
+    }
+
+    /**
+     * Returns the current bet
+     */
+    public function betStick(): int
+    {
+        return $this->betStick;
+    }
+
+    /**
+     * Adds a new bet
+     */
+    public function addBetStick(string $betStick): void
+    {
+        $this->betStick = intval($betStick);
+    }
+
+    /**
+     * Adds a card to the hand
+     */
     public function addCards(Card $card): void
     {
         array_push($this->cards, $card);
     }
 
+    /**
+     * Removes a card from the hand
+     */
     public function removeCard(Card $card): void
     {
         $key = array_search($card, $this->cards);
@@ -45,23 +91,28 @@ class Player
         $this->cards = array_values($this->cards);
     }
 
-    public function addStick(int $stick): void
-    {
-        $this->stick = $stick;
-    }
-
+    /**
+     * Resets the cards on hand
+     */
     public function resetCards(): void
     {
         $this->cards = [];
     }
 
-    public function score(): int
+    /**
+     * Returns the players score
+     * @return array<int>
+     */
+    public function score(): array
     {
         return $this->score;
     }
 
+    /**
+     * Adds a new score to the array
+     */
     public function updateScore(int $score): void
     {
-        $this->score = $score;
+        array_push($this->score, $score);
     }
 }

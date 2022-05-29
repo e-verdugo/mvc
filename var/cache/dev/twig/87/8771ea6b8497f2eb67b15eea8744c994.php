@@ -187,12 +187,12 @@ class __TwigTemplate_2175ea94f11c20db9378e3aecf469f56 extends Template
         <br>
         Satsning: ";
         // line 60
-        echo twig_escape_filter($this->env, (isset($context["stick"]) || array_key_exists("stick", $context) ? $context["stick"] : (function () { throw new RuntimeError('Variable "stick" does not exist.', 60, $this->source); })()), "html", null, true);
+        echo twig_escape_filter($this->env, (isset($context["playerBet"]) || array_key_exists("playerBet", $context) ? $context["playerBet"] : (function () { throw new RuntimeError('Variable "playerBet" does not exist.', 60, $this->source); })()), "html", null, true);
         echo "
         <br>
         Nuvarande stick: ";
         // line 62
-        echo twig_escape_filter($this->env, (isset($context["currStick"]) || array_key_exists("currStick", $context) ? $context["currStick"] : (function () { throw new RuntimeError('Variable "currStick" does not exist.', 62, $this->source); })()), "html", null, true);
+        echo twig_escape_filter($this->env, (isset($context["playerScore"]) || array_key_exists("playerScore", $context) ? $context["playerScore"] : (function () { throw new RuntimeError('Variable "playerScore" does not exist.', 62, $this->source); })()), "html", null, true);
         echo "
         <br>
         Datorns satsning: ";
@@ -245,20 +245,26 @@ class __TwigTemplate_2175ea94f11c20db9378e3aecf469f56 extends Template
         echo "            </fieldset>
         </form>
         <hr>
-        ";
-        // line 81
-        echo "    </div>
+    </div>
 
     <form method=\"post\">
         <fieldset>
-            <p>
-                <input type=\"text\" name=\"betNum\" value=\"Hur många stick?\">
-                <input type=\"submit\" ";
-        // line 87
-        echo twig_escape_filter($this->env, (isset($context["bet"]) || array_key_exists("bet", $context) ? $context["bet"] : (function () { throw new RuntimeError('Variable "bet" does not exist.', 87, $this->source); })()), "html", null, true);
-        echo " name=\"bet\" value=\"Bet\">
-                <input type=\"submit\" name=\"reset\" value=\"Reset game\">
-            </p>
+            <input type=\"number\" name=\"betNum\" min=\"0\" max=";
+        // line 84
+        echo twig_escape_filter($this->env, (isset($context["round"]) || array_key_exists("round", $context) ? $context["round"] : (function () { throw new RuntimeError('Variable "round" does not exist.', 84, $this->source); })()), "html", null, true);
+        echo " value=";
+        echo twig_escape_filter($this->env, (isset($context["playerBet"]) || array_key_exists("playerBet", $context) ? $context["playerBet"] : (function () { throw new RuntimeError('Variable "playerBet" does not exist.', 84, $this->source); })()), "html", null, true);
+        echo ">
+            <input type=\"submit\" ";
+        // line 85
+        echo twig_escape_filter($this->env, (isset($context["bet"]) || array_key_exists("bet", $context) ? $context["bet"] : (function () { throw new RuntimeError('Variable "bet" does not exist.', 85, $this->source); })()), "html", null, true);
+        echo " name=\"bet\" value=\"Hur många stick?\">
+        </fieldset>
+    </form>
+    <form method=\"post\">
+        <fieldset>
+            <input type=\"submit\" name=\"reset\" value=\"Reset game\">
+            <input type=\"submit\" value=\"Starta nästa runda\">
         </fieldset>
     </form>
 
@@ -284,7 +290,7 @@ class __TwigTemplate_2175ea94f11c20db9378e3aecf469f56 extends Template
 
     public function getDebugInfo()
     {
-        return array (  258 => 87,  250 => 81,  245 => 77,  239 => 76,  229 => 74,  219 => 72,  216 => 71,  212 => 70,  205 => 66,  200 => 64,  195 => 62,  190 => 60,  183 => 55,  179 => 47,  171 => 41,  165 => 39,  159 => 37,  157 => 36,  154 => 35,  152 => 34,  144 => 29,  140 => 27,  134 => 26,  128 => 24,  122 => 22,  119 => 21,  115 => 20,  110 => 17,  104 => 15,  98 => 13,  96 => 12,  88 => 6,  78 => 5,  59 => 3,  36 => 1,);
+        return array (  260 => 85,  254 => 84,  245 => 77,  239 => 76,  229 => 74,  219 => 72,  216 => 71,  212 => 70,  205 => 66,  200 => 64,  195 => 62,  190 => 60,  183 => 55,  179 => 47,  171 => 41,  165 => 39,  159 => 37,  157 => 36,  154 => 35,  152 => 34,  144 => 29,  140 => 27,  134 => 26,  128 => 24,  122 => 22,  119 => 21,  115 => 20,  110 => 17,  104 => 15,  98 => 13,  96 => 12,  88 => 6,  78 => 5,  59 => 3,  36 => 1,);
     }
 
     public function getSourceContext()
@@ -348,9 +354,9 @@ class __TwigTemplate_2175ea94f11c20db9378e3aecf469f56 extends Template
     <div>
         <h3>Kort: </h3>
         <br>
-        Satsning: {{stick}}
+        Satsning: {{playerBet}}
         <br>
-        Nuvarande stick: {{currStick}}
+        Nuvarande stick: {{playerScore}}
         <br>
         Datorns satsning: {{cpuBet}}
         <br>
@@ -368,16 +374,18 @@ class __TwigTemplate_2175ea94f11c20db9378e3aecf469f56 extends Template
             </fieldset>
         </form>
         <hr>
-        {# {% endfor %} #}
     </div>
 
     <form method=\"post\">
         <fieldset>
-            <p>
-                <input type=\"text\" name=\"betNum\" value=\"Hur många stick?\">
-                <input type=\"submit\" {{bet}} name=\"bet\" value=\"Bet\">
-                <input type=\"submit\" name=\"reset\" value=\"Reset game\">
-            </p>
+            <input type=\"number\" name=\"betNum\" min=\"0\" max={{round}} value={{playerBet}}>
+            <input type=\"submit\" {{bet}} name=\"bet\" value=\"Hur många stick?\">
+        </fieldset>
+    </form>
+    <form method=\"post\">
+        <fieldset>
+            <input type=\"submit\" name=\"reset\" value=\"Reset game\">
+            <input type=\"submit\" value=\"Starta nästa runda\">
         </fieldset>
     </form>
 

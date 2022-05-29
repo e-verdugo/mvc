@@ -57,9 +57,9 @@
     <div>
         <h3>Kort: </h3>
         <br>
-        Satsning: {{stick}}
+        Satsning: {{playerBet}}
         <br>
-        Nuvarande stick: {{currStick}}
+        Nuvarande stick: {{playerScore}}
         <br>
         Datorns satsning: {{cpuBet}}
         <br>
@@ -77,16 +77,18 @@
             </fieldset>
         </form>
         <hr>
-        {# {% endfor %} #}
     </div>
 
     <form method="post">
         <fieldset>
-            <p>
-                <input type="text" name="betNum" value="Hur många stick?">
-                <input type="submit" {{bet}} name="bet" value="Bet">
-                <input type="submit" name="reset" value="Reset game">
-            </p>
+            <input type="number" name="betNum" min="0" max={{round}} value={{playerBet}}>
+            <input type="submit" {{bet}} name="bet" value="Hur många stick?">
+        </fieldset>
+    </form>
+    <form method="post">
+        <fieldset>
+            <input type="submit" name="reset" value="Reset game">
+            <input type="submit" value="Starta nästa runda">
         </fieldset>
     </form>
 

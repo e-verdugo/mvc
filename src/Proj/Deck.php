@@ -4,6 +4,9 @@ namespace App\Proj;
 
 use App\Proj\Card;
 
+/**
+ * Deck class, creates a Deck object
+ */
 class Deck
 {
     /**
@@ -28,20 +31,29 @@ class Deck
         }
     }
 
-    /** @return array<Card> */
+    /**
+     * Returns the cards in the deck
+     * @return array<Card>
+     */
     public function deck(): array
     {
         return $this->deck;
     }
 
-    /** @return array<Card> */
+    /** 
+     * Shuffle the deck and return the cards
+     * @return array<Card>
+     */
     public function shuffle(): array
     {
         shuffle($this->deck);
         return $this->deck;
     }
 
-    /** @return Card */
+    /** 
+     * Pulls a random card from the deck and returns it
+     * @return Card
+     */
     public function draw(int $decksize): Card
     {
         $randNum = rand(0, $decksize - 1);

@@ -10,6 +10,9 @@ use App\Entity\Library;
 use App\Repository\LibraryRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
+/**
+ * @SuppressWarnings(PHPMD)
+ */
 class LibraryController extends AbstractController
 {
     /**

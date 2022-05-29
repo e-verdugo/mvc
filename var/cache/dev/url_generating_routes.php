@@ -37,7 +37,6 @@ return [
     'update_process' => [['isbn'], ['_controller' => 'App\\Controller\\LibraryController::updateBookProcess'], [], [['variable', '/', '[^/]++', 'isbn', true], ['text', '/library/update']], [], [], []],
     'delete_process' => [['isbn'], ['_controller' => 'App\\Controller\\LibraryController::deleteBookByIsbnProcess'], [], [['variable', '/', '[^/]++', 'isbn', true], ['text', '/library/delete']], [], [], []],
     'proj' => [[], ['_controller' => 'App\\Controller\\ProjController::proj'], [], [['text', '/proj']], [], [], []],
-    'proj-process' => [[], ['_controller' => 'App\\Controller\\ProjController::projProcess'], [], [['text', '/proj']], [], [], []],
     'aboutProj' => [[], ['_controller' => 'App\\Controller\\ProjController::aboutProj'], [], [['text', '/proj/about']], [], [], []],
     'reset' => [[], ['_controller' => 'App\\Controller\\ProjController::reset'], [], [['text', '/proj/reset']], [], [], []],
     'plump' => [[], ['_controller' => 'App\\Controller\\ProjController::plump'], [], [['text', '/proj/plump']], [], [], []],

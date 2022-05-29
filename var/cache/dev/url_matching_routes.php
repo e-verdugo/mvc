@@ -32,10 +32,7 @@ return [
         ],
         '/library/show_all' => [[['_route' => 'read_many', '_controller' => 'App\\Controller\\LibraryController::showAllBooks'], null, null, null, false, false, null]],
         '/library/show' => [[['_route' => 'read_one', '_controller' => 'App\\Controller\\LibraryController::showBookByIsbn'], null, null, null, false, false, null]],
-        '/proj' => [
-            [['_route' => 'proj', '_controller' => 'App\\Controller\\ProjController::proj'], null, null, null, false, false, null],
-            [['_route' => 'proj-process', '_controller' => 'App\\Controller\\ProjController::projProcess'], null, ['POST' => 0], null, false, false, null],
-        ],
+        '/proj' => [[['_route' => 'proj', '_controller' => 'App\\Controller\\ProjController::proj'], null, null, null, false, false, null]],
         '/proj/about' => [[['_route' => 'aboutProj', '_controller' => 'App\\Controller\\ProjController::aboutProj'], null, null, null, false, false, null]],
         '/proj/reset' => [[['_route' => 'reset', '_controller' => 'App\\Controller\\ProjController::reset'], null, null, null, false, false, null]],
         '/proj/plump' => [

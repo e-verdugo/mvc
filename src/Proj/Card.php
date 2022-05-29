@@ -2,6 +2,9 @@
 
 namespace App\Proj;
 
+/**
+ * Card class, creates a Card object
+ */
 class Card
 {
     /**
