@@ -24,14 +24,21 @@ class ComputerPlayerTest extends TestCase
 
     /**
      * Test choosing a card to play.
+     * Checks: If same suit as starting card,
+     * if no cards match neither trumf nor starter,
+     * and if no starter match, but trumf match exists.
      */
     public function testPlayCard(): void
     {
         $cpu = new ComputerPlayer("CPU");
         $cpu->addCards(new Card(1, "hearts"));
-        $cpu->addCards(new Card(1, "spades"));
+        $cpu->addCards(new Card(1, "clubs"));
         $this->assertInstanceOf("App\Proj\ComputerPlayer", $cpu);
-        $card = $cpu->playCard([new Card(1, "hearts"), new Card(2, "hearts")], new Card(0, "hearts"));
+        $card = $cpu->playCard([new Card(10, "hearts")], new Card(0, "hearts"));
+        $this->assertInstanceOf("App\Proj\Card", $card);
+        $card = $cpu->playCard([new Card(1, "spades"), new Card(2, "diamonds")], new Card(0, "diamonds"));
+        $this->assertInstanceOf("App\Proj\Card", $card);
+        $card = $cpu->playCard([new Card(1, "spades")], new Card(0, "clubs"));
         $this->assertInstanceOf("App\Proj\Card", $card);
     }
 }

@@ -4,17 +4,26 @@
 
 {% block content %}
 <h1>Om den här sidan</h1>
-
 <p>Välkommen till min about-sida för mitt projekt. Jag har valt att skapa ett spel där man kan spela Plump, ett kortspel.</p>
+
+<br>
+
 <h4>Spelregler</h4>
-<p>Målet med spelet är att inte "plumpa", utan att få poäng varje runda. För att få poäng så måste man ta lika många stick som man satsar på att man ska ta i böjan, och för att ta ett stick så måste du ha det högsta kortet, eller trumf. Man börjar med 10 kort var, och sen kör man 9, 8, etc. tills man kommer till ett. Därefter kör man från ett till tio. Efter varje utdelning av korten så tas det översta av de kvarvarande korten och läggs upp. Denns färg är nu trumf. Nu satsar man kort, alla på en gång.</p>
+<p>Målet med spelet är att inte "plumpa", utan att få poäng varje runda. För att få poäng så måste man ta lika många stick som man satsar på att man ska ta i böjan, och för att ta ett stick så måste du ha det högsta kortet, eller trumf. Man börjar med 10 kort var, och sen kör man 9, 8, etc. tills man kommer till ett. Därefter kör man från ett till tio. Efter varje utdelning av korten så tas det översta av de kvarvarande korten och läggs upp. Denns färg är nu trumf. Nu satsar man kort, alla på en gång. Den spelare som satsat mest börjar. Den får lägga ut vad den vill, och alla andra spelare måste följa färg. Har man inte färgen måste man lägga trumf. Ess i trumf går inte att klå, eftersom den är värd mest.</p>
 
-<a href="https://github.com/e-verdugo/mvc-course">Github repo för projektet</a>
-<a href="https://scrutinizer-ci.com/g/e-verdugo/mvc-course/">Scrutinizer för repot</a>
-<a href="http://www.student.bth.se/~emve21/dbwebb-kurser/mvc/me/report/docs/metrics/">Rapporten från phpmetrics</a>
-<a href="http://www.student.bth.se/~emve21/dbwebb-kurser/mvc/me/report/docs/api/">Dokumentation av phpdoc</a>
+<br>
 
-Din about-sida skall innehålla en summering där du berättar om projektets kodkvalitet. Berätta vilka eventuella åtgärder du gjort för att kvalitetssäkra projektet och hur du jobbat med kodkvaliteten och vilka verktyg du använt. Har du fokuserat på några speciella saker, verktyg eller metrics, så kan du berätta om dem.
+<h4>Kodkvalitet</h4>
+<p>Jag har fokuserat på att få ner komplexiteten på vissa delar av min kod, speciellt i Play-klassen. Där har jag delat upp en funktion endRound till två. Efter det så gick komplexiteten i den klassen ner ganska rejält. Jag kom inte lika långt med komplexiteten för routen plump, däremot. Vissa delar har jag lyckats göra om till funktioner som jag har lagt in i den klass som var närmast. Till exempel koden för att avsluta en runda (endRound i Play, själva spelobjektet), och koden för att lägga till poäng, stick, och satsningar (score och updateScore, stick och addStick, och betStick och addBetStick, båda i Player-objekten). För att hålla koll på komplexiteten så har jag använt phpmetrics och phpmd. Phpmd har inte bara varnat mig för "kladd" i koden, för genom det så har jag hittat sätt att göra den mindre komplex.</p>
+<p>Förutom komplexiteten så har jag även försökt se till att ha en bra dokumentation, både i själva koden och via phpdoc. Därför har jag skrivit in vad varje metod gör. Jag har även stängt av varninger för filerna i Entity-mappen och Repository-mappen då det inte finns något jag kan göra åt det.</p>
+<p>Sist men inte minst så har jag även försökt hålla en så hög kohesion som möjligt, och jag tycker att jag har lyckats ganska bra. Det som rör det som finns i klasserna ligger i klasserna.</p>
+
+<br>
+
+<h4>Länkar</h4>
+<a href="https://github.com/e-verdugo/mvc-course">Github repo för projektet</a> <br>
+<a href="https://scrutinizer-ci.com/g/e-verdugo/mvc-course/">Scrutinizer för repot</a> <br>
+<a href="http://www.student.bth.se/~emve21/dbwebb-kurser/mvc/me/report/docs/metrics/">Rapporten från phpmetrics</a> <br>
+<a href="http://www.student.bth.se/~emve21/dbwebb-kurser/mvc/me/report/docs/api/">Dokumentation av phpdoc</a> <br>
+
 {% endblock %}
-
-Den spelare som satsat mest börjar. Den får lägga ut vad den vill, och alla andra spelare måste följa färg. Har man inte färgen måste man lägga trumf. Äss i trumf går inte att klå, eftersom den är värd mest.

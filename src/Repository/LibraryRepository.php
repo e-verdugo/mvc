@@ -11,7 +11,7 @@ use Doctrine\Persistence\ManagerRegistry;
 /**
  * @extends ServiceEntityRepository<Library>
  * @SuppressWarnings(PHPMD)
- * 
+ *
  * @method Library|null find($id, $lockMode = null, $lockVersion = null)
  * @method Library|null findOneBy(array $criteria, array $orderBy = null)
  * @method Library[]    findAll()

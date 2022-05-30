@@ -546,6 +546,11 @@ Search.appendIndex(
             "summary": "Ends\u0020the\u0020round\u0020and\u0020returns\u0020winning\u0020card",
             "url": "classes/App-Proj-Play.html#method_endRound"
         },                {
+            "fqsen": "\\App\\Proj\\Play\u003A\u003AgetHighest\u0028\u0029",
+            "name": "getHighest",
+            "summary": "Returns\u0020the\u0020highest\u0020card\u0020of\u0020a\u0020pile",
+            "url": "classes/App-Proj-Play.html#method_getHighest"
+        },                {
             "fqsen": "\\App\\Proj\\Play\u003A\u003A\u0024players",
             "name": "players",
             "summary": "",

@@ -52,7 +52,7 @@ class ComputerPlayer extends Player
         if ($possible == [] && $card == null) { // if there are no cards in the right suit
             $count = count($this->cards);
             for ($i = 0; $i < $count; $i++) {
-                if ($this->cards[$i]->value()[1] == $trumf->value()[1]) { // if cards are the same suit as first
+                if ($this->cards[$i]->value()[1] == $trumf->value()[1]) { // add all the trumf
                     array_push($possible, $this->cards[$i]);
                 }
             }
@@ -67,6 +67,7 @@ class ComputerPlayer extends Player
         }
 
         return $card;
+        // possible improvements:
         // if needs stick then put the highest one / most chance of getting the stick
         // else put the lowest one
     }
