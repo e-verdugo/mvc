@@ -395,7 +395,7 @@
       <tag name="doctrine.repository_service"/>
       <argument type="service" id="doctrine"/>
     </service>
-    <service id="App\Repository\PlumpRepository" class="App\Repository\PlumpRepository" autowire="true" autoconfigure="true">
+    <service id="App\Repository\ProjRepository" class="App\Repository\ProjRepository" autowire="true" autoconfigure="true">
       <tag name="doctrine.repository_service"/>
       <argument type="service" id="doctrine"/>
     </service>
@@ -4166,7 +4166,7 @@
       <factory class="Doctrine\ORM\EntityManager" method="create"/>
     </service>
     <service id="doctrine.orm.container_repository_factory" class="Doctrine\Bundle\DoctrineBundle\Repository\ContainerRepositoryFactory">
-      <argument type="service" id=".service_locator.50oCEGF"/>
+      <argument type="service" id=".service_locator.lteue8e"/>
     </service>
     <service id="doctrine.orm.manager_configurator.abstract" class="Doctrine\Bundle\DoctrineBundle\ManagerConfigurator" abstract="true">
       <argument type="collection"/>
@@ -6095,8 +6095,8 @@
     <service id=".abstract.instanceof.App\Controller\ReportController" class="App\Controller\ReportController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\LibraryRepository" class="App\Repository\LibraryRepository" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\LibraryRepository" class="App\Repository\LibraryRepository" autowire="true" autoconfigure="true" abstract="true"/>
-    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\PlumpRepository" class="App\Repository\PlumpRepository" autowire="true" abstract="true"/>
-    <service id=".abstract.instanceof.App\Repository\PlumpRepository" class="App\Repository\PlumpRepository" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\ProjRepository" class="App\Repository\ProjRepository" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Repository\ProjRepository" class="App\Repository\ProjRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".service_locator.gSv9zYw" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -6444,14 +6444,20 @@
         <argument key="libraryRepository" type="service_closure" id="App\Repository\LibraryRepository"/>
       </argument>
     </service>
-    <service id=".service_locator.63sUQ2W" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.eHdw9EY" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="projRepository" type="service_closure" id="App\Repository\ProjRepository"/>
+      </argument>
+    </service>
+    <service id=".service_locator.ZpXwxdQ" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="doctrine" type="service_closure" id="doctrine"/>
-        <argument key="plumpRepository" type="service_closure" id="App\Repository\PlumpRepository"/>
+        <argument key="projRepository" type="service_closure" id="App\Repository\ProjRepository"/>
       </argument>
     </service>
-    <service id=".service_locator.Vo7FEd5" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.h6Yvdqb" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Controller\LibraryController::createBookProcess" type="service_closure" id=".service_locator.GQZbvNR"/>
@@ -6460,7 +6466,9 @@
         <argument key="App\Controller\LibraryController::showBookByIsbnProcess" type="service_closure" id=".service_locator.TBgEv1t"/>
         <argument key="App\Controller\LibraryController::updateBook" type="service_closure" id=".service_locator.TBgEv1t"/>
         <argument key="App\Controller\LibraryController::updateBookProcess" type="service_closure" id=".service_locator.nLzTFMn"/>
-        <argument key="App\Controller\ProjController::reset" type="service_closure" id=".service_locator.63sUQ2W"/>
+        <argument key="App\Controller\ProjController::highscore" type="service_closure" id=".service_locator.eHdw9EY"/>
+        <argument key="App\Controller\ProjController::plump" type="service_closure" id=".service_locator.GQZbvNR"/>
+        <argument key="App\Controller\ProjController::reset" type="service_closure" id=".service_locator.ZpXwxdQ"/>
         <argument key="App\Kernel::loadRoutes" type="service_closure" id=".service_locator.xUrKPVU"/>
         <argument key="App\Kernel::registerContainerConfiguration" type="service_closure" id=".service_locator.xUrKPVU"/>
         <argument key="App\Kernel::terminate" type="service_closure" id=".service_locator.bRdave9"/>
@@ -6473,7 +6481,9 @@
         <argument key="App\Controller\LibraryController:showBookByIsbnProcess" type="service_closure" id=".service_locator.TBgEv1t"/>
         <argument key="App\Controller\LibraryController:updateBook" type="service_closure" id=".service_locator.TBgEv1t"/>
         <argument key="App\Controller\LibraryController:updateBookProcess" type="service_closure" id=".service_locator.nLzTFMn"/>
-        <argument key="App\Controller\ProjController:reset" type="service_closure" id=".service_locator.63sUQ2W"/>
+        <argument key="App\Controller\ProjController:highscore" type="service_closure" id=".service_locator.eHdw9EY"/>
+        <argument key="App\Controller\ProjController:plump" type="service_closure" id=".service_locator.GQZbvNR"/>
+        <argument key="App\Controller\ProjController:reset" type="service_closure" id=".service_locator.ZpXwxdQ"/>
         <argument key="kernel:loadRoutes" type="service_closure" id=".service_locator.xUrKPVU"/>
         <argument key="kernel:registerContainerConfiguration" type="service_closure" id=".service_locator.xUrKPVU"/>
         <argument key="kernel:terminate" type="service_closure" id=".service_locator.bRdave9"/>
@@ -6625,11 +6635,11 @@
         <argument key="doctrine.orm.messenger.doctrine_schema_subscriber" type="service_closure" id="doctrine.orm.messenger.doctrine_schema_subscriber"/>
       </argument>
     </service>
-    <service id=".service_locator.50oCEGF" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.lteue8e" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Repository\LibraryRepository" type="service_closure" id="App\Repository\LibraryRepository"/>
-        <argument key="App\Repository\PlumpRepository" type="service_closure" id="App\Repository\PlumpRepository"/>
+        <argument key="App\Repository\ProjRepository" type="service_closure" id="App\Repository\ProjRepository"/>
       </argument>
     </service>
     <service id=".service_locator.KLVvNIq" class="Symfony\Component\DependencyInjection\ServiceLocator">
@@ -7095,12 +7105,12 @@
       <argument type="service" id="security.token_storage"/>
     </service>
     <service id="debug.argument_resolver.service.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
-      <argument type="service" id=".service_locator.Vo7FEd5"/>
+      <argument type="service" id=".service_locator.h6Yvdqb"/>
     </service>
     <service id="debug.argument_resolver.default.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver"/>
     <service id="debug.argument_resolver.variadic.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\VariadicValueResolver"/>
     <service id="debug.argument_resolver.not_tagged_controller.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
-      <argument type="service" id=".service_locator.Vo7FEd5"/>
+      <argument type="service" id=".service_locator.h6Yvdqb"/>
     </service>
     <service id="debug.traced.messenger.bus.default.inner" class="Symfony\Component\Messenger\MessageBus">
       <argument type="iterator">
@@ -8035,7 +8045,7 @@
     <service id="sensio_framework_extra.security.expression_language" alias="sensio_framework_extra.security.expression_language.default"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.gSv9zYw" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.Vo7FEd5"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.h6Yvdqb"/>
     <service id="doctrine.id_generator_locator" alias=".service_locator.KLVvNIq"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id="Psr\Log\LoggerInterface $requestLogger" alias="monolog.logger.request"/>
@@ -8057,7 +8067,7 @@
     <service id=".service_locator.h8Jkkd2" alias="messenger.retry_strategy_locator"/>
     <service id=".service_locator.XDGmiR3" alias=".1_ServiceLocator~m0n_Abn"/>
     <service id=".service_locator.0GV1BZZ" alias=".service_locator.gSv9zYw"/>
-    <service id=".service_locator.nRZ.46Q" alias=".service_locator.Vo7FEd5"/>
+    <service id=".service_locator.5rhpVM8" alias=".service_locator.h6Yvdqb"/>
     <service id=".service_locator.wKF4yn1" alias=".service_locator.19_mNxd"/>
     <service id=".service_locator.Za9MpXe" alias=".service_locator.y4dplYt"/>
     <service id=".service_locator.XW18Svm" alias=".service_locator.TcKhdzh"/>
@@ -8089,7 +8099,8 @@
     <service id=".service_locator.FPFiL9q" alias=".service_locator.GQZbvNR"/>
     <service id=".service_locator.lbq1vX3" alias=".service_locator.TBgEv1t"/>
     <service id=".service_locator.2oqknbk" alias=".service_locator.nLzTFMn"/>
-    <service id=".service_locator.vkrgBwW" alias=".service_locator.63sUQ2W"/>
+    <service id=".service_locator.jD.YujL" alias=".service_locator.eHdw9EY"/>
+    <service id=".service_locator.7wj1XMU" alias=".service_locator.ZpXwxdQ"/>
     <service id=".service_locator.eAaUVIw" alias=".service_locator.jIxfAsi"/>
     <service id=".service_locator.u6DWx23" alias=".service_locator.cXsfP3P"/>
     <service id=".service_locator.pFwChgS" alias=".service_locator.UkE3SaZ"/>

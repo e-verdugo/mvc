@@ -70,9 +70,9 @@ class Play
      */
     public function dealCards(): void
     {
-        for ($i=0; $i < $this->getRound(); $i++) {
+        for ($i = 0; $i < $this->getRound(); $i++) {
             $count = count($this->getPlayers());
-            for ($j=0; $j < $count; $j++) {
+            for ($j = 0; $j < $count; $j++) {
                 $this->getPlayers()[$j]->addCards($this->getDeck()->draw(count($this->getDeck()->deck())));
             }
         }
@@ -95,7 +95,7 @@ class Play
     {
         $deck = new Deck();
         $count = count($deck->deck());
-        for ($i=0; $i < $count; $i++) {
+        for ($i = 0; $i < $count; $i++) {
             if ($deck->deck()[$i]->match() == key($card)) {
                 $newCard = $deck->deck()[$i];
             }
@@ -109,28 +109,45 @@ class Play
      */
     public function endRound(array $pile, Card $trumf): Card
     {
+        $oneColour = [];
         $winner = $pile[0]; // first card decides colour
         $count = count($pile);
-        for ($i=1; $i < $count; $i++) {
+        for ($i = 0; $i < $count; $i++) { // check for trumf
             if ($pile[$i]->value()[1] == $trumf->value()[1]) { //if there is trumph
-                if ($pile[$i]->value()[0] == 1) { // if ace (highest)
-                    $winner = $pile[$i];
-                    break;
-                } elseif ($winner->value()[1] == $trumf->value()[1]) { // check which trumph is highest
-                    if ($pile[$i]->value()[0] > $winner->value()[0]) {
-                        $winner = $pile[$i];
-                    }
-                } else {
-                    $winner = $pile[$i];
+                array_push($oneColour, $pile[$i]);
+            }
+            if ($oneColour != []) {
+                $winner = $this->getHighest($oneColour);
+            }
+        }
+        if ($winner->value()[1] != $trumf->value()[1]) { // if there is no trumph
+            for ($i = 0; $i < $count; $i++) {
+                if ($pile[$i]->value()[1] == $pile[0]->value()[1]) { //if it is same colour as first card
+                    array_push($oneColour, $pile[$i]);
                 }
-            } elseif ($winner->value()[1] != $trumf->value()[1] && $pile[$i]->value()[1] == $pile[0]->value()[1]) { // not trumph and same colour as first card placed
-                if ($pile[$i]->value()[0] == 1) { // if ace (highest)
-                    $winner = $pile[$i];
-                } elseif ($pile[$i]->value()[0] > $winner->value()[0] && $winner->value()[0] != 1) { // if bigger than winner
-                    $winner = $pile[$i];
+                if ($oneColour != []) {
+                    $winner = $this->getHighest($oneColour);
                 }
             }
         }
         return $winner;
+    }
+
+    /**
+     * Returns the highest card of a pile
+     * @param array<Card> $pile
+     */
+    public function getHighest(array $pile): Card
+    {
+        $highest = $pile[0];
+        $count = count($pile);
+        for ($i = 0; $i < $count; $i++) {
+            if ($pile[$i]->value()[0] == 1) { // if ace (highest)
+                return $pile[$i];
+            } elseif ($pile[$i]->value()[0] > $highest->value()[0]) {
+                $highest = $pile[$i];
+            }
+        }
+        return $highest;
     }
 }

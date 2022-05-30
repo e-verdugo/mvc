@@ -6,6 +6,9 @@ use App\Repository\LibraryRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: LibraryRepository::class)]
+/**
+ * @SuppressWarnings(PHPMD)
+ */
 class Library
 {
     #[ORM\Id]

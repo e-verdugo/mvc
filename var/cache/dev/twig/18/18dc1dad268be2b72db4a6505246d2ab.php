@@ -85,33 +85,18 @@ class __TwigTemplate_e82e3804ad7b22ff9f1f53be2d1cc5bc extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "content"));
 
         // line 6
-        echo "<h1>About</h1>
+        echo "<h1>Om den här sidan</h1>
 
 <p>Välkommen till min about-sida för mitt projekt. Jag har valt att skapa ett spel där man kan spela Plump, ett kortspel.</p>
 <h4>Spelregler</h4>
-<p>Målet med spelet är att inte \"plumpa\", utan att få poäng varje runda. För att få poäng så måste man ta lika många stick som man satsar på att man ska ta i böjan, och för att ta ett stick så måste du ha det högsta kortet, eller trumf. Man börjar med 10 kort var, och sen kör man 9, 8, etc. tills man kommer till ett. Därefter kör man från ett till tio. Efter varje utdelning av korten så tas det översta av de kvarvarande korten och läggs upp. Dens färg är nu trumf. Nu satsar man kort, alla på en gång. Den spelare som satsat mest börjar. Den får lägga ut vad den vill, och alla andra spelare måste följa färg. Har man inte färgen måste man lägga trumf. Äss i trumf går inte att klå, eftersom den är värd mest.</p>
+<p>Målet med spelet är att inte \"plumpa\", utan att få poäng varje runda. För att få poäng så måste man ta lika många stick som man satsar på att man ska ta i böjan, och för att ta ett stick så måste du ha det högsta kortet, eller trumf. Man börjar med 10 kort var, och sen kör man 9, 8, etc. tills man kommer till ett. Därefter kör man från ett till tio. Efter varje utdelning av korten så tas det översta av de kvarvarande korten och läggs upp. Denns färg är nu trumf. Nu satsar man kort, alla på en gång. Den spelare som satsat mest börjar. Den får lägga ut vad den vill, och alla andra spelare måste följa färg. Har man inte färgen måste man lägga trumf. Äss i trumf går inte att klå, eftersom den är värd mest.</p>
 
-Din about-sida skall innehålla en sektion om dokumentation av ditt projekt där följande är inkluderat.
-
-    Länk till dokumentationen som är genererad via phpdoc.
-    Länk till rapporten från phpmetrics.
-    Länk till ditt GitHub repo.
-    Länk till Scrutinizer för ditt repo.
+<a href=\"https://github.com/e-verdugo/mvc-course\">Github repo för projektet</a>
+<a href=\"https://scrutinizer-ci.com/g/e-verdugo/mvc-course/\">Scrutinizer för repot</a>
+<a href=\"http://www.student.bth.se/~emve21/dbwebb-kurser/mvc/me/report/docs/api/\">Rapporten från phpmetrics</a>
+<a href=\"\">Dokumentation av phpdoc</a>
 
 Din about-sida skall innehålla en summering där du berättar om projektets kodkvalitet. Berätta vilka eventuella åtgärder du gjort för att kvalitetssäkra projektet och hur du jobbat med kodkvaliteten och vilka verktyg du använt. Har du fokuserat på några speciella saker, verktyg eller metrics, så kan du berätta om dem.
-
-
-Din kod skall vara ett Git repo och den skall ligga publicerad på GitHub/GitLab eller liknande webbtjänst. Detta kravet bör redan vara uppfyllt för din me/redovisa.
-Ditt git repo skall ha en README.md som beskriver innehållet i någon omfattning.
-Din about-sida skall innehålla en länk till GitHub (eller motsvarande).
-
-Scrutinizer
-
-Ditt repo skall vara kopplat till Scrutinizer.
-Din about-sida skall innehålla:
-    Länk till Scrutnizer.
-
-
 ";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
@@ -143,33 +128,18 @@ Din about-sida skall innehålla:
 {% block title %}Om{% endblock %}
 
 {% block content %}
-<h1>About</h1>
+<h1>Om den här sidan</h1>
 
 <p>Välkommen till min about-sida för mitt projekt. Jag har valt att skapa ett spel där man kan spela Plump, ett kortspel.</p>
 <h4>Spelregler</h4>
-<p>Målet med spelet är att inte \"plumpa\", utan att få poäng varje runda. För att få poäng så måste man ta lika många stick som man satsar på att man ska ta i böjan, och för att ta ett stick så måste du ha det högsta kortet, eller trumf. Man börjar med 10 kort var, och sen kör man 9, 8, etc. tills man kommer till ett. Därefter kör man från ett till tio. Efter varje utdelning av korten så tas det översta av de kvarvarande korten och läggs upp. Dens färg är nu trumf. Nu satsar man kort, alla på en gång. Den spelare som satsat mest börjar. Den får lägga ut vad den vill, och alla andra spelare måste följa färg. Har man inte färgen måste man lägga trumf. Äss i trumf går inte att klå, eftersom den är värd mest.</p>
+<p>Målet med spelet är att inte \"plumpa\", utan att få poäng varje runda. För att få poäng så måste man ta lika många stick som man satsar på att man ska ta i böjan, och för att ta ett stick så måste du ha det högsta kortet, eller trumf. Man börjar med 10 kort var, och sen kör man 9, 8, etc. tills man kommer till ett. Därefter kör man från ett till tio. Efter varje utdelning av korten så tas det översta av de kvarvarande korten och läggs upp. Denns färg är nu trumf. Nu satsar man kort, alla på en gång. Den spelare som satsat mest börjar. Den får lägga ut vad den vill, och alla andra spelare måste följa färg. Har man inte färgen måste man lägga trumf. Äss i trumf går inte att klå, eftersom den är värd mest.</p>
 
-Din about-sida skall innehålla en sektion om dokumentation av ditt projekt där följande är inkluderat.
-
-    Länk till dokumentationen som är genererad via phpdoc.
-    Länk till rapporten från phpmetrics.
-    Länk till ditt GitHub repo.
-    Länk till Scrutinizer för ditt repo.
+<a href=\"https://github.com/e-verdugo/mvc-course\">Github repo för projektet</a>
+<a href=\"https://scrutinizer-ci.com/g/e-verdugo/mvc-course/\">Scrutinizer för repot</a>
+<a href=\"http://www.student.bth.se/~emve21/dbwebb-kurser/mvc/me/report/docs/api/\">Rapporten från phpmetrics</a>
+<a href=\"\">Dokumentation av phpdoc</a>
 
 Din about-sida skall innehålla en summering där du berättar om projektets kodkvalitet. Berätta vilka eventuella åtgärder du gjort för att kvalitetssäkra projektet och hur du jobbat med kodkvaliteten och vilka verktyg du använt. Har du fokuserat på några speciella saker, verktyg eller metrics, så kan du berätta om dem.
-
-
-Din kod skall vara ett Git repo och den skall ligga publicerad på GitHub/GitLab eller liknande webbtjänst. Detta kravet bör redan vara uppfyllt för din me/redovisa.
-Ditt git repo skall ha en README.md som beskriver innehållet i någon omfattning.
-Din about-sida skall innehålla en länk till GitHub (eller motsvarande).
-
-Scrutinizer
-
-Ditt repo skall vara kopplat till Scrutinizer.
-Din about-sida skall innehålla:
-    Länk till Scrutnizer.
-
-
 {% endblock %}", "proj/about.html.twig", "C:\\Users\\Emelie\\dbwebb\\dbwebb-kurser\\mvc\\me\\report\\templates\\proj\\about.html.twig");
     }
 }

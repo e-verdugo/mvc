@@ -45,13 +45,22 @@
         </form>
     {% endif %}
     </div>
-
-    {# <table>
-        {% for player in players %}
-            <thead>{{player.name}}</thead>
-            <tbody>{{player.score}}</tbody>
-        {% endfor %}
-    </table> #}
+    <div>
+        <table>
+            {% for player in players %}
+                <tr>
+                    <th>{{ player.name() }} Runda</th>
+                    <th>Poäng</th>
+                </tr>
+                {% for round in player.score() %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ round }}</td>
+                </tr>
+                {% endfor %}
+            {% endfor %}
+        </table>
+    </div>
 </div>
 
     <div>
@@ -59,11 +68,11 @@
         <br>
         Satsning: {{playerBet}}
         <br>
-        Nuvarande stick: {{playerScore}}
+        Nuvarande stick: {{playerStick}}
         <br>
         Datorns satsning: {{cpuBet}}
         <br>
-        Datorns stick: {{cpuScore}}
+        Datorns stick: {{cpuStick}}
         <br>
         <form method="post">
             <fieldset>
@@ -91,6 +100,5 @@
             <input type="submit" value="Starta nästa runda">
         </fieldset>
     </form>
-
 
 {% endblock %}

@@ -40,7 +40,7 @@ class Deck
         return $this->deck;
     }
 
-    /** 
+    /**
      * Shuffle the deck and return the cards
      * @return array<Card>
      */
@@ -50,7 +50,7 @@ class Deck
         return $this->deck;
     }
 
-    /** 
+    /**
      * Pulls a random card from the deck and returns it
      * @return Card
      */

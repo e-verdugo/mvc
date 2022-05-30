@@ -4,6 +4,7 @@ namespace App\Proj;
 
 /**
  * Player class, creates a Player object
+ * @SuppressWarnings(PHPMD.TooManyPublicMethods)
  */
 class Player
 {
@@ -24,7 +25,7 @@ class Player
         $this->name = $name;
     }
 
-    /** 
+    /**
      * Returns the hand
      * @return array<Card>
      */

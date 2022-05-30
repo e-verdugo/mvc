@@ -7,8 +7,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
-use App\Entity\Plump;
-use App\Repository\PlumpRepository;
+use App\Entity\Proj;
+use App\Repository\ProjRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use App\Proj\Card;
 use App\Proj\Deck;
@@ -38,25 +38,41 @@ class ProjController extends AbstractController
     }
 
     /**
+     * @Route("/proj/highscore", name="highscore")
+     */
+    public function highscore(ProjRepository $projRepository): Response
+    {
+        $scores = $projRepository
+            ->findAll();
+        $data = [
+            'scores' => $scores
+        ];
+
+        return $this->render('proj/highscore.html.twig', $data);
+    }
+
+    /**
      * @Route("/proj/reset", name="reset")
      */
-    public function reset(ManagerRegistry $doctrine, PlumpRepository $plumpRepository): Response
+    public function reset(ManagerRegistry $doctrine, ProjRepository $projRepository): Response
     {
         session_start();
         session_destroy();
-        // $entityManager = $doctrine->getManager();
-        // if ($plumpRepository->findAll()) {
-        //     $entityManager->remove($plumpRepository->findAll());
-        //     $entityManager->flush();
-        // }
+        $entityManager = $doctrine->getManager();
+        foreach ($projRepository->findAll() as $entity) {
+            $entityManager->remove($entity);
+        }
+        $entityManager->flush();
         return $this->redirectToRoute('proj');
     }
 
     /**
      * @Route("/proj/plump", name="plump", methods={"GET","HEAD"})
      */
-    public function plump(Request $request, SessionInterface $session): Response
-    {
+    public function plump(
+        SessionInterface $session,
+        ManagerRegistry $doctrine
+    ): Response {
         /**
          * @var Play $game
          */
@@ -67,7 +83,7 @@ class ProjController extends AbstractController
 
         if ($newRound) { // run only once at the start of the round
             $count = count($game->getPlayers());
-            for ($i=0; $i < $count; $i++) {
+            for ($i = 0; $i < $count; $i++) {
                 $game->getPlayers()[$i]->resetCards();
             }
             $trumf = $game->getTrumf(); // gets the trumf card for the round
@@ -103,7 +119,7 @@ class ProjController extends AbstractController
                         $game->getPlayers()[0]->removeCard($card); // remove card from hand (bc it is on the table now)
                         $cpuCard = $game->getPlayers()[1]->playCard($pile, $trumf);
                         array_push($pile, $cpuCard); // put card in pile on table
-                        $game->getPlayers()[1]->removeCard($cpuCard); // remove card from hand (bc it is on the table now)
+                        $game->getPlayers()[1]->removeCard($cpuCard); // remove card from hand
                     } catch (\Throwable) {
                         // to avoid crashing if user reloads page without having clicked on anything
                     }
@@ -119,29 +135,34 @@ class ProjController extends AbstractController
                         $game->getPlayers()[1]->addStick($game->getPlayers()[1]->stick() + 1);
                     }
                     $session->set("disabled", "disabled");
-                    $session->set("round", $round-1); // sets what round we're on
+                    $session->set("round", $round - 1); // sets what round we're on
                 }
             } else { // next round
                 $game->finishRound();
-                for ($i=0; $i < 2; $i++) { // log the scores
+                for ($i = 0; $i < 2; $i++) { // log the scores
                     $score = 0;
-                    if ($game->getPlayers()[$i]->betStick() == $game->getPlayers()[$i]->score()) {
-                        $score = $game->getPlayers()[$i]->score()+10;
-                    } else {
-                        $score = 0;
+                    if ($game->getPlayers()[$i]->betStick() == $game->getPlayers()[$i]->stick()) {
+                        $score = $game->getPlayers()[$i]->stick() + 10;
                     }
                     $game->getPlayers()[$i]->updateScore($score);
                     $game->getPlayers()[$i]->addStick(0);
                 }
-                if ($game->getRound() == false) {
-                    $player = new Plump();
+                if ($game->getRound() == false) { // at the end save the player score as highscore to the database
+                    $player = new Proj();
                     $player->setName($game->getPlayers()[0]->name());
-                    $player->setScore($game->getPlayers()[0]->score());
-                    // spara player score till orm
+                    $count = count($game->getPlayers()[0]->score()) - 1;
+                    $score = 0;
+                    for ($i = 0; $i < $count; $i++) {
+                        $score += $game->getPlayers()[0]->score()[$i];
+                    }
+                    $player->setScore($score);
+                    $entityManager = $doctrine->getManager();
+                    $entityManager->persist($player);
+                    $entityManager->flush();
                 } else {
                     $session->set("bet", "");
                     $count = count($game->getPlayers());
-                    for ($i=0; $i < $count; $i++) {
+                    for ($i = 0; $i < $count; $i++) {
                         $game->getPlayers()[$i]->resetCards();
                     }
                     $trumf = $game->getTrumf(); // gets the trumf card for the round
@@ -154,6 +175,7 @@ class ProjController extends AbstractController
             }
         }
         $data = [
+            'players' => $game->getPlayers(),
             'player' => $game->getPlayers()[0],
             'trumf' => $trumf,
             'pile' => $pile,
@@ -163,9 +185,9 @@ class ProjController extends AbstractController
             'disabled' => $session->get("disabled"),
             'check' => $session->get("check"),
             'playerBet' => $game->getPlayers()[0]->betStick(),
-            'playerScore' => $game->getPlayers()[0]->stick(),
+            'playerStick' => $game->getPlayers()[0]->stick(),
             'cpuBet' => $game->getPlayers()[1]->betStick(),
-            'cpuScore' => $game->getPlayers()[1]->stick(),
+            'cpuStick' => $game->getPlayers()[1]->stick(),
         ];
         $session->set("game", $game);
         $session->set("pile", $pile);
@@ -173,12 +195,13 @@ class ProjController extends AbstractController
     }
 
     /**
+     * @SuppressWarnings(PHPMD.Superglobals)
      * @Route("/proj/plump", name="plump-process", methods={"POST"})
      */
     public function plumpProcess(Request $request, SessionInterface $session): Response
     {
         if ($request->request->get('reset')) {
-            return $this->redirectToRoute('reset');
+            session_destroy();
         } elseif ($request->request->get('bet')) {
             $session->set("stick", $request->request->get("betNum"));
             $session->set("bet", "bet");
@@ -190,7 +213,6 @@ class ProjController extends AbstractController
             $session->set("card", $_POST);
             $session->set("check", "disabled");
         }
-
         return $this->redirectToRoute('plump');
     }
 }

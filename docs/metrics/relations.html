@@ -49,7 +49,7 @@
 <div class="page">
     <div class="content content-first">
         <div class="report-details">
-            Created at 2022-05-29 16:54:54        , with PHPMetrics v2.8.1 (<a href="https://twitter.com/Halleck45">Jean-François Lépine</a>).
+            Created at 2022-05-30 16:11:47        , with PHPMetrics v2.8.1 (<a href="https://twitter.com/Halleck45">Jean-François Lépine</a>).
         </div>
 
         
@@ -382,22 +382,23 @@
             "\\Symfony\\Bundle\\FrameworkBundle\\Controller\\AbstractController",
             "\\Symfony\\Component\\HttpFoundation\\Response",
             "\\Symfony\\Component\\Routing\\Annotation\\Route",
+            "\\App\\Repository\\ProjRepository",
             "\\Doctrine\\Persistence\\ManagerRegistry",
-            "\\App\\Repository\\PlumpRepository",
-            "\\Symfony\\Component\\HttpFoundation\\Request",
             "\\Symfony\\Component\\HttpFoundation\\Session\\SessionInterface",
             "\\App\\Proj\\Player",
             "\\App\\Proj\\ComputerPlayer",
-            "\\App\\Proj\\Play"
+            "\\App\\Proj\\Play",
+            "\\App\\Entity\\Proj",
+            "\\Symfony\\Component\\HttpFoundation\\Request"
         ]
     },
     {
-        "name": "\\App\\Repository\\PlumpRepository",
+        "name": "\\App\\Repository\\ProjRepository",
         "size": 3000,
         "relations": [
             "\\Doctrine\\Bundle\\DoctrineBundle\\Repository\\ServiceEntityRepository",
             "\\Doctrine\\Persistence\\ManagerRegistry",
-            "\\App\\Entity\\Plump"
+            "\\App\\Entity\\Proj"
         ]
     },
     {
@@ -424,6 +425,11 @@
         ]
     },
     {
+        "name": "\\App\\Entity\\Proj",
+        "size": 3000,
+        "relations": []
+    },
+    {
         "name": "\\App\\Controller\\ReportController",
         "size": 3000,
         "relations": [
@@ -431,11 +437,6 @@
             "\\Symfony\\Component\\HttpFoundation\\Response",
             "\\Symfony\\Component\\Routing\\Annotation\\Route"
         ]
-    },
-    {
-        "name": "\\App\\Entity\\Plump",
-        "size": 3000,
-        "relations": []
     },
     {
         "name": "\\App\\Kernel",

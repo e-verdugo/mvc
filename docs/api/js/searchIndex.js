@@ -316,6 +316,11 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/App-Controller-ProjController.html#method_aboutProj"
         },                {
+            "fqsen": "\\App\\Controller\\ProjController\u003A\u003Ahighscore\u0028\u0029",
+            "name": "highscore",
+            "summary": "",
+            "url": "classes/App-Controller-ProjController.html#method_highscore"
+        },                {
             "fqsen": "\\App\\Controller\\ProjController\u003A\u003Areset\u0028\u0029",
             "name": "reset",
             "summary": "",
@@ -406,51 +411,6 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/App-Entity-Library.html#property_img_url"
         },                {
-            "fqsen": "\\App\\Entity\\Plump",
-            "name": "Plump",
-            "summary": "",
-            "url": "classes/App-Entity-Plump.html"
-        },                {
-            "fqsen": "\\App\\Entity\\Plump\u003A\u003AgetId\u0028\u0029",
-            "name": "getId",
-            "summary": "",
-            "url": "classes/App-Entity-Plump.html#method_getId"
-        },                {
-            "fqsen": "\\App\\Entity\\Plump\u003A\u003AgetScore\u0028\u0029",
-            "name": "getScore",
-            "summary": "",
-            "url": "classes/App-Entity-Plump.html#method_getScore"
-        },                {
-            "fqsen": "\\App\\Entity\\Plump\u003A\u003AsetScore\u0028\u0029",
-            "name": "setScore",
-            "summary": "",
-            "url": "classes/App-Entity-Plump.html#method_setScore"
-        },                {
-            "fqsen": "\\App\\Entity\\Plump\u003A\u003AgetPlayer\u0028\u0029",
-            "name": "getPlayer",
-            "summary": "",
-            "url": "classes/App-Entity-Plump.html#method_getPlayer"
-        },                {
-            "fqsen": "\\App\\Entity\\Plump\u003A\u003AsetPlayer\u0028\u0029",
-            "name": "setPlayer",
-            "summary": "",
-            "url": "classes/App-Entity-Plump.html#method_setPlayer"
-        },                {
-            "fqsen": "\\App\\Entity\\Plump\u003A\u003A\u0024id",
-            "name": "id",
-            "summary": "",
-            "url": "classes/App-Entity-Plump.html#property_id"
-        },                {
-            "fqsen": "\\App\\Entity\\Plump\u003A\u003A\u0024Score",
-            "name": "Score",
-            "summary": "",
-            "url": "classes/App-Entity-Plump.html#property_Score"
-        },                {
-            "fqsen": "\\App\\Entity\\Plump\u003A\u003A\u0024Player",
-            "name": "Player",
-            "summary": "",
-            "url": "classes/App-Entity-Plump.html#property_Player"
-        },                {
             "fqsen": "\\App\\Proj\\Card",
             "name": "Card",
             "summary": "Card\u0020class,\u0020creates\u0020a\u0020Card\u0020object",
@@ -488,7 +448,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Proj\\ComputerPlayer",
             "name": "ComputerPlayer",
-            "summary": "Compuer\u0020player\u0020class,\u0020creates\u0020a\u0020ComputerPlayer\u0020object,\u0020extending\u0020a\u0020Player\u0020object",
+            "summary": "Computer\u0020player\u0020class,\u0020creates\u0020a\u0020ComputerPlayer\u0020object,\u0020extending\u0020the\u0020Player\u0020class",
             "url": "classes/App-Proj-ComputerPlayer.html"
         },                {
             "fqsen": "\\App\\Proj\\ComputerPlayer\u003A\u003A__construct\u0028\u0029",
@@ -498,12 +458,12 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Proj\\ComputerPlayer\u003A\u003AchooseBet\u0028\u0029",
             "name": "chooseBet",
-            "summary": "",
+            "summary": "Bets\u0020an\u0020amount\u0020of\u0020stick",
             "url": "classes/App-Proj-ComputerPlayer.html#method_chooseBet"
         },                {
             "fqsen": "\\App\\Proj\\ComputerPlayer\u003A\u003AplayCard\u0028\u0029",
             "name": "playCard",
-            "summary": "",
+            "summary": "Picks\u0020a\u0020card\u0020to\u0020play",
             "url": "classes/App-Proj-ComputerPlayer.html#method_playCard"
         },                {
             "fqsen": "\\App\\Proj\\Deck",
@@ -523,12 +483,12 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Proj\\Deck\u003A\u003Ashuffle\u0028\u0029",
             "name": "shuffle",
-            "summary": "",
+            "summary": "Shuffle\u0020the\u0020deck\u0020and\u0020return\u0020the\u0020cards",
             "url": "classes/App-Proj-Deck.html#method_shuffle"
         },                {
             "fqsen": "\\App\\Proj\\Deck\u003A\u003Adraw\u0028\u0029",
             "name": "draw",
-            "summary": "",
+            "summary": "Pulls\u0020a\u0020random\u0020card\u0020from\u0020the\u0020deck\u0020and\u0020returns\u0020it",
             "url": "classes/App-Proj-Deck.html#method_draw"
         },                {
             "fqsen": "\\App\\Proj\\Deck\u003A\u003A\u0024suits",
@@ -548,42 +508,42 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Proj\\Play\u003A\u003AgetPlayers\u0028\u0029",
             "name": "getPlayers",
-            "summary": "",
+            "summary": "Returns\u0020the\u0020player\u0020array",
             "url": "classes/App-Proj-Play.html#method_getPlayers"
         },                {
             "fqsen": "\\App\\Proj\\Play\u003A\u003AgetDeck\u0028\u0029",
             "name": "getDeck",
-            "summary": "",
+            "summary": "Returns\u0020the\u0020deck\u0020object",
             "url": "classes/App-Proj-Play.html#method_getDeck"
         },                {
             "fqsen": "\\App\\Proj\\Play\u003A\u003AgetRound\u0028\u0029",
             "name": "getRound",
-            "summary": "",
+            "summary": "Returns\u0020the\u0020current\u0020round",
             "url": "classes/App-Proj-Play.html#method_getRound"
         },                {
             "fqsen": "\\App\\Proj\\Play\u003A\u003AfinishRound\u0028\u0029",
             "name": "finishRound",
-            "summary": "",
+            "summary": "Removes\u0020the\u0020top\u0020round",
             "url": "classes/App-Proj-Play.html#method_finishRound"
         },                {
             "fqsen": "\\App\\Proj\\Play\u003A\u003AdealCards\u0028\u0029",
             "name": "dealCards",
-            "summary": "",
+            "summary": "Deals\u0020the\u0020cards",
             "url": "classes/App-Proj-Play.html#method_dealCards"
         },                {
             "fqsen": "\\App\\Proj\\Play\u003A\u003AgetTrumf\u0028\u0029",
             "name": "getTrumf",
-            "summary": "",
+            "summary": "Returns\u0020the\u0020trumf\u0020card",
             "url": "classes/App-Proj-Play.html#method_getTrumf"
         },                {
             "fqsen": "\\App\\Proj\\Play\u003A\u003AgetCard\u0028\u0029",
             "name": "getCard",
-            "summary": "",
+            "summary": "Returns\u0020the\u0020matching\u0020card",
             "url": "classes/App-Proj-Play.html#method_getCard"
         },                {
             "fqsen": "\\App\\Proj\\Play\u003A\u003AendRound\u0028\u0029",
             "name": "endRound",
-            "summary": "",
+            "summary": "Ends\u0020the\u0020round\u0020and\u0020returns\u0020winning\u0020card",
             "url": "classes/App-Proj-Play.html#method_endRound"
         },                {
             "fqsen": "\\App\\Proj\\Play\u003A\u003A\u0024players",
@@ -628,7 +588,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Proj\\Player\u003A\u003AaddStick\u0028\u0029",
             "name": "addStick",
-            "summary": "",
+            "summary": "Adds\u0020a\u0020new\u0020stick",
             "url": "classes/App-Proj-Player.html#method_addStick"
         },                {
             "fqsen": "\\App\\Proj\\Player\u003A\u003A\u0024betStick",
@@ -638,22 +598,22 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Proj\\Player\u003A\u003AaddBetStick\u0028\u0029",
             "name": "addBetStick",
-            "summary": "",
+            "summary": "Adds\u0020a\u0020new\u0020bet",
             "url": "classes/App-Proj-Player.html#method_addBetStick"
         },                {
             "fqsen": "\\App\\Proj\\Player\u003A\u003AaddCards\u0028\u0029",
             "name": "addCards",
-            "summary": "",
+            "summary": "Adds\u0020a\u0020card\u0020to\u0020the\u0020hand",
             "url": "classes/App-Proj-Player.html#method_addCards"
         },                {
             "fqsen": "\\App\\Proj\\Player\u003A\u003AremoveCard\u0028\u0029",
             "name": "removeCard",
-            "summary": "",
+            "summary": "Removes\u0020a\u0020card\u0020from\u0020the\u0020hand",
             "url": "classes/App-Proj-Player.html#method_removeCard"
         },                {
             "fqsen": "\\App\\Proj\\Player\u003A\u003AresetCards\u0028\u0029",
             "name": "resetCards",
-            "summary": "",
+            "summary": "Resets\u0020the\u0020cards\u0020on\u0020hand",
             "url": "classes/App-Proj-Player.html#method_resetCards"
         },                {
             "fqsen": "\\App\\Proj\\Player\u003A\u003A\u0024score",
@@ -663,7 +623,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Proj\\Player\u003A\u003AupdateScore\u0028\u0029",
             "name": "updateScore",
-            "summary": "",
+            "summary": "Adds\u0020a\u0020new\u0020score\u0020to\u0020the\u0020array",
             "url": "classes/App-Proj-Player.html#method_updateScore"
         },                {
             "fqsen": "\\App\\Repository\\LibraryRepository",
@@ -686,25 +646,70 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/App-Repository-LibraryRepository.html#method_remove"
         },                {
-            "fqsen": "\\App\\Repository\\PlumpRepository",
-            "name": "PlumpRepository",
+            "fqsen": "\\App\\Entity\\Proj",
+            "name": "Proj",
             "summary": "",
-            "url": "classes/App-Repository-PlumpRepository.html"
+            "url": "classes/App-Entity-Proj.html"
         },                {
-            "fqsen": "\\App\\Repository\\PlumpRepository\u003A\u003A__construct\u0028\u0029",
+            "fqsen": "\\App\\Entity\\Proj\u003A\u003AgetId\u0028\u0029",
+            "name": "getId",
+            "summary": "",
+            "url": "classes/App-Entity-Proj.html#method_getId"
+        },                {
+            "fqsen": "\\App\\Entity\\Proj\u003A\u003AgetName\u0028\u0029",
+            "name": "getName",
+            "summary": "",
+            "url": "classes/App-Entity-Proj.html#method_getName"
+        },                {
+            "fqsen": "\\App\\Entity\\Proj\u003A\u003AsetName\u0028\u0029",
+            "name": "setName",
+            "summary": "",
+            "url": "classes/App-Entity-Proj.html#method_setName"
+        },                {
+            "fqsen": "\\App\\Entity\\Proj\u003A\u003AgetScore\u0028\u0029",
+            "name": "getScore",
+            "summary": "",
+            "url": "classes/App-Entity-Proj.html#method_getScore"
+        },                {
+            "fqsen": "\\App\\Entity\\Proj\u003A\u003AsetScore\u0028\u0029",
+            "name": "setScore",
+            "summary": "",
+            "url": "classes/App-Entity-Proj.html#method_setScore"
+        },                {
+            "fqsen": "\\App\\Entity\\Proj\u003A\u003A\u0024id",
+            "name": "id",
+            "summary": "",
+            "url": "classes/App-Entity-Proj.html#property_id"
+        },                {
+            "fqsen": "\\App\\Entity\\Proj\u003A\u003A\u0024Name",
+            "name": "Name",
+            "summary": "",
+            "url": "classes/App-Entity-Proj.html#property_Name"
+        },                {
+            "fqsen": "\\App\\Entity\\Proj\u003A\u003A\u0024Score",
+            "name": "Score",
+            "summary": "",
+            "url": "classes/App-Entity-Proj.html#property_Score"
+        },                {
+            "fqsen": "\\App\\Repository\\ProjRepository",
+            "name": "ProjRepository",
+            "summary": "",
+            "url": "classes/App-Repository-ProjRepository.html"
+        },                {
+            "fqsen": "\\App\\Repository\\ProjRepository\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
             "summary": "",
-            "url": "classes/App-Repository-PlumpRepository.html#method___construct"
+            "url": "classes/App-Repository-ProjRepository.html#method___construct"
         },                {
-            "fqsen": "\\App\\Repository\\PlumpRepository\u003A\u003Aadd\u0028\u0029",
+            "fqsen": "\\App\\Repository\\ProjRepository\u003A\u003Aadd\u0028\u0029",
             "name": "add",
             "summary": "",
-            "url": "classes/App-Repository-PlumpRepository.html#method_add"
+            "url": "classes/App-Repository-ProjRepository.html#method_add"
         },                {
-            "fqsen": "\\App\\Repository\\PlumpRepository\u003A\u003Aremove\u0028\u0029",
+            "fqsen": "\\App\\Repository\\ProjRepository\u003A\u003Aremove\u0028\u0029",
             "name": "remove",
             "summary": "",
-            "url": "classes/App-Repository-PlumpRepository.html#method_remove"
+            "url": "classes/App-Repository-ProjRepository.html#method_remove"
         },                {
             "fqsen": "\\",
             "name": "\\",

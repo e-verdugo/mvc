@@ -70,12 +70,20 @@ class __TwigTemplate_50779bd8bf3c74924b4557e042f6cf4d extends Template
         // line 13
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("aboutProj");
         echo "\">Om</a></li>
+            <li><a href=\"";
+        // line 14
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("reset");
+        echo "\">Reset</a></li>
+            <li><a href=\"";
+        // line 15
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("highscore");
+        echo "\">Highscores</a></li>
         </ul>
         <div class=\"main\">
             ";
-        // line 16
+        // line 18
         $this->displayBlock('content', $context, $blocks);
-        // line 19
+        // line 21
         echo "        </div>
         <br>
         <br>
@@ -113,7 +121,7 @@ class __TwigTemplate_50779bd8bf3c74924b4557e042f6cf4d extends Template
 
     }
 
-    // line 16
+    // line 18
     public function block_content($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -123,7 +131,7 @@ class __TwigTemplate_50779bd8bf3c74924b4557e042f6cf4d extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "content"));
 
-        // line 17
+        // line 19
         echo "            404 content not found
             ";
         
@@ -146,7 +154,7 @@ class __TwigTemplate_50779bd8bf3c74924b4557e042f6cf4d extends Template
 
     public function getDebugInfo()
     {
-        return array (  127 => 17,  117 => 16,  98 => 5,  79 => 19,  77 => 16,  71 => 13,  67 => 12,  59 => 7,  55 => 6,  51 => 5,  45 => 1,);
+        return array (  135 => 19,  125 => 18,  106 => 5,  87 => 21,  85 => 18,  79 => 15,  75 => 14,  71 => 13,  67 => 12,  59 => 7,  55 => 6,  51 => 5,  45 => 1,);
     }
 
     public function getSourceContext()
@@ -164,6 +172,8 @@ class __TwigTemplate_50779bd8bf3c74924b4557e042f6cf4d extends Template
         <ul>
             <li><a href=\"{{ path(\"proj\") }}\">Spela!</a></li>
             <li><a href=\"{{ path(\"aboutProj\") }}\">Om</a></li>
+            <li><a href=\"{{ path(\"reset\") }}\">Reset</a></li>
+            <li><a href=\"{{ path(\"highscore\") }}\">Highscores</a></li>
         </ul>
         <div class=\"main\">
             {% block content %}
