@@ -34,6 +34,7 @@ return [
         '/library/show' => [[['_route' => 'read_one', '_controller' => 'App\\Controller\\LibraryController::showBookByIsbn'], null, null, null, false, false, null]],
         '/proj' => [[['_route' => 'proj', '_controller' => 'App\\Controller\\ProjController::proj'], null, null, null, false, false, null]],
         '/proj/about' => [[['_route' => 'aboutProj', '_controller' => 'App\\Controller\\ProjController::aboutProj'], null, null, null, false, false, null]],
+        '/proj/cleancode' => [[['_route' => 'cleancode', '_controller' => 'App\\Controller\\ProjController::cleancode'], null, null, null, false, false, null]],
         '/proj/highscore' => [[['_route' => 'highscore', '_controller' => 'App\\Controller\\ProjController::highscore'], null, null, null, false, false, null]],
         '/proj/reset' => [[['_route' => 'reset', '_controller' => 'App\\Controller\\ProjController::reset'], null, null, null, false, false, null]],
         '/proj/plump' => [

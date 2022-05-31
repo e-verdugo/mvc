@@ -32,6 +32,7 @@ class ComputerPlayer extends Player
 
     /**
      * Picks a card to play
+     * @SuppressWarnings(PHPMD.ElseExpression)
      * @param array<Card> $pile
      */
     public function playCard(array $pile, Card $trumf): Card
@@ -39,23 +40,13 @@ class ComputerPlayer extends Player
         $possible = [];
         $card = null;
         if (isset($pile[0])) { // if there is a card placed already
-            $count = count($this->cards);
-            for ($i = 0; $i < $count; $i++) {
-                if ($this->cards[$i]->value()[1] == $pile[0]->value()[1]) { // if cards are the same suit as first
-                    array_push($possible, $this->cards[$i]);
-                }
-            }
+            $possible = $this->checkPile($pile[0]);
         } else { // if cpu gets to go first
             $card = $this->cards[rand(0, count($this->cards) - 1)];
         }
 
         if ($possible == [] && $card == null) { // if there are no cards in the right suit
-            $count = count($this->cards);
-            for ($i = 0; $i < $count; $i++) {
-                if ($this->cards[$i]->value()[1] == $trumf->value()[1]) { // add all the trumf
-                    array_push($possible, $this->cards[$i]);
-                }
-            }
+            $possible = $this->checkPile($trumf);
         }
 
         if ($card == null) { // if there already is a card placed, pick one of the possible ones
@@ -70,5 +61,21 @@ class ComputerPlayer extends Player
         // possible improvements:
         // if needs stick then put the highest one / most chance of getting the stick
         // else put the lowest one
+    }
+
+    /**
+     * Gives an array with potential cards
+     * @return array<Card> $possible
+     */
+    public function checkPile(Card $check): array
+    {
+        $possible = [];
+        $count = count($this->cards);
+        for ($i = 0; $i < $count; $i++) {
+            if ($this->cards[$i]->value()[1] == $check->value()[1]) { // if cards are the same suit as the checker
+                array_push($possible, $this->cards[$i]);
+            }
+        }
+        return $possible;
     }
 }

@@ -39,6 +39,14 @@ class ProjController extends AbstractController
     }
 
     /**
+     * @Route("/proj/cleancode", name="cleancode")
+     */
+    public function cleancode(): Response
+    {
+        return $this->render('proj/cleancode.html.twig');
+    }
+
+    /**
      * @Route("/proj/highscore", name="highscore")
      */
     public function highscore(ProjRepository $projRepository): Response
@@ -120,22 +128,7 @@ class ProjController extends AbstractController
             } else { // next round
                 $game->finishRound();
                 $game->logScores();
-                if ($game->getRound() === false) { // at the end save the player score as highscore to the database
-                    $player = new Proj();
-                    $player->setName($game->getPlayers()[0]->name());
-                    $count = count($game->getPlayers()[0]->score()) - 1;
-                    $score = 0;
-                    for ($i = 0; $i < $count; $i++) {
-                        $score += $game->getPlayers()[0]->score()[$i];
-                    }
-                    $player->setScore($score);
-                    $entityManager = $doctrine->getManager();
-                    $entityManager->persist($player);
-                    $entityManager->flush();
-                } else { // next/new round
-                    $session->set("bet", "");
-                    $this->newRound($game, $session);
-                }
+                $this->endOfRound($game, $session, $doctrine);
             }
         }
         $data = [
@@ -179,7 +172,7 @@ class ProjController extends AbstractController
     /**
      * Starts a new "big" round
      */
-    public function newRound(Play $game, SessionInterface $session): void
+    protected function newRound(Play $game, SessionInterface $session): void
     {
         $count = count($game->getPlayers());
         for ($i = 0; $i < $count; $i++) {
@@ -198,7 +191,7 @@ class ProjController extends AbstractController
      * @param array<Card> $pile
      * @return array<Card>
      */
-    public function layCards(Play $game, SessionInterface $session, array $pile, Card $trumf): array
+    protected function layCards(Play $game, SessionInterface $session, array $pile, Card $trumf): array
     {
         if (count($pile) < 2) { // if not everyone has laid their card
             try {
@@ -207,21 +200,11 @@ class ProjController extends AbstractController
                     array_push($pile, $card); // put card in pile on table
                     $game->getPlayers()[0]->removeCard($card); // remove card from hand (bc it is on the table now)
                     $session->set("disabled", "disabled");
-                } elseif (
-                    // if computer gets to go first
-                    ($game->getPlayers()[0]->betStick() < $game->getPlayers()[1]->betStick()
-                    && $session->get("start") == true)
-                    || ($session->get("winningPlayer") == "cpu")
-                ) {
+                } elseif ($this->getStarter($game, $session) == true) { // if computer gets to go first
                     $cpuCard = $game->getPlayers()[1]->playCard($pile, $trumf);
                     array_push($pile, $cpuCard); // put card in pile on table
                     $game->getPlayers()[1]->removeCard($cpuCard); // remove card from hand
-                } elseif (
-                    // if player gets to go first
-                    ($game->getPlayers()[0]->betStick() > $game->getPlayers()[1]->betStick()
-                    && $session->get("start") == true)
-                    || ($session->get("winningPlayer") == "player")
-                ) {
+                } elseif ($this->getStarter($game, $session) == false) { // if player gets to go first
                     $card = $game->getCard($session->get("card"));
                     array_push($pile, $card); // put card in pile on table
                     $game->getPlayers()[0]->removeCard($card); // remove card from hand (bc it is on the table now)
@@ -242,7 +225,7 @@ class ProjController extends AbstractController
      * Ends the round and returns winning card
      * @param array<Card> $pile
      */
-    public function endRound(array $pile, Card $trumf): Card
+    protected function endRound(array $pile, Card $trumf): Card
     {
         $oneColour = [];
         $winner = $pile[0]; // first card decides colour
@@ -272,7 +255,7 @@ class ProjController extends AbstractController
      * Returns the highest card of a pile
      * @param array<Card> $pile
      */
-    public function getHighest(array $pile): Card
+    protected function getHighest(array $pile): Card
     {
         $highest = $pile[0];
         $count = count($pile);
@@ -284,5 +267,37 @@ class ProjController extends AbstractController
             }
         }
         return $highest;
+    }
+
+    /**
+     * Returns true if CPU starts the laying
+     */
+    protected function getStarter(Play $game, SessionInterface $session): bool
+    {
+        return ($game->getPlayers()[0]->betStick() < $game->getPlayers()[1]->betStick()
+            && $session->get("start") == true || $session->get("winningPlayer") == "cpu");
+    }
+
+    /**
+     * Either saves the points to the database or starts the next round depending on if the game is over or not
+     */
+    protected function endOfRound(Play $game, SessionInterface $session, ManagerRegistry $doctrine): void
+    {
+        if ($game->getRound() === false) { // at the end save the player score as highscore to the database
+            $player = new Proj();
+            $player->setName($game->getPlayers()[0]->name());
+            $count = count($game->getPlayers()[0]->score()) - 1;
+            $score = 0;
+            for ($i = 0; $i < $count; $i++) {
+                $score += $game->getPlayers()[0]->score()[$i];
+            }
+            $player->setScore($score);
+            $entityManager = $doctrine->getManager();
+            $entityManager->persist($player);
+            $entityManager->flush();
+        } else { // next/new round
+            $session->set("bet", "");
+            $this->newRound($game, $session);
+        }
     }
 }

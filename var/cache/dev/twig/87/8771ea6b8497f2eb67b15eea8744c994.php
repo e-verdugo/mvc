@@ -313,7 +313,7 @@ class __TwigTemplate_2175ea94f11c20db9378e3aecf469f56 extends Template
             <input type=\"submit\" ";
         // line 89
         echo twig_escape_filter($this->env, (isset($context["bet"]) || array_key_exists("bet", $context) ? $context["bet"] : (function () { throw new RuntimeError('Variable "bet" does not exist.', 89, $this->source); })()), "html", null, true);
-        echo " name=\"bet\" value=\"Hur många stick?\">
+        echo " name=\"bet\" value=\"Satsa stick!\">
         </fieldset>
     </form>
     <form method=\"post\">
@@ -437,7 +437,7 @@ class __TwigTemplate_2175ea94f11c20db9378e3aecf469f56 extends Template
     <form method=\"post\">
         <fieldset>
             <input type=\"number\" name=\"betNum\" min=\"0\" max={{round}} value={{playerBet}}>
-            <input type=\"submit\" {{bet}} name=\"bet\" value=\"Hur många stick?\">
+            <input type=\"submit\" {{bet}} name=\"bet\" value=\"Satsa stick!\">
         </fieldset>
     </form>
     <form method=\"post\">
