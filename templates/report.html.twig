@@ -10,7 +10,7 @@ Report
 
 {% endapply %}
 
-{% for i in 1..6 %}
+{% for i in 1..7 %}
     {{ include ("report/kmom0#{i}.markdown.twig")|markdown_to_html }}
 {% endfor %}
 
