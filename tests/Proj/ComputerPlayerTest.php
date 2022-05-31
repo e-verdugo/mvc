@@ -40,5 +40,7 @@ class ComputerPlayerTest extends TestCase
         $this->assertInstanceOf("App\Proj\Card", $card);
         $card = $cpu->playCard([new Card(1, "spades")], new Card(0, "clubs"));
         $this->assertInstanceOf("App\Proj\Card", $card);
+        $card = $cpu->playCard([], new Card(0, "clubs"));
+        $this->assertInstanceOf("App\Proj\Card", $card);
     }
 }

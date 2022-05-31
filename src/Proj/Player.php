@@ -69,7 +69,7 @@ class Player
     /**
      * Adds a new bet
      */
-    public function addBetStick(string $betStick): void
+    public function addBetStick(mixed $betStick): void
     {
         $this->betStick = intval($betStick);
     }

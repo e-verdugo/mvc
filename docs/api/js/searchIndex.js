@@ -336,6 +336,26 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/App-Controller-ProjController.html#method_plumpProcess"
         },                {
+            "fqsen": "\\App\\Controller\\ProjController\u003A\u003AnewRound\u0028\u0029",
+            "name": "newRound",
+            "summary": "Starts\u0020a\u0020new\u0020\u0022big\u0022\u0020round",
+            "url": "classes/App-Controller-ProjController.html#method_newRound"
+        },                {
+            "fqsen": "\\App\\Controller\\ProjController\u003A\u003AlayCards\u0028\u0029",
+            "name": "layCards",
+            "summary": "Lays\u0020the\u0020cards\u0020on\u0020the\u0020\u0022table\u0022\u0020\u0028pile\u0029",
+            "url": "classes/App-Controller-ProjController.html#method_layCards"
+        },                {
+            "fqsen": "\\App\\Controller\\ProjController\u003A\u003AendRound\u0028\u0029",
+            "name": "endRound",
+            "summary": "Ends\u0020the\u0020round\u0020and\u0020returns\u0020winning\u0020card",
+            "url": "classes/App-Controller-ProjController.html#method_endRound"
+        },                {
+            "fqsen": "\\App\\Controller\\ProjController\u003A\u003AgetHighest\u0028\u0029",
+            "name": "getHighest",
+            "summary": "Returns\u0020the\u0020highest\u0020card\u0020of\u0020a\u0020pile",
+            "url": "classes/App-Controller-ProjController.html#method_getHighest"
+        },                {
             "fqsen": "\\App\\Entity\\Library",
             "name": "Library",
             "summary": "",
@@ -541,15 +561,10 @@ Search.appendIndex(
             "summary": "Returns\u0020the\u0020matching\u0020card",
             "url": "classes/App-Proj-Play.html#method_getCard"
         },                {
-            "fqsen": "\\App\\Proj\\Play\u003A\u003AendRound\u0028\u0029",
-            "name": "endRound",
-            "summary": "Ends\u0020the\u0020round\u0020and\u0020returns\u0020winning\u0020card",
-            "url": "classes/App-Proj-Play.html#method_endRound"
-        },                {
-            "fqsen": "\\App\\Proj\\Play\u003A\u003AgetHighest\u0028\u0029",
-            "name": "getHighest",
-            "summary": "Returns\u0020the\u0020highest\u0020card\u0020of\u0020a\u0020pile",
-            "url": "classes/App-Proj-Play.html#method_getHighest"
+            "fqsen": "\\App\\Proj\\Play\u003A\u003AlogScores\u0028\u0029",
+            "name": "logScores",
+            "summary": "Save\u0020the\u0020scores",
+            "url": "classes/App-Proj-Play.html#method_logScores"
         },                {
             "fqsen": "\\App\\Proj\\Play\u003A\u003A\u0024players",
             "name": "players",

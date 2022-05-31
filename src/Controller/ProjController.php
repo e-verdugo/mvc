@@ -17,6 +17,7 @@ use App\Proj\ComputerPlayer;
 use App\Proj\Play;
 
 /**
+ * @SuppressWarnings(PHPMD.ElseExpression)
  * ProjController class, contains the routes for the project
  */
 class ProjController extends AbstractController
@@ -69,10 +70,8 @@ class ProjController extends AbstractController
     /**
      * @Route("/proj/plump", name="plump", methods={"GET","HEAD"})
      */
-    public function plump(
-        SessionInterface $session,
-        ManagerRegistry $doctrine
-    ): Response {
+    public function plump(SessionInterface $session, ManagerRegistry $doctrine): Response
+    {
         /**
          * @var Play $game
          */
@@ -82,17 +81,8 @@ class ProjController extends AbstractController
         $winningCard = null;
 
         if ($newRound) { // run only once at the start of the round
-            $count = count($game->getPlayers());
-            for ($i = 0; $i < $count; $i++) {
-                $game->getPlayers()[$i]->resetCards();
-            }
-            $trumf = $game->getTrumf(); // gets the trumf card for the round
-            $game->dealCards(); // deals the cards for the round
-            $session->set("trumf", $trumf); // saves the trumf
+            $this->newRound($game, $session);
             $session->set("newRound", false); // toggles the round status
-            $session->set("round", $game->getRound()); // sets what round we're on
-            $session->set("check", "disabled");
-            $session->set("disabled", "disabled");
         }
 
         $trumf = $session->get("trumf"); // gets the saved trumf card
@@ -103,6 +93,9 @@ class ProjController extends AbstractController
             $pile = [];
             $session->set("nextRound", false);
             $session->set("disabled", "");
+            if ($session->get("winningPlayer") == "cpu") { // if new inner round and cpu shall go first, cpu goes here
+                $pile = $this->layCards($game, $session, $pile, $trumf);
+            }
         } elseif ($session->get("bet") == "bet") { // when setting a bet
             $session->set("bet", "disabled");
             $session->set("disabled", "");
@@ -110,28 +103,15 @@ class ProjController extends AbstractController
             $game->getPlayers()[1]->addBetStick($game->getPlayers()[1]->chooseBet($trumf));
         } elseif ($newRound == false) { // playing the game
             if ($round > 0) {
-                if (count($pile) < 2) { // if not everyone has laid their card
-                    try {
-                        $card = $session->get("card");
-                        $card = $game->getCard($card);
-                        $session->set("playerCard", $session->get("card"));
-                        array_push($pile, $card); // put card in pile on table
-                        $game->getPlayers()[0]->removeCard($card); // remove card from hand (bc it is on the table now)
-                        $cpuCard = $game->getPlayers()[1]->playCard($pile, $trumf);
-                        array_push($pile, $cpuCard); // put card in pile on table
-                        $game->getPlayers()[1]->removeCard($cpuCard); // remove card from hand
-                    } catch (\Throwable) {
-                        // to avoid crashing if user reloads page without having clicked on anything
-                    }
-                    $session->set("disabled", "disabled");
-                    $session->set("check", "");
-                } else { // if all cards have been placed for the round, end round
-                    $winningCard = $game->endRound($pile, $trumf); // get the card that wins the pile
-                    $card = $session->get("playerCard");
-                    $card = $game->getCard($card);
+                $pile = $this->layCards($game, $session, $pile, $trumf);
+                if (count($pile) == 2) { // if all cards have been placed for the round, end round
+                    $winningCard = $this->endRound($pile, $trumf); // get the card that wins the pile
+                    $card = $game->getCard($session->get("card"));
                     if ($winningCard == $card) { // player got the stick
+                        $session->set("winningPlayer", "player");
                         $game->getPlayers()[0]->addStick($game->getPlayers()[0]->stick() + 1);
                     } else { // else bank got the stick
+                        $session->set("winningPlayer", "cpu");
                         $game->getPlayers()[1]->addStick($game->getPlayers()[1]->stick() + 1);
                     }
                     $session->set("disabled", "disabled");
@@ -139,15 +119,8 @@ class ProjController extends AbstractController
                 }
             } else { // next round
                 $game->finishRound();
-                for ($i = 0; $i < 2; $i++) { // log the scores
-                    $score = 0;
-                    if ($game->getPlayers()[$i]->betStick() == $game->getPlayers()[$i]->stick()) {
-                        $score = $game->getPlayers()[$i]->stick() + 10;
-                    }
-                    $game->getPlayers()[$i]->updateScore($score);
-                    $game->getPlayers()[$i]->addStick(0);
-                }
-                if ($game->getRound() == false) { // at the end save the player score as highscore to the database
+                $game->logScores();
+                if ($game->getRound() === false) { // at the end save the player score as highscore to the database
                     $player = new Proj();
                     $player->setName($game->getPlayers()[0]->name());
                     $count = count($game->getPlayers()[0]->score()) - 1;
@@ -159,31 +132,21 @@ class ProjController extends AbstractController
                     $entityManager = $doctrine->getManager();
                     $entityManager->persist($player);
                     $entityManager->flush();
-                } else {
+                } else { // next/new round
                     $session->set("bet", "");
-                    $count = count($game->getPlayers());
-                    for ($i = 0; $i < $count; $i++) {
-                        $game->getPlayers()[$i]->resetCards();
-                    }
-                    $trumf = $game->getTrumf(); // gets the trumf card for the round
-                    $game->dealCards(); // deals the cards for the round
-                    $session->set("trumf", $trumf); // saves the trumf
-                    $session->set("round", $game->getRound()); // sets what round we're on
-                    $session->set("check", "disabled");
-                    $session->set("disabled", "disabled");
+                    $this->newRound($game, $session);
                 }
             }
         }
         $data = [
             'players' => $game->getPlayers(),
             'player' => $game->getPlayers()[0],
-            'trumf' => $trumf,
+            'trumf' => $session->get("trumf"),
             'pile' => $pile,
             'winner' => $winningCard,
             'round' => $game->getRound(),
             'bet' => $session->get("bet"),
             'disabled' => $session->get("disabled"),
-            'check' => $session->get("check"),
             'playerBet' => $game->getPlayers()[0]->betStick(),
             'playerStick' => $game->getPlayers()[0]->stick(),
             'cpuBet' => $game->getPlayers()[1]->betStick(),
@@ -205,14 +168,121 @@ class ProjController extends AbstractController
         } elseif ($request->request->get('bet')) {
             $session->set("stick", $request->request->get("betNum"));
             $session->set("bet", "bet");
-            $session->set("check", "disabled");
         } elseif ($request->request->get('roundDone')) {
             $session->set("nextRound", true);
-            $session->set("check", "disabled");
         } else {
             $session->set("card", $_POST);
-            $session->set("check", "disabled");
         }
         return $this->redirectToRoute('plump');
+    }
+
+    /**
+     * Starts a new "big" round
+     */
+    public function newRound(Play $game, SessionInterface $session): void
+    {
+        $count = count($game->getPlayers());
+        for ($i = 0; $i < $count; $i++) {
+            $game->getPlayers()[$i]->resetCards();
+        }
+        $trumf = $game->getTrumf(); // gets the trumf card for the round
+        $game->dealCards(); // deals the cards for the round
+        $session->set("trumf", $trumf); // saves the trumf
+        $session->set("round", $game->getRound()); // sets what round we're on
+        $session->set("disabled", "disabled");
+        $session->set("start", true); // to know how to check cards
+    }
+
+    /**
+     * Lays the cards on the "table" (pile)
+     * @param array<Card> $pile
+     * @return array<Card>
+     */
+    public function layCards(Play $game, SessionInterface $session, array $pile, Card $trumf): array
+    {
+        if (count($pile) < 2) { // if not everyone has laid their card
+            try {
+                if (count($pile) == 1) { // if computer has already placed a card
+                    $card = $game->getCard($session->get("card"));
+                    array_push($pile, $card); // put card in pile on table
+                    $game->getPlayers()[0]->removeCard($card); // remove card from hand (bc it is on the table now)
+                    $session->set("disabled", "disabled");
+                } elseif (
+                    // if computer gets to go first
+                    ($game->getPlayers()[0]->betStick() < $game->getPlayers()[1]->betStick()
+                    && $session->get("start") == true)
+                    || ($session->get("winningPlayer") == "cpu")
+                ) {
+                    $cpuCard = $game->getPlayers()[1]->playCard($pile, $trumf);
+                    array_push($pile, $cpuCard); // put card in pile on table
+                    $game->getPlayers()[1]->removeCard($cpuCard); // remove card from hand
+                } elseif (
+                    // if player gets to go first
+                    ($game->getPlayers()[0]->betStick() > $game->getPlayers()[1]->betStick()
+                    && $session->get("start") == true)
+                    || ($session->get("winningPlayer") == "player")
+                ) {
+                    $card = $game->getCard($session->get("card"));
+                    array_push($pile, $card); // put card in pile on table
+                    $game->getPlayers()[0]->removeCard($card); // remove card from hand (bc it is on the table now)
+                    $cpuCard = $game->getPlayers()[1]->playCard($pile, $trumf);
+                    array_push($pile, $cpuCard); // put card in pile on table
+                    $game->getPlayers()[1]->removeCard($cpuCard); // remove card from hand
+                    $session->set("disabled", "disabled");
+                }
+                $session->set("start", false);
+            } catch (\Throwable) {
+                // to avoid crashing if user reloads page without having clicked on anything
+            }
+        }
+        return $pile;
+    }
+
+    /**
+     * Ends the round and returns winning card
+     * @param array<Card> $pile
+     */
+    public function endRound(array $pile, Card $trumf): Card
+    {
+        $oneColour = [];
+        $winner = $pile[0]; // first card decides colour
+        $count = count($pile);
+        for ($i = 0; $i < $count; $i++) { // check for trumf
+            if ($pile[$i]->value()[1] == $trumf->value()[1]) { //if there is trumph
+                array_push($oneColour, $pile[$i]);
+            }
+            if ($oneColour != []) {
+                $winner = $this->getHighest($oneColour);
+            }
+        }
+        if ($winner->value()[1] != $trumf->value()[1]) { // if there is no trumph
+            for ($i = 0; $i < $count; $i++) {
+                if ($pile[$i]->value()[1] == $pile[0]->value()[1]) { //if it is same colour as first card
+                    array_push($oneColour, $pile[$i]);
+                }
+                if ($oneColour != []) {
+                    $winner = $this->getHighest($oneColour);
+                }
+            }
+        }
+        return $winner;
+    }
+
+    /**
+     * Returns the highest card of a pile
+     * @param array<Card> $pile
+     */
+    public function getHighest(array $pile): Card
+    {
+        $highest = $pile[0];
+        $count = count($pile);
+        for ($i = 0; $i < $count; $i++) {
+            if ($pile[$i]->value()[0] == 1) { // if ace (highest)
+                return $pile[$i];
+            } elseif ($pile[$i]->value()[0] > $highest->value()[0]) {
+                $highest = $pile[$i];
+            }
+        }
+        return $highest;
     }
 }

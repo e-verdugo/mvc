@@ -24,11 +24,6 @@
                 <button style='font-size: 95px; color: black;'>{{ card.card()|raw }}</button>
             {% endif %}
         {% endfor %}
-        <form method="post">
-            <fieldset>
-                <input type="submit" {{check}} value="Se vem som vann">
-            </fieldset>
-        </form>
     </div>
     <div>
         {% if winner != null %}

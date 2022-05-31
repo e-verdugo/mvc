@@ -95,21 +95,37 @@ class PlayTest extends TestCase
         $this->assertInstanceOf("App\Proj\Card", $card);
     }
 
+    // /** THE METHODS WERE MOVED FROM PLAY CLASS TO CONTROLLER TO REDUCE COMPLEXITY AND GOD OBJECT
+    //  * Test ending the round.
+    //  * Also tests getHighest.
+    //  */
+    // public function testPlayEndRound(): void
+    // {
+    //     $play = new Play([new Player("Spelare"), new ComputerPlayer("CPU")]);
+    //     $this->assertInstanceOf("App\Proj\Play", $play);
+    //     $pile = [new Card(0, "hearts"), new Card(1, "hearts")];
+    //     $trumf = new Card(10, "hearts");
+    //     $winner = $play->endRound($pile, $trumf);
+    //     $this->assertEquals($winner, $pile[0]);
+    //     $pile = [new Card(5, "hearts"), new Card(7, "hearts")];
+    //     $trumf = new Card(10, "spades");
+    //     $winner = $play->endRound($pile, $trumf);
+    //     $this->assertEquals($winner, $pile[1]);
+    // }
+
     /**
-     * Test ending the round.
-     * Also tests getHighest.
+     * Test adding up the scores
      */
-    public function testPlayEndRound(): void
+    public function testLogScores(): void
     {
         $play = new Play([new Player("Spelare"), new ComputerPlayer("CPU")]);
         $this->assertInstanceOf("App\Proj\Play", $play);
-        $pile = [new Card(0, "hearts"), new Card(1, "hearts")];
-        $trumf = new Card(10, "hearts");
-        $winner = $play->endRound($pile, $trumf);
-        $this->assertEquals($winner, $pile[0]);
-        $pile = [new Card(5, "hearts"), new Card(7, "hearts")];
-        $trumf = new Card(10, "spades");
-        $winner = $play->endRound($pile, $trumf);
-        $this->assertEquals($winner, $pile[1]);
+        $play->getPlayers()[0]->addBetStick(2);
+        $play->getPlayers()[1]->addBetStick(1);
+        $play->getPlayers()[0]->addStick(2);
+        $play->getPlayers()[1]->addStick(2);
+        $play->logScores();
+        $this->assertEquals($play->getPlayers()[0]->score(), [12]);
+        $this->assertEquals($play->getPlayers()[1]->score(), [0]);
     }
 }

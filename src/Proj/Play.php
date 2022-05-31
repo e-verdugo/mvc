@@ -49,7 +49,7 @@ class Play
     /**
      * Returns the current round
      */
-    public function getRound(): int
+    public function getRound(): mixed
     {
         if (isset($this->rounds[0])) {
             return $this->rounds[0];
@@ -104,50 +104,17 @@ class Play
     }
 
     /**
-     * Ends the round and returns winning card
-     * @param array<Card> $pile
+     * Save the scores
      */
-    public function endRound(array $pile, Card $trumf): Card
+    public function logScores(): void
     {
-        $oneColour = [];
-        $winner = $pile[0]; // first card decides colour
-        $count = count($pile);
-        for ($i = 0; $i < $count; $i++) { // check for trumf
-            if ($pile[$i]->value()[1] == $trumf->value()[1]) { //if there is trumph
-                array_push($oneColour, $pile[$i]);
+        for ($i = 0; $i < 2; $i++) {
+            $score = 0;
+            if ($this->getPlayers()[$i]->betStick() == $this->getPlayers()[$i]->stick()) {
+                $score = $this->getPlayers()[$i]->stick() + 10;
             }
-            if ($oneColour != []) {
-                $winner = $this->getHighest($oneColour);
-            }
+            $this->getPlayers()[$i]->updateScore($score);
+            $this->getPlayers()[$i]->addStick(0);
         }
-        if ($winner->value()[1] != $trumf->value()[1]) { // if there is no trumph
-            for ($i = 0; $i < $count; $i++) {
-                if ($pile[$i]->value()[1] == $pile[0]->value()[1]) { //if it is same colour as first card
-                    array_push($oneColour, $pile[$i]);
-                }
-                if ($oneColour != []) {
-                    $winner = $this->getHighest($oneColour);
-                }
-            }
-        }
-        return $winner;
-    }
-
-    /**
-     * Returns the highest card of a pile
-     * @param array<Card> $pile
-     */
-    public function getHighest(array $pile): Card
-    {
-        $highest = $pile[0];
-        $count = count($pile);
-        for ($i = 0; $i < $count; $i++) {
-            if ($pile[$i]->value()[0] == 1) { // if ace (highest)
-                return $pile[$i];
-            } elseif ($pile[$i]->value()[0] > $highest->value()[0]) {
-                $highest = $pile[$i];
-            }
-        }
-        return $highest;
     }
 }

@@ -6457,7 +6457,26 @@
         <argument key="projRepository" type="service_closure" id="App\Repository\ProjRepository"/>
       </argument>
     </service>
-    <service id=".service_locator.h6Yvdqb" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.8dVHRGV" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="game" type="service_closure" id="App\Proj\Play"/>
+      </argument>
+    </service>
+    <service id=".service_locator.SnB84of" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="game" type="service_closure" id="App\Proj\Play"/>
+        <argument key="trumf" type="service_closure" id="App\Proj\Card"/>
+      </argument>
+    </service>
+    <service id=".service_locator.o6umRUF" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="trumf" type="service_closure" id="App\Proj\Card"/>
+      </argument>
+    </service>
+    <service id=".service_locator.S1t3YGf" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Controller\LibraryController::createBookProcess" type="service_closure" id=".service_locator.GQZbvNR"/>
@@ -6466,7 +6485,10 @@
         <argument key="App\Controller\LibraryController::showBookByIsbnProcess" type="service_closure" id=".service_locator.TBgEv1t"/>
         <argument key="App\Controller\LibraryController::updateBook" type="service_closure" id=".service_locator.TBgEv1t"/>
         <argument key="App\Controller\LibraryController::updateBookProcess" type="service_closure" id=".service_locator.nLzTFMn"/>
+        <argument key="App\Controller\ProjController::endRound" type="service_closure" id=".service_locator.o6umRUF"/>
         <argument key="App\Controller\ProjController::highscore" type="service_closure" id=".service_locator.eHdw9EY"/>
+        <argument key="App\Controller\ProjController::layCards" type="service_closure" id=".service_locator.SnB84of"/>
+        <argument key="App\Controller\ProjController::newRound" type="service_closure" id=".service_locator.8dVHRGV"/>
         <argument key="App\Controller\ProjController::plump" type="service_closure" id=".service_locator.GQZbvNR"/>
         <argument key="App\Controller\ProjController::reset" type="service_closure" id=".service_locator.ZpXwxdQ"/>
         <argument key="App\Kernel::loadRoutes" type="service_closure" id=".service_locator.xUrKPVU"/>
@@ -6481,7 +6503,10 @@
         <argument key="App\Controller\LibraryController:showBookByIsbnProcess" type="service_closure" id=".service_locator.TBgEv1t"/>
         <argument key="App\Controller\LibraryController:updateBook" type="service_closure" id=".service_locator.TBgEv1t"/>
         <argument key="App\Controller\LibraryController:updateBookProcess" type="service_closure" id=".service_locator.nLzTFMn"/>
+        <argument key="App\Controller\ProjController:endRound" type="service_closure" id=".service_locator.o6umRUF"/>
         <argument key="App\Controller\ProjController:highscore" type="service_closure" id=".service_locator.eHdw9EY"/>
+        <argument key="App\Controller\ProjController:layCards" type="service_closure" id=".service_locator.SnB84of"/>
+        <argument key="App\Controller\ProjController:newRound" type="service_closure" id=".service_locator.8dVHRGV"/>
         <argument key="App\Controller\ProjController:plump" type="service_closure" id=".service_locator.GQZbvNR"/>
         <argument key="App\Controller\ProjController:reset" type="service_closure" id=".service_locator.ZpXwxdQ"/>
         <argument key="kernel:loadRoutes" type="service_closure" id=".service_locator.xUrKPVU"/>
@@ -7105,12 +7130,12 @@
       <argument type="service" id="security.token_storage"/>
     </service>
     <service id="debug.argument_resolver.service.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
-      <argument type="service" id=".service_locator.h6Yvdqb"/>
+      <argument type="service" id=".service_locator.S1t3YGf"/>
     </service>
     <service id="debug.argument_resolver.default.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver"/>
     <service id="debug.argument_resolver.variadic.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\VariadicValueResolver"/>
     <service id="debug.argument_resolver.not_tagged_controller.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
-      <argument type="service" id=".service_locator.h6Yvdqb"/>
+      <argument type="service" id=".service_locator.S1t3YGf"/>
     </service>
     <service id="debug.traced.messenger.bus.default.inner" class="Symfony\Component\Messenger\MessageBus">
       <argument type="iterator">
@@ -8045,7 +8070,7 @@
     <service id="sensio_framework_extra.security.expression_language" alias="sensio_framework_extra.security.expression_language.default"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.gSv9zYw" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.h6Yvdqb"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.S1t3YGf"/>
     <service id="doctrine.id_generator_locator" alias=".service_locator.KLVvNIq"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id="Psr\Log\LoggerInterface $requestLogger" alias="monolog.logger.request"/>
@@ -8067,7 +8092,7 @@
     <service id=".service_locator.h8Jkkd2" alias="messenger.retry_strategy_locator"/>
     <service id=".service_locator.XDGmiR3" alias=".1_ServiceLocator~m0n_Abn"/>
     <service id=".service_locator.0GV1BZZ" alias=".service_locator.gSv9zYw"/>
-    <service id=".service_locator.5rhpVM8" alias=".service_locator.h6Yvdqb"/>
+    <service id=".service_locator.HeZodGI" alias=".service_locator.S1t3YGf"/>
     <service id=".service_locator.wKF4yn1" alias=".service_locator.19_mNxd"/>
     <service id=".service_locator.Za9MpXe" alias=".service_locator.y4dplYt"/>
     <service id=".service_locator.XW18Svm" alias=".service_locator.TcKhdzh"/>
@@ -8101,6 +8126,9 @@
     <service id=".service_locator.2oqknbk" alias=".service_locator.nLzTFMn"/>
     <service id=".service_locator.jD.YujL" alias=".service_locator.eHdw9EY"/>
     <service id=".service_locator.7wj1XMU" alias=".service_locator.ZpXwxdQ"/>
+    <service id=".service_locator.jJ53scV" alias=".service_locator.8dVHRGV"/>
+    <service id=".service_locator.rs2fBKU" alias=".service_locator.SnB84of"/>
+    <service id=".service_locator.siQaq0e" alias=".service_locator.o6umRUF"/>
     <service id=".service_locator.eAaUVIw" alias=".service_locator.jIxfAsi"/>
     <service id=".service_locator.u6DWx23" alias=".service_locator.cXsfP3P"/>
     <service id=".service_locator.pFwChgS" alias=".service_locator.UkE3SaZ"/>

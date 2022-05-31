@@ -183,13 +183,6 @@
 <dd>Deals the cards</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/App-Proj-Play.html#method_endRound">endRound()</a>
-    <span>
-                                &nbsp;: <a href="classes/App-Proj-Card.html"><abbr title="\App\Proj\Card">Card</abbr></a>    </span>
-</dt>
-<dd>Ends the round and returns winning card</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/App-Proj-Play.html#method_finishRound">finishRound()</a>
     <span>
                                 &nbsp;: void    </span>
@@ -211,13 +204,6 @@
 <dd>Returns the deck object</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/App-Proj-Play.html#method_getHighest">getHighest()</a>
-    <span>
-                                &nbsp;: <a href="classes/App-Proj-Card.html"><abbr title="\App\Proj\Card">Card</abbr></a>    </span>
-</dt>
-<dd>Returns the highest card of a pile</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/App-Proj-Play.html#method_getPlayers">getPlayers()</a>
     <span>
                                 &nbsp;: array&lt;string|int, <a href="classes/App-Proj-Player.html"><abbr title="\App\Proj\Player">Player</abbr></a>&gt;    </span>
@@ -227,7 +213,7 @@
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/App-Proj-Play.html#method_getRound">getRound()</a>
     <span>
-                                &nbsp;: int    </span>
+                                &nbsp;: mixed    </span>
 </dt>
 <dd>Returns the current round</dd>
 
@@ -237,6 +223,13 @@
                                 &nbsp;: <a href="classes/App-Proj-Card.html"><abbr title="\App\Proj\Card">Card</abbr></a>    </span>
 </dt>
 <dd>Returns the trumf card</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/App-Proj-Play.html#method_logScores">logScores()</a>
+    <span>
+                                &nbsp;: void    </span>
+</dt>
+<dd>Save the scores</dd>
 
         </dl>
 
@@ -436,57 +429,6 @@
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_endRound">
-        endRound()
-        <a href="classes/App-Proj-Play.html#method_endRound" class="headerlink"><i class="fas fa-link"></i></a>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Proj/Play.php"><a href="files/src-proj-play.html"><abbr title="src/Proj/Play.php">Play.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">110</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Ends the round and returns winning card</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">endRound</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, <a href="classes/App-Proj-Card.html"><abbr title="\App\Proj\Card">Card</abbr></a>&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$pile</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/App-Proj-Card.html"><abbr title="\App\Proj\Card">Card</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$trumf</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/App-Proj-Card.html"><abbr title="\App\Proj\Card">Card</abbr></a></span></code>
-
-    
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$pile</span>
-                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, <a href="classes/App-Proj-Card.html"><abbr title="\App\Proj\Card">Card</abbr></a>&gt;</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$trumf</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/App-Proj-Card.html"><abbr title="\App\Proj\Card">Card</abbr></a></span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
-
-            </dd>
-            </dl>
-
-    
-
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type"><a href="classes/App-Proj-Card.html"><abbr title="\App\Proj\Card">Card</abbr></a></span>
-            &mdash;
-        
-    
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -public
-                                                        "
->
     <h4 class="phpdocumentor-element__name" id="method_finishRound">
         finishRound()
         <a href="classes/App-Proj-Play.html#method_finishRound" class="headerlink"><i class="fas fa-link"></i></a>
@@ -596,49 +538,6 @@
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_getHighest">
-        getHighest()
-        <a href="classes/App-Proj-Play.html#method_getHighest" class="headerlink"><i class="fas fa-link"></i></a>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Proj/Play.php"><a href="files/src-proj-play.html"><abbr title="src/Proj/Play.php">Play.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">140</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Returns the highest card of a pile</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">getHighest</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, <a href="classes/App-Proj-Card.html"><abbr title="\App\Proj\Card">Card</abbr></a>&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$pile</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/App-Proj-Card.html"><abbr title="\App\Proj\Card">Card</abbr></a></span></code>
-
-    
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$pile</span>
-                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, <a href="classes/App-Proj-Card.html"><abbr title="\App\Proj\Card">Card</abbr></a>&gt;</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                
-            </dd>
-            </dl>
-
-    
-
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type"><a href="classes/App-Proj-Card.html"><abbr title="\App\Proj\Card">Card</abbr></a></span>
-            &mdash;
-        
-    
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -public
-                                                        "
->
     <h4 class="phpdocumentor-element__name" id="method_getPlayers">
         getPlayers()
         <a href="classes/App-Proj-Play.html#method_getPlayers" class="headerlink"><i class="fas fa-link"></i></a>
@@ -687,14 +586,14 @@
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">getRound</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">int</span></code>
+                    <span class="phpdocumentor-signature__name">getRound</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
     
     
     
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">int</span>
+    <span class="phpdocumentor-signature__response_type">mixed</span>
             &mdash;
         
     
@@ -728,6 +627,39 @@
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type"><a href="classes/App-Proj-Card.html"><abbr title="\App\Proj\Card">Card</abbr></a></span>
+            &mdash;
+        
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_logScores">
+        logScores()
+        <a href="classes/App-Proj-Play.html#method_logScores" class="headerlink"><i class="fas fa-link"></i></a>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Proj/Play.php"><a href="files/src-proj-play.html"><abbr title="src/Proj/Play.php">Play.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">109</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Save the scores</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">logScores</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+
+    
+    
+    
+
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+    <span class="phpdocumentor-signature__response_type">void</span>
             &mdash;
         
     
