@@ -93,6 +93,9 @@ class PlayTest extends TestCase
         $cardArray = ["hearts1" => ["something"]];
         $card = $play->getCard($cardArray);
         $this->assertInstanceOf("App\Proj\Card", $card);
+        $cardArray = ["error" => ["moreError"]];
+        $card = $play->getCard($cardArray);
+        $this->assertInstanceOf("App\Proj\Card", $card);
     }
 
     // /** THE METHODS WERE MOVED FROM PLAY CLASS TO CONTROLLER TO REDUCE COMPLEXITY AND GOD OBJECT

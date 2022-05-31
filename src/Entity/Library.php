@@ -5,7 +5,7 @@ namespace App\Entity;
 use App\Repository\LibraryRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: LibraryRepository::class)]
+#[ORM\Entity(repositoryClass: LibraryRepository::class)] /* @phpstan-ignore-line */
 /**
  * @SuppressWarnings(PHPMD)
  */
@@ -14,7 +14,7 @@ class Library
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private int $id;
+    private int $id; /* @phpstan-ignore-line */
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private string $name;
@@ -40,7 +40,7 @@ class Library
 
     public function setName(?string $name): self
     {
-        $this->name = $name;
+        $this->name = $name; /* @phpstan-ignore-line */
 
         return $this;
     }
@@ -64,7 +64,7 @@ class Library
 
     public function setAuthor(?string $author): self
     {
-        $this->author = $author;
+        $this->author = $author; /* @phpstan-ignore-line */
 
         return $this;
     }
@@ -76,7 +76,7 @@ class Library
 
     public function setImgUrl(?string $img_url): self
     {
-        $this->img_url = $img_url;
+        $this->img_url = $img_url; /* @phpstan-ignore-line */
 
         return $this;
     }

@@ -303,7 +303,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Controller\\ProjController",
             "name": "ProjController",
-            "summary": "ProjController\u0020class,\u0020contains\u0020the\u0020routes\u0020for\u0020the\u0020project",
+            "summary": "",
             "url": "classes/App-Controller-ProjController.html"
         },                {
             "fqsen": "\\App\\Controller\\ProjController\u003A\u003Aproj\u0028\u0029",
@@ -315,6 +315,11 @@ Search.appendIndex(
             "name": "aboutProj",
             "summary": "",
             "url": "classes/App-Controller-ProjController.html#method_aboutProj"
+        },                {
+            "fqsen": "\\App\\Controller\\ProjController\u003A\u003Acleancode\u0028\u0029",
+            "name": "cleancode",
+            "summary": "",
+            "url": "classes/App-Controller-ProjController.html#method_cleancode"
         },                {
             "fqsen": "\\App\\Controller\\ProjController\u003A\u003Ahighscore\u0028\u0029",
             "name": "highscore",
@@ -346,15 +351,30 @@ Search.appendIndex(
             "summary": "Lays\u0020the\u0020cards\u0020on\u0020the\u0020\u0022table\u0022\u0020\u0028pile\u0029",
             "url": "classes/App-Controller-ProjController.html#method_layCards"
         },                {
-            "fqsen": "\\App\\Controller\\ProjController\u003A\u003AendRound\u0028\u0029",
-            "name": "endRound",
+            "fqsen": "\\App\\Controller\\ProjController\u003A\u003AgetWinner\u0028\u0029",
+            "name": "getWinner",
             "summary": "Ends\u0020the\u0020round\u0020and\u0020returns\u0020winning\u0020card",
-            "url": "classes/App-Controller-ProjController.html#method_endRound"
+            "url": "classes/App-Controller-ProjController.html#method_getWinner"
+        },                {
+            "fqsen": "\\App\\Controller\\ProjController\u003A\u003AcheckPile\u0028\u0029",
+            "name": "checkPile",
+            "summary": "Gives\u0020an\u0020array\u0020with\u0020potential\u0020cards",
+            "url": "classes/App-Controller-ProjController.html#method_checkPile"
         },                {
             "fqsen": "\\App\\Controller\\ProjController\u003A\u003AgetHighest\u0028\u0029",
             "name": "getHighest",
             "summary": "Returns\u0020the\u0020highest\u0020card\u0020of\u0020a\u0020pile",
             "url": "classes/App-Controller-ProjController.html#method_getHighest"
+        },                {
+            "fqsen": "\\App\\Controller\\ProjController\u003A\u003AgetStarter\u0028\u0029",
+            "name": "getStarter",
+            "summary": "Returns\u0020true\u0020if\u0020CPU\u0020starts\u0020the\u0020laying",
+            "url": "classes/App-Controller-ProjController.html#method_getStarter"
+        },                {
+            "fqsen": "\\App\\Controller\\ProjController\u003A\u003AendOfRound\u0028\u0029",
+            "name": "endOfRound",
+            "summary": "Either\u0020saves\u0020the\u0020points\u0020to\u0020the\u0020database\u0020or\u0020starts\u0020the\u0020next\u0020round\u0020depending\u0020on\u0020if\u0020the\u0020game\u0020is\u0020over\u0020or\u0020not",
+            "url": "classes/App-Controller-ProjController.html#method_endOfRound"
         },                {
             "fqsen": "\\App\\Entity\\Library",
             "name": "Library",
@@ -485,6 +505,11 @@ Search.appendIndex(
             "name": "playCard",
             "summary": "Picks\u0020a\u0020card\u0020to\u0020play",
             "url": "classes/App-Proj-ComputerPlayer.html#method_playCard"
+        },                {
+            "fqsen": "\\App\\Proj\\ComputerPlayer\u003A\u003AcheckPile\u0028\u0029",
+            "name": "checkPile",
+            "summary": "Gives\u0020an\u0020array\u0020with\u0020potential\u0020cards",
+            "url": "classes/App-Proj-ComputerPlayer.html#method_checkPile"
         },                {
             "fqsen": "\\App\\Proj\\Deck",
             "name": "Deck",

@@ -102,19 +102,19 @@ class ProjController extends AbstractController
             $session->set("nextRound", false);
             $session->set("disabled", "");
             if ($session->get("winningPlayer") == "cpu") { // if new inner round and cpu shall go first, cpu goes here
-                $pile = $this->layCards($game, $session, $pile, $trumf);
+                $pile = $this->layCards($game, $session, $pile, $trumf); /** @phpstan-ignore-line */
             }
         } elseif ($session->get("bet") == "bet") { // when setting a bet
             $session->set("bet", "disabled");
             $session->set("disabled", "");
             $game->getPlayers()[0]->addBetStick($session->get("stick")); // save the bet to the player object
-            $game->getPlayers()[1]->addBetStick($game->getPlayers()[1]->chooseBet($trumf));
+            $game->getPlayers()[1]->addBetStick($game->getPlayers()[1]->chooseBet($trumf)); /** @phpstan-ignore-line */
         } elseif ($newRound == false) { // playing the game
             if ($round > 0) {
-                $pile = $this->layCards($game, $session, $pile, $trumf);
+                $pile = $this->layCards($game, $session, $pile, $trumf); /** @phpstan-ignore-line */
                 if (count($pile) == 2) { // if all cards have been placed for the round, end round
-                    $winningCard = $this->endRound($pile, $trumf); // get the card that wins the pile
-                    $card = $game->getCard($session->get("card"));
+                    $winningCard = $this->getWinner($pile, $trumf); /** @phpstan-ignore-line */
+                    $card = $game->getCard($session->get("card")); /** @phpstan-ignore-line */
                     if ($winningCard == $card) { // player got the stick
                         $session->set("winningPlayer", "player");
                         $game->getPlayers()[0]->addStick($game->getPlayers()[0]->stick() + 1);
@@ -196,19 +196,19 @@ class ProjController extends AbstractController
         if (count($pile) < 2) { // if not everyone has laid their card
             try {
                 if (count($pile) == 1) { // if computer has already placed a card
-                    $card = $game->getCard($session->get("card"));
+                    $card = $game->getCard($session->get("card")); /** @phpstan-ignore-line */
                     array_push($pile, $card); // put card in pile on table
                     $game->getPlayers()[0]->removeCard($card); // remove card from hand (bc it is on the table now)
                     $session->set("disabled", "disabled");
-                } elseif ($this->getStarter($game, $session) == true) { // if computer gets to go first
-                    $cpuCard = $game->getPlayers()[1]->playCard($pile, $trumf);
+                } elseif ($this->getStarter($game, $session) === true) { // if computer gets to go first
+                    $cpuCard = $game->getPlayers()[1]->playCard($pile, $trumf); /** @phpstan-ignore-line */
                     array_push($pile, $cpuCard); // put card in pile on table
                     $game->getPlayers()[1]->removeCard($cpuCard); // remove card from hand
-                } elseif ($this->getStarter($game, $session) == false) { // if player gets to go first
-                    $card = $game->getCard($session->get("card"));
+                } elseif ($this->getStarter($game, $session) === false) { // if player gets to go first
+                    $card = $game->getCard($session->get("card")); /** @phpstan-ignore-line */
                     array_push($pile, $card); // put card in pile on table
                     $game->getPlayers()[0]->removeCard($card); // remove card from hand (bc it is on the table now)
-                    $cpuCard = $game->getPlayers()[1]->playCard($pile, $trumf);
+                    $cpuCard = $game->getPlayers()[1]->playCard($pile, $trumf); /** @phpstan-ignore-line */
                     array_push($pile, $cpuCard); // put card in pile on table
                     $game->getPlayers()[1]->removeCard($cpuCard); // remove card from hand
                     $session->set("disabled", "disabled");
@@ -225,28 +225,32 @@ class ProjController extends AbstractController
      * Ends the round and returns winning card
      * @param array<Card> $pile
      */
-    protected function endRound(array $pile, Card $trumf): Card
+    protected function getWinner(array $pile, Card $trumf): Card
     {
-        $oneColour = [];
         $winner = $pile[0]; // first card decides colour
+        $winner = $this->checkPile($trumf, $pile);
+        if ($winner->value()[1] != $trumf->value()[1]) { // if there is no trumph
+            $winner = $this->checkPile($pile[0], $pile);
+        }
+        return $winner;
+    }
+
+    /**
+     * Gives an array with potential cards
+     * @param array<Card> $pile
+     */
+    protected function checkPile(Card $check, array $pile): Card
+    {
+        $winner = $pile[0];
+        $possible = [];
         $count = count($pile);
-        for ($i = 0; $i < $count; $i++) { // check for trumf
-            if ($pile[$i]->value()[1] == $trumf->value()[1]) { //if there is trumph
-                array_push($oneColour, $pile[$i]);
-            }
-            if ($oneColour != []) {
-                $winner = $this->getHighest($oneColour);
+        for ($i = 0; $i < $count; $i++) {
+            if ($pile[$i]->value()[1] == $check->value()[1]) { // if cards are the same suit as the checker
+                array_push($possible, $pile[$i]);
             }
         }
-        if ($winner->value()[1] != $trumf->value()[1]) { // if there is no trumph
-            for ($i = 0; $i < $count; $i++) {
-                if ($pile[$i]->value()[1] == $pile[0]->value()[1]) { //if it is same colour as first card
-                    array_push($oneColour, $pile[$i]);
-                }
-                if ($oneColour != []) {
-                    $winner = $this->getHighest($oneColour);
-                }
-            }
+        if ($possible != []) {
+            $winner = $this->getHighest($possible);
         }
         return $winner;
     }

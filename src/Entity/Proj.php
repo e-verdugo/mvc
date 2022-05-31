@@ -5,7 +5,7 @@ namespace App\Entity;
 use App\Repository\ProjRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: ProjRepository::class)]
+#[ORM\Entity(repositoryClass: ProjRepository::class)] /* @phpstan-ignore-line */
 /**
  * @SuppressWarnings(PHPMD)
  */
@@ -14,13 +14,13 @@ class Proj
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private $id;
+    private $id; /* @phpstan-ignore-line */
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private $Name;
+    private $Name; /* @phpstan-ignore-line */
 
     #[ORM\Column(type: 'integer', nullable: true)]
-    private $Score;
+    private $Score; /* @phpstan-ignore-line */
 
     public function getId(): ?int
     {

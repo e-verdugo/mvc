@@ -100,6 +100,9 @@ class Play
                 $newCard = $deck->deck()[$i];
             }
         }
+        if (isset($newCard) == false) {
+            $newCard = new Card(0, "hearts"); // this will never happen unless in error
+        }
         return $newCard;
     }
 

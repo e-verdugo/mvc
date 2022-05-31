@@ -1,0 +1,3 @@
+<?php //App%255CController%255CProjController%2523getWinner
+
+return [PHP_INT_MAX, []];
