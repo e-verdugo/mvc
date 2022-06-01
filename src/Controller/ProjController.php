@@ -101,7 +101,7 @@ class ProjController extends AbstractController
             $pile = [];
             $session->set("nextRound", false);
             $session->set("disabled", "");
-            if ($session->get("winningPlayer") == "cpu") { // if new inner round and cpu shall go first, cpu goes here
+            if ($session->get("winningPlayer") == "CPU") { // if new inner round and cpu shall go first, cpu goes here
                 $pile = $this->layCards($game, $session, $pile, $trumf); /** @phpstan-ignore-line */
             }
         } elseif ($session->get("bet") == "bet") { // when setting a bet
@@ -119,7 +119,7 @@ class ProjController extends AbstractController
                         $session->set("winningPlayer", "player");
                         $game->getPlayers()[0]->addStick($game->getPlayers()[0]->stick() + 1);
                     } else { // else bank got the stick
-                        $session->set("winningPlayer", "cpu");
+                        $session->set("winningPlayer", "CPU");
                         $game->getPlayers()[1]->addStick($game->getPlayers()[1]->stick() + 1);
                     }
                     $session->set("disabled", "disabled");
@@ -200,11 +200,11 @@ class ProjController extends AbstractController
                     array_push($pile, $card); // put card in pile on table
                     $game->getPlayers()[0]->removeCard($card); // remove card from hand (bc it is on the table now)
                     $session->set("disabled", "disabled");
-                } elseif ($this->getStarter($game, $session) === true) { // if computer gets to go first
+                } elseif ($this->getStarter($game, $session) == "CPU") { // if computer gets to go first
                     $cpuCard = $game->getPlayers()[1]->playCard($pile, $trumf); /** @phpstan-ignore-line */
                     array_push($pile, $cpuCard); // put card in pile on table
                     $game->getPlayers()[1]->removeCard($cpuCard); // remove card from hand
-                } elseif ($this->getStarter($game, $session) === false) { // if player gets to go first
+                } elseif ($this->getStarter($game, $session) == "player") { // if player gets to go first
                     $card = $game->getCard($session->get("card")); /** @phpstan-ignore-line */
                     array_push($pile, $card); // put card in pile on table
                     $game->getPlayers()[0]->removeCard($card); // remove card from hand (bc it is on the table now)
@@ -213,11 +213,11 @@ class ProjController extends AbstractController
                     $game->getPlayers()[1]->removeCard($cpuCard); // remove card from hand
                     $session->set("disabled", "disabled");
                 }
-                $session->set("start", false);
             } catch (\Throwable) {
                 // to avoid crashing if user reloads page without having clicked on anything
             }
         }
+        $session->set("start", false);
         return $pile;
     }
 
@@ -274,12 +274,27 @@ class ProjController extends AbstractController
     }
 
     /**
-     * Returns true if CPU starts the laying
+     * Returns who starts the laying
      */
-    protected function getStarter(Play $game, SessionInterface $session): bool
+    protected function getStarter(Play $game, SessionInterface $session): string
     {
-        return ($game->getPlayers()[0]->betStick() < $game->getPlayers()[1]->betStick()
-            && $session->get("start") == true || $session->get("winningPlayer") == "cpu");
+        if (
+            ($game->getPlayers()[1]->betStick() < $game->getPlayers()[0]->betStick()
+            && ($session->get("start") == true))
+        ) {
+            return "player";
+        } elseif (
+            ($game->getPlayers()[0]->betStick() < $game->getPlayers()[1]->betStick()
+            && ($session->get("start") == true))
+        ) {
+            return "CPU";
+        } elseif ($session->get("winningPlayer") == "CPU") {
+            return "CPU";
+        } elseif ($session->get("winningPlayer") == "player") {
+            return "player";
+        } else {
+            return "player";
+        }
     }
 
     /**

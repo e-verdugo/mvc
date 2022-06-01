@@ -368,7 +368,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Controller\\ProjController\u003A\u003AgetStarter\u0028\u0029",
             "name": "getStarter",
-            "summary": "Returns\u0020true\u0020if\u0020CPU\u0020starts\u0020the\u0020laying",
+            "summary": "Returns\u0020who\u0020starts\u0020the\u0020laying",
             "url": "classes/App-Controller-ProjController.html#method_getStarter"
         },                {
             "fqsen": "\\App\\Controller\\ProjController\u003A\u003AendOfRound\u0028\u0029",
